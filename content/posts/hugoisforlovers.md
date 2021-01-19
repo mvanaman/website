@@ -3,6 +3,10 @@ categories:
 - Development
 - golang
 date: "2014-04-02"
+featuredImage: https://imgs.xkcd.com/comics/angular_momentum.jpg
+series:
+- Getting Started
+- Hugo
 tags:
 - go
 - golang

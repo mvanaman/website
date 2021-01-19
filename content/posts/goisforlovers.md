@@ -1,8 +1,13 @@
 ---
+authors:
+- Jane Smith
 categories:
 - Development
 - golang
 date: "2014-04-02"
+series:
+- Getting Started
+- Hugo
 slug: hugo-template-primer
 tags:
 - go
@@ -237,7 +242,7 @@ instead of depending on the context.
 
       {{ $title := .Site.Title }}
       {{ range .Params.tags }}
-        <li> <a href="{{ $baseurl }}/tags/{{ . | urlize }}">{{ . }}</a> - {{ $title }} </li>
+        <li> <a href="{{ $baseURL }}/tags/{{ . | urlize }}">{{ . }}</a> - {{ $title }} </li>
       {{ end }}
 
 Notice how once we have entered the loop the value of {{ . }} has changed. We

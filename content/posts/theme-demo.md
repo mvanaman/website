@@ -1,6 +1,15 @@
 ---
-date: "2018-08-03"
-math: "true"
+authors:
+- John Doe
+- Jane Smith
+date: "2017-01-08"
+description: The post demonstrates features of the coder theme.
+images:
+- /images/N90.jpg
+math: true
+series:
+- Theme
+- Hugo
 title: Theme Demo
 ---
 
@@ -72,40 +81,6 @@ var foo = function (bar) {
 console.log(foo(5));
 ```
 
-## Private Content  
+## Hugo shortcode for figure
 
-You can create private content with this short code  
-
-```
-{% private %}  
-Write private content here  
-{% /private %}  
-```
-
-When using for inspection, please add "{}" so that you can see the notation of shortcode
-
-## Private Content Demo
-
-Please click on fixed bottom bar 'Click'  
-private content is displayed here  
-
-{{% private %}}  
-## Private Content
-This is private content
-{{% /private %}}  
-
-## Portfolio Content
-
-You can create portfolio content with this short code  
-
-```
-{% portfolio image="/images/tn.png" alt="Coder Portfolio" %}  
-Write portfolio content here  
-{% /portfolio %}  
-```
-
-When using for inspection, please add "{}" so that you can see the notation of shortcode
-
-## Portfolio Content Demo
-
-Please see "projects" for demo.  
+{{< figure src="/images/N90.jpg" caption="N90 nebula, \"New stars shed light on the past\" by ESA/Hubble" >}}

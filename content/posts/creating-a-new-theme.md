@@ -1,6 +1,11 @@
 ---
+authors:
+- John Doe
 categories: []
 date: "2014-09-28"
+series:
+- Theme
+- Hugo
 slug: creating-a-new-theme
 tags: []
 title: Creating a New Theme
@@ -307,7 +312,7 @@ Edit the file to add the theme, add a title for the site, and specify that all o
 ```
 $ vi config.toml
 theme = "zafta"
-baseurl = ""
+baseURL = ""
 languageCode = "en-us"
 title = "zafta - totally refreshing"
 MetaDataFormat = "toml"
