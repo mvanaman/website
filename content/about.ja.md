@@ -6,11 +6,14 @@ title: About Hugo
 ---
 
 ---------------------------
-This theme is created based on [hugo-coder](https://github.com/luizdepra/hugo-coder).  
-I made it possible to tell yourself more by my change.   
-Please see "FeaturesOfCoderPortfolio" in the post about the change.
-Regarding other demo contents, it is hugo-coder's thing.  
-Have questions or suggestions? Feel free to [open an issue on GitHub](https://github.com/naro143/hugo-coder-portfolio/issues/new) or [ask me on Twitter](https://twitter.com/naro143).
+このテーマは[hugo-coder](https://github.com/luizdepra/hugo-coder)を元に作成をしています。  
+一見綺麗なポートフォリをサイトですが、より個人的なことも伝えられるようにしました。  
+変更点の詳細はブログから、"FeaturesOfCoderPortfolio"を見てください。  
+それ以外のDEMOのコンテンツに関してはhugo-coderのものです。  
+質問や、報告がありましたら、下記からお願いいたします。  
+
+* [open an issue on GitHub](https://github.com/naro143/hugo-coder-portfolio/issues/new)  
+* [ask me on Twitter](https://twitter.com/naro143)  
 
 ---------------------------
 

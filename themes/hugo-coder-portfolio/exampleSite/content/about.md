@@ -1,9 +1,9 @@
----
-description: about
-slug: about
-thumbnail: images/tn.png
-title: About Hugo
----
++++
+title = "About Hugo"
+slug = "about"
+thumbnail = "images/tn.png"
+description = "about"
++++
 
 ---------------------------
 This theme is created based on [hugo-coder](https://github.com/luizdepra/hugo-coder).  

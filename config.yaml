@@ -1,0 +1,95 @@
+baseurl: http://www.example.com
+title: Yusuke Ishimi
+theme: hugo-coder-portfolio
+DefaultContentLanguage: en
+paginate: 20
+pygmentsstyle: b2
+pygmentscodefences: yes
+pygmentscodefencesguesssyntax: yes
+pygmentsUseClasses: yes
+disqusShortname: yourdiscussshortname
+params:
+  author: Yusuke Ishimi
+  avatarurl: images/avatar.jpg
+  custom_css: []
+  description: Yusuke Ishimi's personal website
+  enableFacebookShare: yes
+  enableHatenaShare: yes
+  enableLineShare: yes
+  enableLinkedInShare: yes
+  enableTwitterShare: yes
+  fixedbarContent: Do you want to know me more private?→
+  fixedbarContentAfter: Thank You! Please share it if you like it→
+  footercontent: Enter a text here.
+  hideCopyright: no
+  hideCredits: no
+  info: WEB AND APPS ENGINEER
+  itemscentered: yes
+  keywords: blog,developer,personal
+  langseparator: '|'
+  rtl: no
+  snsShare: yes
+  social:
+    - icon: fab fa-github
+      name: Github
+      url: https://github.com/naro143/
+      weight: 1
+    - icon: fab fa-twitter
+      name: Twitter
+      url: https://twitter.com/naro143/
+      weight: 2
+    - icon: fab fa-linkedin
+      name: LinkedIn
+      url: https://www.linkedin.com/in/naro143/
+      weight: 3
+    - name: LinkedIn
+      url: https://www.linkedin.com/in/naro143/
+      weight: 4
+  thumbnail: images/tn.png
+languages:
+  en:
+    languagecode: en
+    languagename: English
+    menu:
+      main:
+        - name: About
+          url: about
+          weight: 1
+        - name: Blog
+          url: posts
+          weight: 2
+        - name: Projects
+          url: projects
+          weight: 3
+        - name: Contact me
+          url: contact
+          weight: 5
+    params:
+      author: Yusuke Ishimi
+      description: Yusuke Ishimi's personal website
+      info: WEB AND APPS ENGINEER
+      keywords: blog,developer,personal
+    title: Yusuke Ishimi
+  ja:
+    languagecode: ja
+    languagename: Japanese
+    menu:
+      main:
+        - name: テーマについて
+          url: ja/about
+          weight: 1
+        - name: ブログ
+          url: ja/posts
+          weight: 2
+        - name: プロジェクト
+          url: ja/projects
+          weight: 3
+        - name: お問い合わせ
+          url: ja/contact
+          weight: 5
+    params:
+      author: 石見 優丞
+      description: 石見のサイト
+      info: WEBとアプリのエンジニア
+      keywords: blog,developer,strona domowa
+    title: 石見 優丞
