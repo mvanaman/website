@@ -19,8 +19,8 @@ options(
   blogdown.method = 'html',
   servr.daemon =	interactive(),
   blogdown.author = "Matthew E. Vanaman",
-  blogdown.ext = .Rmd,
-  blogdown.subdir = post,
+  blogdown.ext = ".Rmd",
+  blogdown.subdir = "post",
   blogdown.yaml.empty = TRUE
 )
 
