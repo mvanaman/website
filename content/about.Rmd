@@ -1,0 +1,25 @@
+---
+date: "2017-08-20T21:38:52+08:00"
+lastmod: "2017-08-28T21:41:52+08:00"
+menu: main
+title: About
+weight: 50
+bibliography: ["/Users/home/Library/Mobile Documents/com\\~apple\\~CloudDocs/Documents/Research and Writing/Misc/MyRefs/MyRefs.bib"]
+csl: ["/Users/home/Library/Mobile Documents/com\\~apple\\~CloudDocs/Documents/Research and Writing/Misc/MyRefs/apa-6th-edition.csl"]
+biblatexoptions: [url = false]
+nocite: | 
+  @vanaman2019novel
+---
+
+<center>
+
+[Google Scholar]( https://scholar.google.com/citations?user=dQ_TbawAAAAJ&hl=en) | [OSF](osf.io/4hz9q) | [ResearchGate](https://www.researchgate.net/profile/Matthew_Vanaman)
+
+</center>
+
+# Published Articles
+
+
+
+
+

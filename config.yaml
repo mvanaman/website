@@ -135,11 +135,11 @@ params:
   since: '2021'
   social:
     a-email: mailto:your@email.com
-    b-stack-overflow: http://localhost:1313
-    c-twitter: http://localhost:1313
+  #  b-stack-overflow: http://localhost:1313
+ #   c-twitter: http://localhost:1313
     e-linkedin: https://www.linkedin.com/in/mvanaman/
-    f-google: https://scholar.google.com/citations?user=dQ_TbawAAAAJ&hl=en
-    g-github: https://github.com/mvanaman
+ #   f-google: https://scholar.google.com/citations?user=dQ_TbawAAAAJ&hl=en
+  #  g-github: https://github.com/mvanaman
     #n-gitlab: http://localhost:1313
   toc: yes
   uglyURLs: no
