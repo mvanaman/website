@@ -13,6 +13,9 @@ nocite: |
 
 <center>
 
+![](/img/meet.jpeg)
+[Meet Daytona](/img/daytona.jpeg)
+
 [Google Scholar]( https://scholar.google.com/citations?user=dQ_TbawAAAAJ&hl=en) | [OSF](https://osf.io/4hz9q/) | [ResearchGate](https://www.researchgate.net/profile/Matthew_Vanaman)
 
 </center>
