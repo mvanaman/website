@@ -13,7 +13,7 @@ nocite: |
 
 <center>
 
-[Google Scholar]( https://scholar.google.com/citations?user=dQ_TbawAAAAJ&hl=en) | [OSF](osf.io/4hz9q) | [ResearchGate](https://www.researchgate.net/profile/Matthew_Vanaman)
+[Google Scholar]( https://scholar.google.com/citations?user=dQ_TbawAAAAJ&hl=en) | [OSF](https://osf.io/4hz9q/) | [ResearchGate](https://www.researchgate.net/profile/Matthew_Vanaman)
 
 </center>
 
