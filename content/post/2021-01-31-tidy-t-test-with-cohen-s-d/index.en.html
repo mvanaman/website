@@ -1,5 +1,5 @@
 ---
-title: Tidy T-Test With Cohen's D
+title: Tidy T-Test in R With Cohen's D
 author: Matthew E. Vanaman
 date: '2021-01-31'
 slug: []
@@ -42,7 +42,17 @@ csl: "/Users/home/Documents/Research and Writing/Misc/MyRefs/apa-web.csl"
 </div>
 
 <!--more-->
-<p>The independent-samples t-test is one of the most common statistical tests used in the social sciences. In a typical case, you would use the <code>t.test()</code> function. As an example, I’ll conduct a t-test to see whether automatic or manual transmissions are associated with greater miles per gallon in the <code>mtcars</code> dataset (from the <code>datasets</code> package in base <code>r</code>):</p>
+<p>The independent-samples t-test is one of the most commonly used statistical tests and is taught in most introductory statistics course. In broad strokes, the independent-samples t-test is used when the independent variable in a study is binary - that is, consists of two qualitatively different groups - and the dependent variable is continuous (interval or ratio). The mean of the dependent variable is calculated for each group, compared, and a decision is made about whether the difference between the means is meaningful (that is, worth paying attention to). Associated with this mean difference is a <span class="math inline">\(p\)</span>-value. Although there’s <a href="https://en.wikipedia.org/wiki/Sampling_distribution">more to the story</a>, for our purposes we can define the p-value as <em>the probability of observing a difference between the means this large or larger, just due to chance, if there were in reality no difference in the groups</em>. Although arbitrary, researchers will adopt (for most applications) a cutoff $p$-value of .05, a value referred to as alpha. If the p-value falls below alpha, we can conclude that the difference between the means is large enough to warrant further scrutiny.</p>
+<div id="wheres-my-effect-size" class="section level1">
+<h1>Where’s My Effect Size?</h1>
+<p>In the aforementioned introductory statistics courses, students also learn about effect sizes that help put the results of statistical tests into context. In the case of the <span class="math inline">\(t\)</span>-test, Cohen’s <span class="math inline">\(d\)</span> measure of effect size helps get a sense of how impressive the mean difference between groups is on a standardized metric. Standardized, in this case, just means that the metric is universal: no matter what the original metric for the dependent variable, the $d$ statistic always falls within a certain range, and always follows a certain interpretation. This means that if you ran two different tests on two different dependent variables, the interpretations of their resulting $d$ statistics would be comparable in terms of your sense of how large the mean differences were. Although still a bit arbitrary, $d$ follows some rules of thumb <span class="citation">(<a href="#ref-cohen2013statistical" role="doc-biblioref">Cohen, 2013</a>)</span>:</p>
+<ul>
+<li><span class="math inline">\(\le 0.2\)</span> = is “small”</li>
+<li><span class="math inline">\(0.5\)</span> is “medium”</li>
+<li><span class="math inline">\(\ge 0.8\)</span> is “large”</li>
+</ul>
+<p>Given how useful this is, one would be forgiven for expecting to see it among the statistical output from standard software. It’s odd, then, that statistical software in general does not automatically report cohen’s <span class="math inline">\(d\)</span> alongside the results of independent-samples t-tests. This, despite the fact that researchers have been pressured to report measures of effect size alongside descriptive and inferential statistics in their published work for about two decades now <span class="citation">(<a href="#ref-coe2002effect" role="doc-biblioref">Coe, 2002</a>)</span>.</p>
+<p><code>R</code> is no different unfortunately. The <code>t.test()</code> function is built in to base-<code>R</code>, along with other mainstream tests. As an example of its use, I’ll conduct a t-test to see whether automatic or manual transmissions are associated with greater miles per gallon in the <code>mtcars</code> dataset (from the <code>datasets</code> package in base <code>r</code>):</p>
 <pre class="r"><code>t.test(mpg ~ am, mtcars)</code></pre>
 <pre><code>## 
 ##  Welch Two Sample t-test
@@ -55,19 +65,15 @@ csl: "/Users/home/Documents/Research and Writing/Misc/MyRefs/apa-web.csl"
 ## sample estimates:
 ## mean in group 0 mean in group 1 
 ##        17.14737        24.39231</code></pre>
-<p>In this dataset, vehicles with automatic transmissions are coded as 0, and manuals as 1. Looking at the output above, we see the mean miles per gallon for automatic transmissions (17.15) is quite a bit lower than for manuals (24.39). This difference is statistically significant, <span class="math inline">\(p = .001\)</span>.</p>
-<p>OK, so we learned something, which is that the different in statistically significant. But this isn’t all that useful, because statistical significance in this case is a primarily emerges from the magnitude mean difference <em>as well as</em> the magnitude of the variability within each group. That is, in simplest terms, there is a mean difference and a measure of error around that mean difference: if the mean difference is large, this helps “bring down” the p-value, but so too does the error around the difference. It’s hard to tell whether the p-value is small primarily because the mean difference could be considered a large one, or whether the error is just very small.</p>
-<p>Cohen’s <em>d</em> measure of effect size is one way to help get a sense of how impressive this mean difference is. Although still a bit arbitrary, cohen’s d has some rules of thumb that help contextualize how large the difference was <span class="citation">(<a href="#ref-cohen2013statistical" role="doc-biblioref">Cohen, 2013</a>)</span>:</p>
-<ul>
-<li><span class="math inline">\(\le 0.2\)</span> = is “small”</li>
-<li><span class="math inline">\(0.5\)</span> is “medium”</li>
-<li><span class="math inline">\(\ge 0.8\)</span> is “large”</li>
-</ul>
-<p>It’s kind of odd that this function - and statistical software in general - does not automatically report cohen’s <span class="math inline">\(d\)</span> alongside other statistical output. You don’t learn much from a p-value by itself, and researchers have encouraged to report measures of effect size alongside descriptive and inferential statistics in their published work for about two decades now <span class="citation">(<a href="#ref-coe2002effect" role="doc-biblioref">Coe, 2002</a>)</span>. And like most statistical software, the output from the <code>t.test()</code> function in R doesn’t exactly make it easy to copy-and-paste your output to e.g., a table in Word.</p>
-<p>I haven’t been able to find any existing functions that do this, so I made my own wrapper function that neatly formats output from <code>t.test()</code> and the <code>cohen.d()</code> function from the <code>psych</code> package. Here’s the same example as above using the function:</p>
+<p>In this dataset, vehicles with automatic transmissions are coded as 0, and manuals as 1. The dependent variables is the miles-per-gallon of the vehicles. Looking at the output above, we see the mean miles per gallon for vehicles with automatic transmissions (17.15) is quite a bit lower than for vehicles with manual transmissions (24.39). This difference is statistically significant, <span class="math inline">\(p = .001\)</span>, meaning the means are different enough that we might want to dig in a little bit deeper.</p>
+<p>The next step, usually, would be to calculate Cohen’s <span class="math inline">\(d\)</span>, yet it is nowhere to be found in the output. Other useful statistics are also missing: the $p$-value is associated with the mean difference, yet the mean difference is missing. Although we can see the means for each group separately, why should I have to do the math myself? Lastly, this output doesn’t exactly make it easy to copy-and-paste into e.g., a table in Word, which one would usually want to do after conducting a statistical test. In other words, the output is not in a <a href="https://vita.had.co.nz/papers/tidy-data.pdf">tidy format</a>.</p>
+</div>
+<div id="my-solution" class="section level1">
+<h1>My Solution</h1>
+<p>I haven’t been able to find any existing functions that check these boxes, so I made my own wrapper function that shows output from <code>t.test()</code> and the <code>cohen.d()</code> function from the <code>psych</code> package in a tidy format. Here’s the same example as above using the function, which I have called <code>my.t</code>:</p>
 <pre><code>## my.t(mtcars, IV = am, DV = mpg)</code></pre>
 <!-- html table generated in R 3.6.1 by xtable 1.8-4 package -->
-<!-- Sun Jan 31 20:13:49 2021 -->
+<!-- Mon Feb  1 12:32:09 2021 -->
 <table border="1">
 <tr>
 <th>
@@ -146,11 +152,13 @@ cohens.d
 </td>
 </tr>
 </table>
-<p>This output gives you everything you need, with the mean and standard deviation of each group clearly labeled along with the mean different, t-statistic, confidence interval around the difference, and cohen’s <span class="math inline">\(d\)</span> measure of effect size.</p>
-<p>Currently the output is in wide format; if you prefer a different view, I also added the <code>long =</code> argument that can optionally display output in long format:</p>
+<p>This output gives you everything, clearly labeled, with our friend Cohen’s <span class="math inline">\(d\)</span> included. We can see that the $d$ measure of mean difference in miles per gallon is quite large (1.53), which is about twice the size of the cutoff for a “large” effect size.</p>
+<div id="formatting-option-and-an-illustration" class="section level2">
+<h2>Formatting Option, and an Illustration</h2>
+<p>Currently the output is in wide format, meaning that each statistic is its own column, with the row containing the values for those statistics. If you prefer a different format, I have also added the <code>long =</code> argument that can optionally display output in long format, with each statistic indicated by the row with the value in a column:</p>
 <pre><code>## my.t(mtcars, IV = am, DV = mpg, long = TRUE)</code></pre>
 <!-- html table generated in R 3.6.1 by xtable 1.8-4 package -->
-<!-- Sun Jan 31 20:13:49 2021 -->
+<!-- Mon Feb  1 12:32:09 2021 -->
 <table border="1">
 <tr>
 <th>
@@ -164,100 +172,102 @@ Value
 <td>
 0.mean
 </td>
-<td>
-17.14737
+<td align="right">
+17.15
 </td>
 </tr>
 <tr>
 <td>
 1.mean
 </td>
-<td>
-24.39231
+<td align="right">
+24.39
 </td>
 </tr>
 <tr>
 <td>
 0.sd
 </td>
-<td>
-3.833966
+<td align="right">
+3.83
 </td>
 </tr>
 <tr>
 <td>
 1.sd
 </td>
-<td>
-6.166504
+<td align="right">
+6.17
 </td>
 </tr>
 <tr>
 <td>
 mean.difference
 </td>
-<td>
--7.244939
+<td align="right">
+-7.24
 </td>
 </tr>
 <tr>
 <td>
 std.err
 </td>
-<td>
-1.923202
+<td align="right">
+1.92
 </td>
 </tr>
 <tr>
 <td>
 conf.low
 </td>
-<td>
--11.28019
+<td align="right">
+-11.28
 </td>
 </tr>
 <tr>
 <td>
 conf.high
 </td>
-<td>
--3.209684
+<td align="right">
+-3.21
 </td>
 </tr>
 <tr>
 <td>
 t
 </td>
-<td>
--3.767123
+<td align="right">
+-3.77
 </td>
 </tr>
 <tr>
 <td>
 df
 </td>
-<td>
-18.33225
+<td align="right">
+18.33
 </td>
 </tr>
 <tr>
 <td>
 p.value
 </td>
-<td>
-0.001373638
+<td align="right">
+0.00
 </td>
 </tr>
 <tr>
 <td>
 cohens.d
 </td>
-<td>
+<td align="right">
 1.53
 </td>
 </tr>
 </table>
-<p>This could be useful if you are comparing groups across multiple variables. For example, for brevity, say you want to see how big the difference between transmission is in displacement too (how fast a vehicle gets up and goes). You might do something like this:</p>
+<p>Taking a look at this last table, we can see that the mean difference in displacement is 146.85, meaning having an automatic transmission is associated with an extra 146.85 cubic inches of displacement. So while you might gain ~7 miles to the gallon by going with a manual transmission, you can also expect to lose 146.85 cubic inches of displacement.</p>
+<p>OK, but what the heck does that mean? Is that an impressive number? It’s hard to tell for those who don’t spend time dealing with vehicle displacement. We might have been able to avoid this with miles per gallon, since miles per gallon is an familiar metric for most of us who refill our gas tanks a few times a month (in other words, anyone who drives). We readily understand how much money we would save if our vehicle got an extra 7 miles to the gallon. But I for one cannot readily appreciate how important a loss of 146.85 cubic inches of displacement would be compare to a gain of 7 miles per gallon. If I were car shopping, I might like to know if this is an important number.</p>
+<p>Using this long format, we can see some of the added value of Cohen’s <span class="math inline">\(d\)</span>. Say, for example, that you are car shopping, and miles per gallon was one of just several criteria you were using to help you decide whether to buy a car with an automatic or manual transmission. Your other criterion is displacement, which roughly describes “how fast a vehicle gets up and goes” (my <a href="\img\dad.jpeg">dad</a> is a self-taught engineer who has built engines for 40 years, so I hope he will forgive me for this is description is wrong!). If you wanted to repeat what we did for vehicle displacement - measured in this dataset as displacement per cubic inch - you might do something like this:</p>
 <pre class="r"><code># conduct the tests
 mpg.test &lt;- my.t(mtcars, IV = am, DV = mpg, long = TRUE)
 disp.test &lt;- my.t(mtcars, IV = am, DV = disp, long = TRUE)
@@ -267,7 +277,7 @@ disp.test &lt;- disp.test %&gt;% rename(&quot;Disp.&quot; = Value)
 my.results &lt;- cbind(mpg.test, select(disp.test, -Statistic))
 my.results</code></pre>
 <!-- html table generated in R 3.6.1 by xtable 1.8-4 package -->
-<!-- Sun Jan 31 20:13:49 2021 -->
+<!-- Mon Feb  1 12:32:09 2021 -->
 <table border="1">
 <tr>
 <th>
@@ -284,189 +294,142 @@ Disp.
 <td>
 0.mean
 </td>
-<td>
-17.14737
+<td align="right">
+17.15
 </td>
-<td>
-290.3789
+<td align="right">
+290.38
 </td>
 </tr>
 <tr>
 <td>
 1.mean
 </td>
-<td>
-24.39231
+<td align="right">
+24.39
 </td>
-<td>
-143.5308
+<td align="right">
+143.53
 </td>
 </tr>
 <tr>
 <td>
 0.sd
 </td>
-<td>
-3.833966
+<td align="right">
+3.83
 </td>
-<td>
-110.1716
+<td align="right">
+110.17
 </td>
 </tr>
 <tr>
 <td>
 1.sd
 </td>
-<td>
-6.166504
+<td align="right">
+6.17
 </td>
-<td>
-87.20399
+<td align="right">
+87.20
 </td>
 </tr>
 <tr>
 <td>
 mean.difference
 </td>
-<td>
--7.244939
+<td align="right">
+-7.24
 </td>
-<td>
-146.8482
+<td align="right">
+146.85
 </td>
 </tr>
 <tr>
 <td>
 std.err
 </td>
-<td>
-1.923202
+<td align="right">
+1.92
 </td>
-<td>
-34.98279
+<td align="right">
+34.98
 </td>
 </tr>
 <tr>
 <td>
 conf.low
 </td>
-<td>
--11.28019
+<td align="right">
+-11.28
 </td>
-<td>
-75.32779
+<td align="right">
+75.33
 </td>
 </tr>
 <tr>
 <td>
 conf.high
 </td>
-<td>
--3.209684
+<td align="right">
+-3.21
 </td>
-<td>
-218.3686
+<td align="right">
+218.37
 </td>
 </tr>
 <tr>
 <td>
 t
 </td>
-<td>
--3.767123
+<td align="right">
+-3.77
 </td>
-<td>
-4.197727
+<td align="right">
+4.20
 </td>
 </tr>
 <tr>
 <td>
 df
 </td>
-<td>
-18.33225
+<td align="right">
+18.33
 </td>
-<td>
-29.25845
+<td align="right">
+29.26
 </td>
 </tr>
 <tr>
 <td>
 p.value
 </td>
-<td>
-0.001373638
+<td align="right">
+0.00
 </td>
-<td>
-0.0002300413
+<td align="right">
+0.00
 </td>
 </tr>
 <tr>
 <td>
 cohens.d
 </td>
-<td>
+<td align="right">
 1.53
 </td>
-<td>
+<td align="right">
 -1.49
 </td>
 </tr>
 </table>
-<p>Taking a look at this last table, we can really see the value of cohen’s <span class="math inline">\(d\)</span> for interpreting differences in means between groups. For most of us, miles per gallon is an intuitive metric; those of us who drive understand about how much money we would save if our vehicle got an extra 7 or 8 miles to the gallon in efficiency. But knowing that automatic transmissions provide an extra <span class="math inline">\(146.85\)</span> cubic inches of displacement is not readily helpful. What does that even mean? Is that an impressive number?</p>
-<p>Looking at the cohen’s <span class="math inline">\(d\)</span> statistic, we see that both miles per gallon and displacement show very large effect sizes - both quite a bit larger than <span class="math inline">\(0.8\)</span>, the rule of thumb for a “large” effect size given above.</p>
-<p>It’s nice to have these metrics put on a comparable scale (cohen’s <span class="math inline">\(d\)</span>), because now we can, of course, compare them. Knowing these statistic, we can say that however much gas we save by using a manual transmission instead of an automatic, we can expect to lose a proportionately similar amount of displacement per cubic inch.</p>
-<p>Of course, this doesn’t <em>really</em> solve our problem: ultimately, miles per gallon and displacement are incommensurable, meaning they are too conceptually different to be compared meaningfully (though admittedly not an engineer who knows about cars, but my <a href="\img\dad.jpeg">dad</a> is). But if we’re interested in <em>magnitude of difference between groups</em>, knowing the standardized effect-size differences is still useful for car shopping.</p>
+<p>Looking at the output, we see the Cohen’s <span class="math inline">\(d\)</span> statistics for miles per gallon and displacement conveniently side-by-side. Both are very large effect sizes - quite a bit larger than <span class="math inline">\(0.8\)</span>, the rule of thumb for a “large” effect size given above. It’s nice to have these means differences expressed on a comparable scale (<span class="math inline">\(d\)</span>), because now we can, of course, compare them. Although the sign for displacement is negative (indicating that manual transmissions are associated with lower displacement than automatics), the absolute value is very close to that of miles per gallon. Knowing these statistic, we can say that however much gas we save by using a manual transmission instead of an automatic, we can expect to lose a proportionately similar amount of displacement per cubic inch. That is, the <em>magnitude</em> of the differences between between automatic and manual transmissions (1.53 and -1.49) are pretty similar, even though the mean differences (7.24 miles per gallon and -146.85 cubic inches of displacement) are not comparable numbers.</p>
+<p>Of course, this doesn’t <em>really</em> solve our problem: ultimately, miles per gallon and displacement are incommensurable, meaning they are too conceptually different to be compared meaningfully without some context. Ultimately, these statistics would be most helpful to you if you knew what adding 146.85 of displacement per cubic inch felt like in terms of pushing your back against the seat. Maybe it’s not even noticeable. But in the absence of better information, it’s nice to know for the sake of car-shopping that the <em>magnitude of the difference between the groups</em> is basically the same. And now you have a function that gives you that information!</p>
+</div>
+</div>
 <div id="full-function" class="section level1">
 <h1>Full Function</h1>
-<pre class="r"><code>my.t &lt;-
-    function(data, IV, DV, long = FALSE, ...) {
-      require(tidyverse)
-      require(psych)
-      IV.1 &lt;- enquo(IV)
-      DV.1 &lt;- enquo(DV)
-      means &lt;- suppressMessages(
-        data %&gt;%
-        group_by(!!IV.1) %&gt;%
-        summarise(mean = mean(!!DV.1, na.rm = TRUE)) %&gt;%
-          pivot_wider(names_from = !!IV.1, values_from =  &quot;mean&quot;)
-        )
-      names(means) &lt;- paste(names(means), &quot;mean&quot;, sep = &quot;.&quot;)
-      SDs &lt;- suppressMessages(
-        data %&gt;%
-          group_by(!!IV.1) %&gt;%
-          summarise(sd = sd(!!DV.1, na.rm = TRUE)) %&gt;%
-          pivot_wider(names_from = !!IV.1, values_from =  &quot;sd&quot;)
-      )
-      names(SDs) &lt;- paste(names(SDs), &quot;sd&quot;, sep = &quot;.&quot;)
-
-      IV.2 &lt;- rlang::sym(rlang::as_label(rlang::enquo(IV)))
-      DV.2 &lt;- rlang::sym(rlang::as_label(rlang::enquo(DV)))
-      form &lt;- expr(!! DV.2 ~ !! IV.2)
-      t.tests &lt;- t.test(eval(form), data, var.equal = FALSE)
-      stats &lt;- t.tests %&gt;% broom::glance(x)
-      std.err &lt;- t.tests$stderr
-      Ds &lt;-
-        cohen.d(x = data %&gt;% select(!!DV.1, !!IV.1),
-                group = deparse(substitute(IV)))$cohen.d %&gt;%
-        as.data.frame %&gt;%
-        select(effect) %&gt;%
-        round(2) %&gt;%
-        format(nsmall = 2)
-      cols &lt;- c(&quot;conf.low&quot;, &quot;conf.high&quot;, &quot;statistic&quot;, &quot;parameter&quot;, &quot;p.value&quot;)
-      means.table &lt;-
-        cbind(means, SDs, stats[, &quot;estimate&quot;], std.err, stats[, cols], Ds)
-      means.table &lt;- means.table %&gt;%
-        rename(mean.difference = estimate, cohens.d = effect, t = statistic, df = parameter)
-      rownames(means.table) &lt;- NULL
-      if (long == TRUE) {
-        means.table.long &lt;-
-          means.table %&gt;% t %&gt;% data.frame(&quot;Value&quot; = .) %&gt;% rownames_to_column(&quot;Statistic&quot;)
-        return(means.table.long)
-      } else{
-        return(means.table)
-      }
-    }</code></pre>
+<p>Copy-and-paste this function to use it in your own <code>R</code> projects. You will be prompted to install the <code>tidyverse</code> and <code>psych</code> packages if you do not already have them.</p>
 </div>
 <div id="references" class="section level1 unnumbered">
 <h1>References</h1>

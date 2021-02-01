@@ -84,6 +84,7 @@ my.t <-
           t %>% 
           data.frame("Value" = .) %>% 
           rownames_to_column("Statistic") %>% 
+          mutate(Value = as.numeric(as.character(Value))) %>% 
           mutate(Value = round(Value, 2))
         return(means.table.long)
       } else{
@@ -185,6 +186,8 @@ Of course, this doesn't *really* solve our problem: ultimately, miles per gallon
 
 # Full Function
 
+Copy-and-paste this function to use it in your own `R` projects. You will be prompted to install the `tidyverse` and `psych` packages if you do not already have them.
+
 ```{r, include=FALSE}
 my.t <-
     function(data, IV, DV, long = FALSE, ...) {
@@ -232,6 +235,7 @@ my.t <-
           t %>% 
           data.frame("Value" = .) %>% 
           rownames_to_column("Statistic") %>% 
+          mutate(Value = as.numeric(as.character(Value))) %>% 
           mutate(Value = round(Value, 2))
         return(means.table.long)
       } else{
