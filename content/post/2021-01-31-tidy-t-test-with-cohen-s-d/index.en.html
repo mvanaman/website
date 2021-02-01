@@ -13,9 +13,9 @@ tags:
 lastmod: '2021-01-31T18:55:54-05:00'
 keywords: []
 description: ''
-comment: no
-toc: no
-autoCollapseToc: no
+comment: yes
+toc: yes
+autoCollapseToc: yes
 postMetaInFooter: no
 hiddenFromHomePage: no
 contentCopyright: no
@@ -73,7 +73,7 @@ csl: "/Users/home/Documents/Research and Writing/Misc/MyRefs/apa-web.csl"
 <p>I haven’t been able to find any existing functions that check these boxes, so I made my own wrapper function that shows output from <code>t.test()</code> and the <code>cohen.d()</code> function from the <code>psych</code> package in a tidy format. Here’s the same example as above using the function, which I have called <code>my.t</code>:</p>
 <pre><code>## my.t(mtcars, IV = am, DV = mpg)</code></pre>
 <!-- html table generated in R 3.6.1 by xtable 1.8-4 package -->
-<!-- Mon Feb  1 13:16:12 2021 -->
+<!-- Mon Feb  1 13:18:25 2021 -->
 <table border="1">
 <tr>
 <th>
@@ -158,7 +158,7 @@ cohens.d
 <p>Currently the output is in wide format, meaning that each statistic is its own column with the values for those statistics contained in the table row. If you prefer a different format, I have also added the <code>long =</code> argument that can optionally display output in long format, with each statistic indicated by the row with the value in a column:</p>
 <pre><code>## my.t(mtcars, IV = am, DV = mpg, long = TRUE)</code></pre>
 <!-- html table generated in R 3.6.1 by xtable 1.8-4 package -->
-<!-- Mon Feb  1 13:16:12 2021 -->
+<!-- Mon Feb  1 13:18:25 2021 -->
 <table border="1">
 <tr>
 <th>
@@ -275,7 +275,7 @@ disp.test &lt;- disp.test %&gt;% rename(&quot;Disp.&quot; = Value)
 my.results &lt;- cbind(mpg.test, select(disp.test, -Statistic))
 my.results</code></pre>
 <!-- html table generated in R 3.6.1 by xtable 1.8-4 package -->
-<!-- Mon Feb  1 13:16:12 2021 -->
+<!-- Mon Feb  1 13:18:25 2021 -->
 <table border="1">
 <tr>
 <th>

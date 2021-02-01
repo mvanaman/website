@@ -13,9 +13,9 @@ tags:
 lastmod: '2021-01-31T18:55:54-05:00'
 keywords: []
 description: ''
-comment: no
-toc: no
-autoCollapseToc: no
+comment: yes
+toc: yes
+autoCollapseToc: yes
 postMetaInFooter: no
 hiddenFromHomePage: no
 contentCopyright: no
@@ -33,7 +33,6 @@ sequenceDiagrams:
 bibliography: "/Users/home/Documents/Research and Writing/Misc/MyRefs/MyRefs.bib"
 link-citations: true
 csl: "/Users/home/Documents/Research and Writing/Misc/MyRefs/apa-web.csl"
-toc: true
 ---
 
 <!--more-->
