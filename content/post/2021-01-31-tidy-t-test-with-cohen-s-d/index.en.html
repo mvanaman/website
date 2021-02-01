@@ -42,7 +42,7 @@ csl: "/Users/home/Documents/Research and Writing/Misc/MyRefs/apa-web.csl"
 </div>
 
 <!--more-->
-<p>The independent-samples <span class="math inline">\(t\)</span>-test is one of the most commonly used statistical tests and is taught in most introductory statistics course. In broad strokes, the independent-samples t-test is used when the independent variable in a study is binary - that is, consists of two qualitatively different groups - and the dependent variable is continuous (interval or ratio). The mean of the dependent variable is calculated for each group, compared, and a decision is made about whether the difference between the means is meaningful (that is, worth paying attention to). Associated with this mean difference is a <span class="math inline">\(p\)</span>-value. Although there’s <a href="https://en.wikipedia.org/wiki/Sampling_distribution" target="_blank">more to the story</a>, for our purposes we can define the <span class="math inline">\(p\)</span>-value as the probability of observing a difference between the means this large or larger, just due to chance, if there were in reality no difference between the groups. Although arbitrary, researchers will adopt (for most applications) a cutoff <span class="math inline">\(p\)</span>-value of .05, a value referred to as alpha. If the $p$-value falls below alpha, we can conclude that the difference between the means is large enough to warrant further scrutiny.</p>
+<p>The independent-samples <span class="math inline">\(t\)</span>-test is one of the most commonly used statistical tests and is taught in most introductory statistics courses. In broad strokes, the independent-samples $t$-test is used when the independent variable in a study is binary - that is, consists of two qualitatively different groups - and the dependent variable is continuous (interval or ratio). The mean of the dependent variable is calculated for each group, compared, and a decision is made about whether the difference between the means is meaningful (that is, worth paying attention to). Associated with this mean difference is a <span class="math inline">\(p\)</span>-value. Although there’s <a href="https://en.wikipedia.org/wiki/Sampling_distribution" target="_blank">more to the story</a>, for our purposes we can define the <span class="math inline">\(p\)</span>-value as the probability of observing a difference between the means this large or larger, just due to chance, if there were in reality no difference between the groups. Although arbitrary, researchers will adopt (for most applications) a cutoff <span class="math inline">\(p\)</span>-value of .05, a value referred to as alpha. If the $p$-value falls below alpha, we can conclude that the difference between the means is large enough to warrant further scrutiny.</p>
 <div id="wheres-my-effect-size" class="section level1">
 <h1>Where’s My Effect Size?</h1>
 <p>In the aforementioned introductory statistics courses, students also learn about effect sizes that help put the results of statistical tests into context. In the case of the <span class="math inline">\(t\)</span>-test, Cohen’s <span class="math inline">\(d\)</span> measure of effect size helps the researcher get a sense of how impressive the mean difference between groups is on a standardized metric. Standardized, in this case, just means that the metric is universal: no matter what the original metric for the dependent variable, the $d$ statistic always falls within a certain range, and always follows a certain interpretation. This means that if you ran two different tests on two different dependent variables, the interpretations of their resulting $d$ statistics would be comparable in terms of your sense of how large the mean differences were. Although still a bit arbitrary, $d$ follows some rules of thumb <span class="citation">(<a href="#ref-cohen2013statistical" role="doc-biblioref">Cohen, 2013</a>)</span>:</p>
@@ -73,7 +73,7 @@ csl: "/Users/home/Documents/Research and Writing/Misc/MyRefs/apa-web.csl"
 <p>I haven’t been able to find any existing functions that check these boxes, so I made my own wrapper function that shows output from <code>t.test()</code> and the <code>cohen.d()</code> function from the <code>psych</code> package in a tidy format. Here’s the same example as above using the function, which I have called <code>my.t</code>:</p>
 <pre><code>## my.t(mtcars, IV = am, DV = mpg)</code></pre>
 <!-- html table generated in R 3.6.1 by xtable 1.8-4 package -->
-<!-- Mon Feb  1 13:14:49 2021 -->
+<!-- Mon Feb  1 13:16:12 2021 -->
 <table border="1">
 <tr>
 <th>
@@ -158,7 +158,7 @@ cohens.d
 <p>Currently the output is in wide format, meaning that each statistic is its own column with the values for those statistics contained in the table row. If you prefer a different format, I have also added the <code>long =</code> argument that can optionally display output in long format, with each statistic indicated by the row with the value in a column:</p>
 <pre><code>## my.t(mtcars, IV = am, DV = mpg, long = TRUE)</code></pre>
 <!-- html table generated in R 3.6.1 by xtable 1.8-4 package -->
-<!-- Mon Feb  1 13:14:49 2021 -->
+<!-- Mon Feb  1 13:16:12 2021 -->
 <table border="1">
 <tr>
 <th>
@@ -275,7 +275,7 @@ disp.test &lt;- disp.test %&gt;% rename(&quot;Disp.&quot; = Value)
 my.results &lt;- cbind(mpg.test, select(disp.test, -Statistic))
 my.results</code></pre>
 <!-- html table generated in R 3.6.1 by xtable 1.8-4 package -->
-<!-- Mon Feb  1 13:14:49 2021 -->
+<!-- Mon Feb  1 13:16:12 2021 -->
 <table border="1">
 <tr>
 <th>

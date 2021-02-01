@@ -33,6 +33,7 @@ sequenceDiagrams:
 bibliography: "/Users/home/Documents/Research and Writing/Misc/MyRefs/MyRefs.bib"
 link-citations: true
 csl: "/Users/home/Documents/Research and Writing/Misc/MyRefs/apa-web.csl"
+toc: true
 ---
 
 <!--more-->
@@ -93,7 +94,7 @@ my.t <-
     }
 ```
 
-The independent-samples $t$-test is one of the most commonly used statistical tests and is taught in most introductory statistics course. In broad strokes, the independent-samples t-test is used when the independent variable in a study is binary - that is, consists of two qualitatively different groups - and the dependent variable is continuous (interval or ratio). The mean of the dependent variable is calculated for each group, compared, and a decision is made about whether the difference between the means is meaningful (that is, worth paying attention to). Associated with this mean difference is a $p$-value. Although there's <a href="https://en.wikipedia.org/wiki/Sampling_distribution" target="_blank">more to the story</a>, for our purposes we can define the $p$-value as the probability of observing a difference between the means this large or larger, just due to chance, if there were in reality no difference between the groups. Although arbitrary, researchers will adopt (for most applications) a cutoff $p$-value of .05, a value referred to as alpha. If the \$p\$-value falls below alpha, we can conclude that the difference between the means is large enough to warrant further scrutiny.
+The independent-samples $t$-test is one of the most commonly used statistical tests and is taught in most introductory statistics courses. In broad strokes, the independent-samples \$t\$-test is used when the independent variable in a study is binary - that is, consists of two qualitatively different groups - and the dependent variable is continuous (interval or ratio). The mean of the dependent variable is calculated for each group, compared, and a decision is made about whether the difference between the means is meaningful (that is, worth paying attention to). Associated with this mean difference is a $p$-value. Although there's <a href="https://en.wikipedia.org/wiki/Sampling_distribution" target="_blank">more to the story</a>, for our purposes we can define the $p$-value as the probability of observing a difference between the means this large or larger, just due to chance, if there were in reality no difference between the groups. Although arbitrary, researchers will adopt (for most applications) a cutoff $p$-value of .05, a value referred to as alpha. If the \$p\$-value falls below alpha, we can conclude that the difference between the means is large enough to warrant further scrutiny.
 
 # Where's My Effect Size?
 
