@@ -1,0 +1,481 @@
+---
+title: Tidy T-Test With Cohen's D
+author: Matthew E. Vanaman
+date: '2021-01-31'
+slug: []
+categories: []
+tags:
+  - r
+  - tidy
+  - t-test
+  - effect-size
+  - cohens-d
+lastmod: '2021-01-31T18:55:54-05:00'
+keywords: []
+description: ''
+comment: no
+toc: no
+autoCollapseToc: no
+postMetaInFooter: no
+hiddenFromHomePage: no
+contentCopyright: no
+reward: no
+mathjax: yes
+mathjaxEnableSingleDollar: yes
+mathjaxEnableAutoNumber: no
+hideHeaderAndFooter: no
+flowchartDiagrams:
+  enable: no
+  options: ''
+sequenceDiagrams:
+  enable: no
+  options: ''
+bibliography: "/Users/home/Documents/Research and Writing/Misc/MyRefs/MyRefs.bib"
+link-citations: true
+csl: "/Users/home/Documents/Research and Writing/Misc/MyRefs/apa-web.csl"
+---
+
+<script src="{{< blogdown/postref >}}index.en_files/header-attrs/header-attrs.js"></script>
+
+<div id="TOC">
+
+</div>
+
+<!--more-->
+<p>The independent-samples t-test is one of the most common statistical tests used in the social sciences. In a typical case, you would use the <code>t.test()</code> function. As an example, I’ll conduct a t-test to see whether automatic or manual transmissions are associated with greater miles per gallon in the <code>mtcars</code> dataset (from the <code>datasets</code> package in base <code>r</code>):</p>
+<pre class="r"><code>t.test(mpg ~ am, mtcars)</code></pre>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  mpg by am
+## t = -3.7671, df = 18.332, p-value = 0.001374
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -11.280194  -3.209684
+## sample estimates:
+## mean in group 0 mean in group 1 
+##        17.14737        24.39231</code></pre>
+<p>In this dataset, vehicles with automatic transmissions are coded as 0, and manuals as 1. Looking at the output above, we see the mean miles per gallon for automatic transmissions (17.15) is quite a bit lower than for manuals (24.39). This difference is statistically significant, <span class="math inline">\(p = .001\)</span>.</p>
+<p>OK, so we learned something, which is that the different in statistically significant. But this isn’t all that useful, because statistical significance in this case is a primarily emerges from the magnitude mean difference <em>as well as</em> the magnitude of the variability within each group. That is, in simplest terms, there is a mean difference and a measure of error around that mean difference: if the mean difference is large, this helps “bring down” the p-value, but so too does the error around the difference. It’s hard to tell whether the p-value is small primarily because the mean difference could be considered a large one, or whether the error is just very small.</p>
+<p>Cohen’s <em>d</em> measure of effect size is one way to help get a sense of how impressive this mean difference is. Although still a bit arbitrary, cohen’s d has some rules of thumb that help contextualize how large the difference was <span class="citation">(<a href="#ref-cohen2013statistical" role="doc-biblioref">Cohen, 2013</a>)</span>:</p>
+<ul>
+<li><span class="math inline">\(\le 0.2\)</span> = is “small”</li>
+<li><span class="math inline">\(0.5\)</span> is “medium”</li>
+<li><span class="math inline">\(\ge 0.8\)</span> is “large”</li>
+</ul>
+<p>It’s kind of odd that this function - and statistical software in general - does not automatically report cohen’s <span class="math inline">\(d\)</span> alongside other statistical output. You don’t learn much from a p-value by itself, and researchers have encouraged to report measures of effect size alongside descriptive and inferential statistics in their published work for about two decades now <span class="citation">(<a href="#ref-coe2002effect" role="doc-biblioref">Coe, 2002</a>)</span>. And like most statistical software, the output from the <code>t.test()</code> function in R doesn’t exactly make it easy to copy-and-paste your output to e.g., a table in Word.</p>
+<p>I haven’t been able to find any existing functions that do this, so I made my own wrapper function that neatly formats output from <code>t.test()</code> and the <code>cohen.d()</code> function from the <code>psych</code> package. Here’s the same example as above using the function:</p>
+<pre><code>## my.t(mtcars, IV = am, DV = mpg)</code></pre>
+<!-- html table generated in R 3.6.1 by xtable 1.8-4 package -->
+<!-- Sun Jan 31 20:13:49 2021 -->
+<table border="1">
+<tr>
+<th>
+0.mean
+</th>
+<th>
+1.mean
+</th>
+<th>
+0.sd
+</th>
+<th>
+1.sd
+</th>
+<th>
+mean.difference
+</th>
+<th>
+std.err
+</th>
+<th>
+conf.low
+</th>
+<th>
+conf.high
+</th>
+<th>
+t
+</th>
+<th>
+df
+</th>
+<th>
+p.value
+</th>
+<th>
+cohens.d
+</th>
+</tr>
+<tr>
+<td align="right">
+17.15
+</td>
+<td align="right">
+24.39
+</td>
+<td align="right">
+3.83
+</td>
+<td align="right">
+6.17
+</td>
+<td align="right">
+-7.24
+</td>
+<td align="right">
+1.92
+</td>
+<td align="right">
+-11.28
+</td>
+<td align="right">
+-3.21
+</td>
+<td align="right">
+-3.77
+</td>
+<td align="right">
+18.33
+</td>
+<td align="right">
+0.00
+</td>
+<td>
+1.53
+</td>
+</tr>
+</table>
+<p>This output gives you everything you need, with the mean and standard deviation of each group clearly labeled along with the mean different, t-statistic, confidence interval around the difference, and cohen’s <span class="math inline">\(d\)</span> measure of effect size.</p>
+<p>Currently the output is in wide format; if you prefer a different view, I also added the <code>long =</code> argument that can optionally display output in long format:</p>
+<pre><code>## my.t(mtcars, IV = am, DV = mpg, long = TRUE)</code></pre>
+<!-- html table generated in R 3.6.1 by xtable 1.8-4 package -->
+<!-- Sun Jan 31 20:13:49 2021 -->
+<table border="1">
+<tr>
+<th>
+Statistic
+</th>
+<th>
+Value
+</th>
+</tr>
+<tr>
+<td>
+0.mean
+</td>
+<td>
+17.14737
+</td>
+</tr>
+<tr>
+<td>
+1.mean
+</td>
+<td>
+24.39231
+</td>
+</tr>
+<tr>
+<td>
+0.sd
+</td>
+<td>
+3.833966
+</td>
+</tr>
+<tr>
+<td>
+1.sd
+</td>
+<td>
+6.166504
+</td>
+</tr>
+<tr>
+<td>
+mean.difference
+</td>
+<td>
+-7.244939
+</td>
+</tr>
+<tr>
+<td>
+std.err
+</td>
+<td>
+1.923202
+</td>
+</tr>
+<tr>
+<td>
+conf.low
+</td>
+<td>
+-11.28019
+</td>
+</tr>
+<tr>
+<td>
+conf.high
+</td>
+<td>
+-3.209684
+</td>
+</tr>
+<tr>
+<td>
+t
+</td>
+<td>
+-3.767123
+</td>
+</tr>
+<tr>
+<td>
+df
+</td>
+<td>
+18.33225
+</td>
+</tr>
+<tr>
+<td>
+p.value
+</td>
+<td>
+0.001373638
+</td>
+</tr>
+<tr>
+<td>
+cohens.d
+</td>
+<td>
+1.53
+</td>
+</tr>
+</table>
+<p>This could be useful if you are comparing groups across multiple variables. For example, for brevity, say you want to see how big the difference between transmission is in displacement too (how fast a vehicle gets up and goes). You might do something like this:</p>
+<pre class="r"><code># conduct the tests
+mpg.test &lt;- my.t(mtcars, IV = am, DV = mpg, long = TRUE)
+disp.test &lt;- my.t(mtcars, IV = am, DV = disp, long = TRUE)
+# relabel the columns
+mpg.test &lt;- mpg.test %&gt;% rename(MPG = Value)
+disp.test &lt;- disp.test %&gt;% rename(&quot;Disp.&quot; = Value)
+my.results &lt;- cbind(mpg.test, select(disp.test, -Statistic))
+my.results</code></pre>
+<!-- html table generated in R 3.6.1 by xtable 1.8-4 package -->
+<!-- Sun Jan 31 20:13:49 2021 -->
+<table border="1">
+<tr>
+<th>
+Statistic
+</th>
+<th>
+MPG
+</th>
+<th>
+Disp.
+</th>
+</tr>
+<tr>
+<td>
+0.mean
+</td>
+<td>
+17.14737
+</td>
+<td>
+290.3789
+</td>
+</tr>
+<tr>
+<td>
+1.mean
+</td>
+<td>
+24.39231
+</td>
+<td>
+143.5308
+</td>
+</tr>
+<tr>
+<td>
+0.sd
+</td>
+<td>
+3.833966
+</td>
+<td>
+110.1716
+</td>
+</tr>
+<tr>
+<td>
+1.sd
+</td>
+<td>
+6.166504
+</td>
+<td>
+87.20399
+</td>
+</tr>
+<tr>
+<td>
+mean.difference
+</td>
+<td>
+-7.244939
+</td>
+<td>
+146.8482
+</td>
+</tr>
+<tr>
+<td>
+std.err
+</td>
+<td>
+1.923202
+</td>
+<td>
+34.98279
+</td>
+</tr>
+<tr>
+<td>
+conf.low
+</td>
+<td>
+-11.28019
+</td>
+<td>
+75.32779
+</td>
+</tr>
+<tr>
+<td>
+conf.high
+</td>
+<td>
+-3.209684
+</td>
+<td>
+218.3686
+</td>
+</tr>
+<tr>
+<td>
+t
+</td>
+<td>
+-3.767123
+</td>
+<td>
+4.197727
+</td>
+</tr>
+<tr>
+<td>
+df
+</td>
+<td>
+18.33225
+</td>
+<td>
+29.25845
+</td>
+</tr>
+<tr>
+<td>
+p.value
+</td>
+<td>
+0.001373638
+</td>
+<td>
+0.0002300413
+</td>
+</tr>
+<tr>
+<td>
+cohens.d
+</td>
+<td>
+1.53
+</td>
+<td>
+-1.49
+</td>
+</tr>
+</table>
+<p>Taking a look at this last table, we can really see the value of cohen’s <span class="math inline">\(d\)</span> for interpreting differences in means between groups. For most of us, miles per gallon is an intuitive metric; those of us who drive understand about how much money we would save if our vehicle got an extra 7 or 8 miles to the gallon in efficiency. But knowing that automatic transmissions provide an extra <span class="math inline">\(146.85\)</span> cubic inches of displacement is not readily helpful. What does that even mean? Is that an impressive number?</p>
+<p>Looking at the cohen’s <span class="math inline">\(d\)</span> statistic, we see that both miles per gallon and displacement show very large effect sizes - both quite a bit larger than <span class="math inline">\(0.8\)</span>, the rule of thumb for a “large” effect size given above.</p>
+<p>It’s nice to have these metrics put on a comparable scale (cohen’s <span class="math inline">\(d\)</span>), because now we can, of course, compare them. Knowing these statistic, we can say that however much gas we save by using a manual transmission instead of an automatic, we can expect to lose a proportionately similar amount of displacement per cubic inch.</p>
+<p>Of course, this doesn’t <em>really</em> solve our problem: ultimately, miles per gallon and displacement are incommensurable, meaning they are too conceptually different to be compared meaningfully (though admittedly not an engineer who knows about cars, but my <a href="\img\dad.jpeg">dad</a> is). But if we’re interested in <em>magnitude of difference between groups</em>, knowing the standardized effect-size differences is still useful for car shopping.</p>
+<div id="full-function" class="section level1">
+<h1>Full Function</h1>
+<pre class="r"><code>my.t &lt;-
+    function(data, IV, DV, long = FALSE, ...) {
+      require(tidyverse)
+      require(psych)
+      IV.1 &lt;- enquo(IV)
+      DV.1 &lt;- enquo(DV)
+      means &lt;- suppressMessages(
+        data %&gt;%
+        group_by(!!IV.1) %&gt;%
+        summarise(mean = mean(!!DV.1, na.rm = TRUE)) %&gt;%
+          pivot_wider(names_from = !!IV.1, values_from =  &quot;mean&quot;)
+        )
+      names(means) &lt;- paste(names(means), &quot;mean&quot;, sep = &quot;.&quot;)
+      SDs &lt;- suppressMessages(
+        data %&gt;%
+          group_by(!!IV.1) %&gt;%
+          summarise(sd = sd(!!DV.1, na.rm = TRUE)) %&gt;%
+          pivot_wider(names_from = !!IV.1, values_from =  &quot;sd&quot;)
+      )
+      names(SDs) &lt;- paste(names(SDs), &quot;sd&quot;, sep = &quot;.&quot;)
+
+      IV.2 &lt;- rlang::sym(rlang::as_label(rlang::enquo(IV)))
+      DV.2 &lt;- rlang::sym(rlang::as_label(rlang::enquo(DV)))
+      form &lt;- expr(!! DV.2 ~ !! IV.2)
+      t.tests &lt;- t.test(eval(form), data, var.equal = FALSE)
+      stats &lt;- t.tests %&gt;% broom::glance(x)
+      std.err &lt;- t.tests$stderr
+      Ds &lt;-
+        cohen.d(x = data %&gt;% select(!!DV.1, !!IV.1),
+                group = deparse(substitute(IV)))$cohen.d %&gt;%
+        as.data.frame %&gt;%
+        select(effect) %&gt;%
+        round(2) %&gt;%
+        format(nsmall = 2)
+      cols &lt;- c(&quot;conf.low&quot;, &quot;conf.high&quot;, &quot;statistic&quot;, &quot;parameter&quot;, &quot;p.value&quot;)
+      means.table &lt;-
+        cbind(means, SDs, stats[, &quot;estimate&quot;], std.err, stats[, cols], Ds)
+      means.table &lt;- means.table %&gt;%
+        rename(mean.difference = estimate, cohens.d = effect, t = statistic, df = parameter)
+      rownames(means.table) &lt;- NULL
+      if (long == TRUE) {
+        means.table.long &lt;-
+          means.table %&gt;% t %&gt;% data.frame(&quot;Value&quot; = .) %&gt;% rownames_to_column(&quot;Statistic&quot;)
+        return(means.table.long)
+      } else{
+        return(means.table)
+      }
+    }</code></pre>
+</div>
+<div id="references" class="section level1 unnumbered">
+<h1>References</h1>
+<div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
+<div id="ref-coe2002effect" class="csl-entry">
+Coe, R. (2002). <em>It’s the effect size, stupid: What effect size is and why it is important</em>. <a href="http://www.leeds.ac.uk/educol/documents/00002182.htm">Full Text</a>
+</div>
+<div id="ref-cohen2013statistical" class="csl-entry">
+Cohen, J. (2013). <em>Statistical power analysis for the behavioral sciences</em>. Academic press. <a href="http://lab.rockefeller.edu/cohenje/PDFs/159CohenBigFishLittleFishTheSciences1989.pdf">Full Text</a>
+</div>
+</div>
+</div>

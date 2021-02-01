@@ -1,0 +1,228 @@
+---
+title: Tidy T-Test With Cohen's D
+author: Matthew E. Vanaman
+date: '2021-01-31'
+slug: []
+categories: []
+tags:
+  - r
+  - tidy
+  - t-test
+  - effect-size
+  - cohens-d
+lastmod: '2021-01-31T18:55:54-05:00'
+keywords: []
+description: ''
+comment: no
+toc: no
+autoCollapseToc: no
+postMetaInFooter: no
+hiddenFromHomePage: no
+contentCopyright: no
+reward: no
+mathjax: yes
+mathjaxEnableSingleDollar: yes
+mathjaxEnableAutoNumber: no
+hideHeaderAndFooter: no
+flowchartDiagrams:
+  enable: no
+  options: ''
+sequenceDiagrams:
+  enable: no
+  options: ''
+bibliography: "/Users/home/Documents/Research and Writing/Misc/MyRefs/MyRefs.bib"
+link-citations: true
+csl: "/Users/home/Documents/Research and Writing/Misc/MyRefs/apa-web.csl"
+---
+
+<!--more-->
+
+```{r, include=FALSE}
+my.t <-
+    function(data, IV, DV, long = FALSE, ...) {
+      require(tidyverse)
+      require(psych)
+      IV.1 <- enquo(IV)
+      DV.1 <- enquo(DV)
+      means <- suppressMessages(
+        data %>%
+        group_by(!!IV.1) %>%
+        summarise(mean = mean(!!DV.1, na.rm = TRUE)) %>%
+          pivot_wider(names_from = !!IV.1, values_from =  "mean")
+        )
+      names(means) <- paste(names(means), "mean", sep = ".")
+      SDs <- suppressMessages(
+        data %>%
+          group_by(!!IV.1) %>%
+          summarise(sd = sd(!!DV.1, na.rm = TRUE)) %>%
+          pivot_wider(names_from = !!IV.1, values_from =  "sd")
+      )
+      names(SDs) <- paste(names(SDs), "sd", sep = ".")
+
+      IV.2 <- rlang::sym(rlang::as_label(rlang::enquo(IV)))
+      DV.2 <- rlang::sym(rlang::as_label(rlang::enquo(DV)))
+      form <- expr(!! DV.2 ~ !! IV.2)
+      t.tests <- t.test(eval(form), data, var.equal = FALSE)
+      stats <- t.tests %>% broom::glance(x)
+      std.err <- t.tests$stderr
+      Ds <-
+        cohen.d(x = data %>% select(!!DV.1, !!IV.1),
+                group = deparse(substitute(IV)))$cohen.d %>%
+        as.data.frame %>%
+        select(effect) %>%
+        round(2) %>%
+        format(nsmall = 2)
+      cols <- c("conf.low", "conf.high", "statistic", "parameter", "p.value")
+      means.table <-
+        cbind(means, SDs, stats[, "estimate"], std.err, stats[, cols], Ds)
+      means.table <- means.table %>%
+        rename(mean.difference = estimate, cohens.d = effect, t = statistic, df = parameter)
+      rownames(means.table) <- NULL
+      if (long == TRUE) {
+        means.table.long <-
+          means.table %>% t %>% data.frame("Value" = .) %>% rownames_to_column("Statistic")
+        return(means.table.long)
+      } else{
+        return(means.table)
+      }
+    }
+```
+
+
+The independent-samples t-test is one of the most common statistical tests used in the social sciences. In a typical case, you would use the `t.test()` function. As an example, I'll conduct a t-test to see whether automatic or manual transmissions are associated with greater miles per gallon in the `mtcars` dataset (from the `datasets` package in base `r`):
+
+```{r}
+t.test(mpg ~ am, mtcars)
+```
+
+In this dataset, vehicles with automatic transmissions are coded as 0, and manuals as 1. Looking at the output above, we see the mean miles per gallon for automatic transmissions (17.15) is quite a bit lower than for manuals (24.39). This difference is statistically significant, $p = .001$. 
+
+OK, so we learned something, which is that the different in statistically significant. But this isn't all that useful, because statistical significance in this case is a primarily emerges from the magnitude mean difference *as well as* the magnitude of the variability within each group. That is, in simplest terms, there is a mean difference and a measure of error around that mean difference: if the mean difference is large, this helps "bring down" the p-value, but so too does the error around the difference. It's hard to tell whether the p-value is small primarily because the mean difference could be considered a large one, or whether the error is just very small.
+
+Cohen's *d* measure of effect size is one way to help get a sense of how impressive this mean difference is. Although still a bit arbitrary, cohen's d has some rules of thumb that help contextualize how large the difference was [@cohen2013statistical]:
+
+* $\le 0.2$ = is "small"
+* $0.5$ is "medium" 
+* $\ge 0.8$ is "large" 
+
+It's kind of odd that this function - and statistical software in general - does not automatically report cohen's $d$ alongside other statistical output. You don't learn much from a p-value by itself, and researchers have encouraged to report measures of effect size alongside descriptive and inferential statistics in their published work for about two decades now [@coe2002effect]. And like most statistical software, the output from the `t.test()` function in R doesn't exactly make it easy to copy-and-paste your output to e.g., a table in Word.
+
+I haven't been able to find any existing functions that do this, so I made my own wrapper function that neatly formats output from `t.test()` and the `cohen.d()` function from the `psych` package. Here's the same example as above using the function:
+
+```{r, echo=FALSE}
+cat("my.t(mtcars, IV = am, DV = mpg)")
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, results="asis"}
+xtable::print.xtable(
+  xtable::xtable(
+    my.t(mtcars, IV = am, DV = mpg)
+  ),
+  type = "html",
+  include.rownames = FALSE
+)
+```
+This output gives you everything you need, with the mean and standard deviation of each group clearly labeled along with the mean different, t-statistic, confidence interval around the difference, and cohen's $d$ measure of effect size.
+
+Currently the output is in wide format; if you prefer a different view, I also added the `long = ` argument that can optionally display output in long format:
+
+```{r, echo=FALSE}
+cat("my.t(mtcars, IV = am, DV = mpg, long = TRUE)")
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, results="asis"}
+xtable::print.xtable(
+  xtable::xtable(
+    my.t(mtcars, IV = am, DV = mpg, long = TRUE)
+  ),
+  type = "html",
+  include.rownames = FALSE
+)
+```
+
+This could be useful if you are comparing groups across multiple variables. For example, for brevity, say you want to see how big the difference between transmission is in displacement too (how fast a vehicle gets up and goes). You might do something like this:
+
+```{r, results="hide"}
+# conduct the tests
+mpg.test <- my.t(mtcars, IV = am, DV = mpg, long = TRUE)
+disp.test <- my.t(mtcars, IV = am, DV = disp, long = TRUE)
+# relabel the columns
+mpg.test <- mpg.test %>% rename(MPG = Value)
+disp.test <- disp.test %>% rename("Disp." = Value)
+my.results <- cbind(mpg.test, select(disp.test, -Statistic))
+my.results
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, results="asis"}
+xtable::print.xtable(
+  xtable::xtable(
+    my.results
+  ),
+  type = "html",
+  include.rownames = FALSE
+)
+```
+
+Taking a look at this last table, we can really see the value of cohen's $d$ for interpreting differences in means between groups. For most of us, miles per gallon is an intuitive metric; those of us who drive understand about how much money we would save if our vehicle got an extra 7 or 8 miles to the gallon in efficiency. But knowing that automatic transmissions provide an extra $146.85$ cubic inches of displacement is not readily helpful. What does that even mean? Is that an impressive number? 
+
+Looking at the cohen's $d$ statistic, we see that both miles per gallon and displacement show very large effect sizes - both quite a bit larger than $0.8$, the rule of thumb for a "large" effect size given above. 
+
+It's nice to have these metrics put on a comparable scale (cohen's $d$), because now we can, of course, compare them. Knowing these statistic, we can say that however much gas we save by using a manual transmission instead of an automatic, we can expect to lose a proportionately similar amount of displacement per cubic inch. 
+
+Of course, this doesn't *really* solve our problem: ultimately, miles per gallon and displacement are incommensurable, meaning they are too conceptually different to be compared meaningfully (though admittedly not an engineer who knows about cars, but my [dad](\img\dad.jpeg) is). But if we're interested in *magnitude of difference between groups*, knowing the standardized effect-size differences is still useful for car shopping. 
+
+# Full Function
+
+```{r, evaluate=FALSE}
+my.t <-
+    function(data, IV, DV, long = FALSE, ...) {
+      require(tidyverse)
+      require(psych)
+      IV.1 <- enquo(IV)
+      DV.1 <- enquo(DV)
+      means <- suppressMessages(
+        data %>%
+        group_by(!!IV.1) %>%
+        summarise(mean = mean(!!DV.1, na.rm = TRUE)) %>%
+          pivot_wider(names_from = !!IV.1, values_from =  "mean")
+        )
+      names(means) <- paste(names(means), "mean", sep = ".")
+      SDs <- suppressMessages(
+        data %>%
+          group_by(!!IV.1) %>%
+          summarise(sd = sd(!!DV.1, na.rm = TRUE)) %>%
+          pivot_wider(names_from = !!IV.1, values_from =  "sd")
+      )
+      names(SDs) <- paste(names(SDs), "sd", sep = ".")
+
+      IV.2 <- rlang::sym(rlang::as_label(rlang::enquo(IV)))
+      DV.2 <- rlang::sym(rlang::as_label(rlang::enquo(DV)))
+      form <- expr(!! DV.2 ~ !! IV.2)
+      t.tests <- t.test(eval(form), data, var.equal = FALSE)
+      stats <- t.tests %>% broom::glance(x)
+      std.err <- t.tests$stderr
+      Ds <-
+        cohen.d(x = data %>% select(!!DV.1, !!IV.1),
+                group = deparse(substitute(IV)))$cohen.d %>%
+        as.data.frame %>%
+        select(effect) %>%
+        round(2) %>%
+        format(nsmall = 2)
+      cols <- c("conf.low", "conf.high", "statistic", "parameter", "p.value")
+      means.table <-
+        cbind(means, SDs, stats[, "estimate"], std.err, stats[, cols], Ds)
+      means.table <- means.table %>%
+        rename(mean.difference = estimate, cohens.d = effect, t = statistic, df = parameter)
+      rownames(means.table) <- NULL
+      if (long == TRUE) {
+        means.table.long <-
+          means.table %>% t %>% data.frame("Value" = .) %>% rownames_to_column("Statistic")
+        return(means.table.long)
+      } else{
+        return(means.table)
+      }
+    }
+```
+
+
+# References
