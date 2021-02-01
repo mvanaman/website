@@ -42,7 +42,7 @@ csl: "/Users/home/Documents/Research and Writing/Misc/MyRefs/apa-web.csl"
 </div>
 
 <!--more-->
-<p>The independent-samples t-test is one of the most commonly used statistical tests and is taught in most introductory statistics course. In broad strokes, the independent-samples t-test is used when the independent variable in a study is binary - that is, consists of two qualitatively different groups - and the dependent variable is continuous (interval or ratio). The mean of the dependent variable is calculated for each group, compared, and a decision is made about whether the difference between the means is meaningful (that is, worth paying attention to). Associated with this mean difference is a <span class="math inline">\(p\)</span>-value. Although there’s <a href="https://en.wikipedia.org/wiki/Sampling_distribution">more to the story</a>, for our purposes we can define the p-value as <em>the probability of observing a difference between the means this large or larger, just due to chance, if there were in reality no difference in the groups</em>. Although arbitrary, researchers will adopt (for most applications) a cutoff $p$-value of .05, a value referred to as alpha. If the p-value falls below alpha, we can conclude that the difference between the means is large enough to warrant further scrutiny.</p>
+<p>The independent-samples t-test is one of the most commonly used statistical tests and is taught in most introductory statistics course. In broad strokes, the independent-samples t-test is used when the independent variable in a study is binary - that is, consists of two qualitatively different groups - and the dependent variable is continuous (interval or ratio). The mean of the dependent variable is calculated for each group, compared, and a decision is made about whether the difference between the means is meaningful (that is, worth paying attention to). Associated with this mean difference is a <span class="math inline">\(p\)</span>-value. Although there’s <a href="https://en.wikipedia.org/wiki/Sampling_distribution" target="_blank">more to the story</a>, for our purposes we can define the p-value as <em>the probability of observing a difference between the means this large or larger, just due to chance, if there were in reality no difference in the groups</em>. Although arbitrary, researchers will adopt (for most applications) a cutoff $p$-value of .05, a value referred to as alpha. If the p-value falls below alpha, we can conclude that the difference between the means is large enough to warrant further scrutiny.</p>
 <div id="wheres-my-effect-size" class="section level1">
 <h1>Where’s My Effect Size?</h1>
 <p>In the aforementioned introductory statistics courses, students also learn about effect sizes that help put the results of statistical tests into context. In the case of the <span class="math inline">\(t\)</span>-test, Cohen’s <span class="math inline">\(d\)</span> measure of effect size helps get a sense of how impressive the mean difference between groups is on a standardized metric. Standardized, in this case, just means that the metric is universal: no matter what the original metric for the dependent variable, the $d$ statistic always falls within a certain range, and always follows a certain interpretation. This means that if you ran two different tests on two different dependent variables, the interpretations of their resulting $d$ statistics would be comparable in terms of your sense of how large the mean differences were. Although still a bit arbitrary, $d$ follows some rules of thumb <span class="citation">(<a href="#ref-cohen2013statistical" role="doc-biblioref">Cohen, 2013</a>)</span>:</p>
@@ -66,14 +66,14 @@ csl: "/Users/home/Documents/Research and Writing/Misc/MyRefs/apa-web.csl"
 ## mean in group 0 mean in group 1 
 ##        17.14737        24.39231</code></pre>
 <p>In this dataset, vehicles with automatic transmissions are coded as 0, and manuals as 1. The dependent variables is the miles-per-gallon of the vehicles. Looking at the output above, we see the mean miles per gallon for vehicles with automatic transmissions (17.15) is quite a bit lower than for vehicles with manual transmissions (24.39). This difference is statistically significant, <span class="math inline">\(p = .001\)</span>, meaning the means are different enough that we might want to dig in a little bit deeper.</p>
-<p>The next step, usually, would be to calculate Cohen’s <span class="math inline">\(d\)</span>, yet it is nowhere to be found in the output. Other useful statistics are also missing: the $p$-value is associated with the mean difference, yet the mean difference is missing. Although we can see the means for each group separately, why should I have to do the math myself? Lastly, this output doesn’t exactly make it easy to copy-and-paste into e.g., a table in Word, which one would usually want to do after conducting a statistical test. In other words, the output is not in a <a href="https://vita.had.co.nz/papers/tidy-data.pdf">tidy format</a>.</p>
+<p>The next step, usually, would be to calculate Cohen’s <span class="math inline">\(d\)</span>, yet it is nowhere to be found in the output. Other useful statistics are also missing: the $p$-value is associated with the mean difference, yet the mean difference is missing. Although we can see the means for each group separately, why should I have to do the math myself? Lastly, this output doesn’t exactly make it easy to copy-and-paste into e.g., a table in Word, which one would usually want to do after conducting a statistical test. In other words, the output is not in a <a href="https://vita.had.co.nz/papers/tidy-data.pdf" target="_blank">tidy format</a>.</p>
 </div>
 <div id="my-solution" class="section level1">
 <h1>My Solution</h1>
 <p>I haven’t been able to find any existing functions that check these boxes, so I made my own wrapper function that shows output from <code>t.test()</code> and the <code>cohen.d()</code> function from the <code>psych</code> package in a tidy format. Here’s the same example as above using the function, which I have called <code>my.t</code>:</p>
 <pre><code>## my.t(mtcars, IV = am, DV = mpg)</code></pre>
 <!-- html table generated in R 3.6.1 by xtable 1.8-4 package -->
-<!-- Mon Feb  1 12:32:09 2021 -->
+<!-- Mon Feb  1 12:37:07 2021 -->
 <table border="1">
 <tr>
 <th>
@@ -158,7 +158,7 @@ cohens.d
 <p>Currently the output is in wide format, meaning that each statistic is its own column, with the row containing the values for those statistics. If you prefer a different format, I have also added the <code>long =</code> argument that can optionally display output in long format, with each statistic indicated by the row with the value in a column:</p>
 <pre><code>## my.t(mtcars, IV = am, DV = mpg, long = TRUE)</code></pre>
 <!-- html table generated in R 3.6.1 by xtable 1.8-4 package -->
-<!-- Mon Feb  1 12:32:09 2021 -->
+<!-- Mon Feb  1 12:37:07 2021 -->
 <table border="1">
 <tr>
 <th>
@@ -267,7 +267,8 @@ cohens.d
 </table>
 <p>Taking a look at this last table, we can see that the mean difference in displacement is 146.85, meaning having an automatic transmission is associated with an extra 146.85 cubic inches of displacement. So while you might gain ~7 miles to the gallon by going with a manual transmission, you can also expect to lose 146.85 cubic inches of displacement.</p>
 <p>OK, but what the heck does that mean? Is that an impressive number? It’s hard to tell for those who don’t spend time dealing with vehicle displacement. We might have been able to avoid this with miles per gallon, since miles per gallon is an familiar metric for most of us who refill our gas tanks a few times a month (in other words, anyone who drives). We readily understand how much money we would save if our vehicle got an extra 7 miles to the gallon. But I for one cannot readily appreciate how important a loss of 146.85 cubic inches of displacement would be compare to a gain of 7 miles per gallon. If I were car shopping, I might like to know if this is an important number.</p>
-<p>Using this long format, we can see some of the added value of Cohen’s <span class="math inline">\(d\)</span>. Say, for example, that you are car shopping, and miles per gallon was one of just several criteria you were using to help you decide whether to buy a car with an automatic or manual transmission. Your other criterion is displacement, which roughly describes “how fast a vehicle gets up and goes” (my <a href="\img\dad.jpeg">dad</a> is a self-taught engineer who has built engines for 40 years, so I hope he will forgive me for this is description is wrong!). If you wanted to repeat what we did for vehicle displacement - measured in this dataset as displacement per cubic inch - you might do something like this:</p>
+<p>Using this long format, we can see some of the added value of Cohen’s <span class="math inline">\(d\)</span>. Say, for example, that you are car shopping, and miles per gallon was one of just several criteria you were using to help you decide whether to buy a car with an automatic or manual transmission. Your other criterion is displacement, which roughly describes “how fast a vehicle gets up and goes” (my
+<a href="https://matthewevanaman.netlify.app/img/dad.jpeg" target="_blank">dad</a> is a self-taught engineer who has built engines for 40 years, so I hope he will forgive me for this is description is less than accurate!). If you wanted to repeat what we did for vehicle displacement - measured in this dataset as displacement per cubic inch - you might do something like this:</p>
 <pre class="r"><code># conduct the tests
 mpg.test &lt;- my.t(mtcars, IV = am, DV = mpg, long = TRUE)
 disp.test &lt;- my.t(mtcars, IV = am, DV = disp, long = TRUE)
@@ -277,7 +278,7 @@ disp.test &lt;- disp.test %&gt;% rename(&quot;Disp.&quot; = Value)
 my.results &lt;- cbind(mpg.test, select(disp.test, -Statistic))
 my.results</code></pre>
 <!-- html table generated in R 3.6.1 by xtable 1.8-4 package -->
-<!-- Mon Feb  1 12:32:09 2021 -->
+<!-- Mon Feb  1 12:37:08 2021 -->
 <table border="1">
 <tr>
 <th>
