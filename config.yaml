@@ -167,3 +167,4 @@ markup:
       unsafe: yes
   tableOfContents:
     startLevel: 1
+    endLevel: 3
