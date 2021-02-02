@@ -14,15 +14,17 @@ lastmod: '2021-01-31T18:55:54-05:00'
 keywords: []
 description: ''
 comment: yes
-toc: yes
-autoCollapseToc: yes
+output:
+  blogdown::html_page:
+    toc: yes
+    fig_cap: yes
 postMetaInFooter: no
 hiddenFromHomePage: no
 contentCopyright: no
 reward: no
 mathjax: yes
 mathjaxEnableSingleDollar: yes
-mathjaxEnableAutoNumber: no
+mathjaxEnableAutoNumber: yes
 hideHeaderAndFooter: no
 flowchartDiagrams:
   enable: no
@@ -36,9 +38,19 @@ csl: "/Users/home/Documents/Research and Writing/Misc/MyRefs/apa-web.csl"
 ---
 
 <script src="{{< blogdown/postref >}}index.en_files/header-attrs/header-attrs.js"></script>
+<script src="{{< blogdown/postref >}}index.en_files/kePrint/kePrint.js"></script>
+<link href="{{< blogdown/postref >}}index.en_files/lightable/lightable.css" rel="stylesheet" />
 
 <div id="TOC">
-
+<ul>
+<li><a href="#wheres-my-effect-size">Where’s My Effect Size?</a></li>
+<li><a href="#my-solution">My Solution</a>
+<ul>
+<li><a href="#formatting-option-and-an-illustration">Formatting Option, and an Illustration</a></li>
+</ul></li>
+<li><a href="#full-function">Full Function</a></li>
+<li><a href="#references">References</a></li>
+</ul>
 </div>
 
 <!--more-->
@@ -72,198 +84,208 @@ csl: "/Users/home/Documents/Research and Writing/Misc/MyRefs/apa-web.csl"
 <h1>My Solution</h1>
 <p>I haven’t been able to find any existing functions that check these boxes, so I made my own wrapper function that shows output from <code>t.test()</code> and the <code>cohen.d()</code> function from the <code>psych</code> package in a tidy format. Here’s the same example as above using the function, which I have called <code>my.t</code>:</p>
 <pre><code>## my.t(mtcars, IV = am, DV = mpg)</code></pre>
-<!-- html table generated in R 3.6.1 by xtable 1.8-4 package -->
-<!-- Mon Feb  1 13:18:25 2021 -->
-<table border="1">
+<table class="table" style>
+<caption>
+<span id="tab:table1">Table 1: </span>T-Test With <code>my.t</code> (IV = Transmission and DV = Miles Per Gallon)
+</caption>
+<thead>
 <tr>
-<th>
+<th style="text-align:right;">
 0.mean
 </th>
-<th>
+<th style="text-align:right;">
 1.mean
 </th>
-<th>
+<th style="text-align:right;">
 0.sd
 </th>
-<th>
+<th style="text-align:right;">
 1.sd
 </th>
-<th>
+<th style="text-align:right;">
 mean.difference
 </th>
-<th>
+<th style="text-align:right;">
 std.err
 </th>
-<th>
+<th style="text-align:right;">
 conf.low
 </th>
-<th>
+<th style="text-align:right;">
 conf.high
 </th>
-<th>
+<th style="text-align:right;">
 t
 </th>
-<th>
+<th style="text-align:right;">
 df
 </th>
-<th>
+<th style="text-align:right;">
 p.value
 </th>
-<th>
+<th style="text-align:left;">
 cohens.d
 </th>
 </tr>
+</thead>
+<tbody>
 <tr>
-<td align="right">
+<td style="text-align:right;">
 17.15
 </td>
-<td align="right">
+<td style="text-align:right;">
 24.39
 </td>
-<td align="right">
+<td style="text-align:right;">
 3.83
 </td>
-<td align="right">
+<td style="text-align:right;">
 6.17
 </td>
-<td align="right">
+<td style="text-align:right;">
 -7.24
 </td>
-<td align="right">
+<td style="text-align:right;">
 1.92
 </td>
-<td align="right">
+<td style="text-align:right;">
 -11.28
 </td>
-<td align="right">
+<td style="text-align:right;">
 -3.21
 </td>
-<td align="right">
+<td style="text-align:right;">
 -3.77
 </td>
-<td align="right">
+<td style="text-align:right;">
 18.33
 </td>
-<td align="right">
-0.00
+<td style="text-align:right;">
+0
 </td>
-<td>
+<td style="text-align:left;">
 1.53
 </td>
 </tr>
+</tbody>
 </table>
-<p>This output gives you everything, clearly labeled, with our friend Cohen’s <span class="math inline">\(d\)</span> included. The $d$ measure of effect size is quite large (1.53), which is about twice the size of the cutoff for a “large” effect size.</p>
+<p>This output in Table <a href="#tab:table1">1</a> gives you all of the relevant statistics, clearly labeled, with Cohen’s <span class="math inline">\(d\)</span> included. The $d$ measure of effect size is quite large (1.53), which is about twice the size of the cutoff for a “large” effect size.</p>
 <div id="formatting-option-and-an-illustration" class="section level2">
 <h2>Formatting Option, and an Illustration</h2>
 <p>Currently the output is in wide format, meaning that each statistic is its own column with the values for those statistics contained in the table row. If you prefer a different format, I have also added the <code>long =</code> argument that can optionally display output in long format, with each statistic indicated by the row with the value in a column:</p>
 <pre><code>## my.t(mtcars, IV = am, DV = mpg, long = TRUE)</code></pre>
-<!-- html table generated in R 3.6.1 by xtable 1.8-4 package -->
-<!-- Mon Feb  1 13:18:25 2021 -->
-<table border="1">
+<table class="table" style>
+<caption>
+<span id="tab:table2">Table 2: </span>T-Test With <code>my.t</code> in Long Format (IV = Transmission and DV = Miles Per Gallon)
+</caption>
+<thead>
 <tr>
-<th>
+<th style="text-align:left;">
 Statistic
 </th>
-<th>
+<th style="text-align:right;">
 Value
 </th>
 </tr>
+</thead>
+<tbody>
 <tr>
-<td>
+<td style="text-align:left;">
 0.mean
 </td>
-<td align="right">
+<td style="text-align:right;">
 17.15
 </td>
 </tr>
 <tr>
-<td>
+<td style="text-align:left;">
 1.mean
 </td>
-<td align="right">
+<td style="text-align:right;">
 24.39
 </td>
 </tr>
 <tr>
-<td>
+<td style="text-align:left;">
 0.sd
 </td>
-<td align="right">
+<td style="text-align:right;">
 3.83
 </td>
 </tr>
 <tr>
-<td>
+<td style="text-align:left;">
 1.sd
 </td>
-<td align="right">
+<td style="text-align:right;">
 6.17
 </td>
 </tr>
 <tr>
-<td>
+<td style="text-align:left;">
 mean.difference
 </td>
-<td align="right">
+<td style="text-align:right;">
 -7.24
 </td>
 </tr>
 <tr>
-<td>
+<td style="text-align:left;">
 std.err
 </td>
-<td align="right">
+<td style="text-align:right;">
 1.92
 </td>
 </tr>
 <tr>
-<td>
+<td style="text-align:left;">
 conf.low
 </td>
-<td align="right">
+<td style="text-align:right;">
 -11.28
 </td>
 </tr>
 <tr>
-<td>
+<td style="text-align:left;">
 conf.high
 </td>
-<td align="right">
+<td style="text-align:right;">
 -3.21
 </td>
 </tr>
 <tr>
-<td>
+<td style="text-align:left;">
 t
 </td>
-<td align="right">
+<td style="text-align:right;">
 -3.77
 </td>
 </tr>
 <tr>
-<td>
+<td style="text-align:left;">
 df
 </td>
-<td align="right">
+<td style="text-align:right;">
 18.33
 </td>
 </tr>
 <tr>
-<td>
+<td style="text-align:left;">
 p.value
 </td>
-<td align="right">
+<td style="text-align:right;">
 0.00
 </td>
 </tr>
 <tr>
-<td>
+<td style="text-align:left;">
 cohens.d
 </td>
-<td align="right">
+<td style="text-align:right;">
 1.53
 </td>
 </tr>
+</tbody>
 </table>
 <p>Say that in your car shopping, miles per gallon was one of just several criteria you were using to help you decide what kind of car to buy. In addition to miles per gallon, you also wanted to compare automatic vs manual transmissions in their level of <em>displacement</em>, which roughly describes “how fast a vehicle gets up and goes” (my <a href="https://matthewevanaman.netlify.app/img/dad.jpeg" target="_blank">dad</a> is a self-taught engineer who has built engines for 40 years, so I hope he will forgive me for this is description is less than accurate!). If you wanted to repeat what we did for vehicle displacement - measured in this dataset as displacement per cubic inch - you might repeat the above <span class="math inline">\(t\)</span>-test with displacement as your dependent variable instead of miles per gallon. Below is a table with the output of both tests side-by-side:</p>
 <pre class="r"><code># conduct the tests
@@ -274,156 +296,161 @@ mpg.test &lt;- mpg.test %&gt;% rename(MPG = Value)
 disp.test &lt;- disp.test %&gt;% rename(&quot;Disp.&quot; = Value)
 my.results &lt;- cbind(mpg.test, select(disp.test, -Statistic))
 my.results</code></pre>
-<!-- html table generated in R 3.6.1 by xtable 1.8-4 package -->
-<!-- Mon Feb  1 13:18:25 2021 -->
-<table border="1">
+<table class="table" style>
+<caption>
+<span id="tab:table3">Table 3: </span>Comparing Group Differences in MPG and Displacement
+</caption>
+<thead>
 <tr>
-<th>
+<th style="text-align:left;">
 Statistic
 </th>
-<th>
+<th style="text-align:right;">
 MPG
 </th>
-<th>
+<th style="text-align:right;">
 Disp.
 </th>
 </tr>
+</thead>
+<tbody>
 <tr>
-<td>
+<td style="text-align:left;">
 0.mean
 </td>
-<td align="right">
+<td style="text-align:right;">
 17.15
 </td>
-<td align="right">
+<td style="text-align:right;">
 290.38
 </td>
 </tr>
 <tr>
-<td>
+<td style="text-align:left;">
 1.mean
 </td>
-<td align="right">
+<td style="text-align:right;">
 24.39
 </td>
-<td align="right">
+<td style="text-align:right;">
 143.53
 </td>
 </tr>
 <tr>
-<td>
+<td style="text-align:left;">
 0.sd
 </td>
-<td align="right">
+<td style="text-align:right;">
 3.83
 </td>
-<td align="right">
+<td style="text-align:right;">
 110.17
 </td>
 </tr>
 <tr>
-<td>
+<td style="text-align:left;">
 1.sd
 </td>
-<td align="right">
+<td style="text-align:right;">
 6.17
 </td>
-<td align="right">
+<td style="text-align:right;">
 87.20
 </td>
 </tr>
 <tr>
-<td>
+<td style="text-align:left;">
 mean.difference
 </td>
-<td align="right">
+<td style="text-align:right;">
 -7.24
 </td>
-<td align="right">
+<td style="text-align:right;">
 146.85
 </td>
 </tr>
 <tr>
-<td>
+<td style="text-align:left;">
 std.err
 </td>
-<td align="right">
+<td style="text-align:right;">
 1.92
 </td>
-<td align="right">
+<td style="text-align:right;">
 34.98
 </td>
 </tr>
 <tr>
-<td>
+<td style="text-align:left;">
 conf.low
 </td>
-<td align="right">
+<td style="text-align:right;">
 -11.28
 </td>
-<td align="right">
+<td style="text-align:right;">
 75.33
 </td>
 </tr>
 <tr>
-<td>
+<td style="text-align:left;">
 conf.high
 </td>
-<td align="right">
+<td style="text-align:right;">
 -3.21
 </td>
-<td align="right">
+<td style="text-align:right;">
 218.37
 </td>
 </tr>
 <tr>
-<td>
+<td style="text-align:left;">
 t
 </td>
-<td align="right">
+<td style="text-align:right;">
 -3.77
 </td>
-<td align="right">
+<td style="text-align:right;">
 4.20
 </td>
 </tr>
 <tr>
-<td>
+<td style="text-align:left;">
 df
 </td>
-<td align="right">
+<td style="text-align:right;">
 18.33
 </td>
-<td align="right">
+<td style="text-align:right;">
 29.26
 </td>
 </tr>
 <tr>
-<td>
+<td style="text-align:left;">
 p.value
 </td>
-<td align="right">
+<td style="text-align:right;">
 0.00
 </td>
-<td align="right">
+<td style="text-align:right;">
 0.00
 </td>
 </tr>
 <tr>
-<td>
+<td style="text-align:left;">
 cohens.d
 </td>
-<td align="right">
+<td style="text-align:right;">
 1.53
 </td>
-<td align="right">
+<td style="text-align:right;">
 -1.49
 </td>
 </tr>
+</tbody>
 </table>
-<p>Let’s take a stab at interpreting the results from this second <span class="math inline">\(t\)</span>-test with displacement as the dependent variable. The mean difference is 146.85, meaning that automatic transmissions are associated with an extra 146.85 cubic inches of displacement on average. So while you might gain ~7 miles to the gallon by going with a manual transmission, you can also expect to lose 146.85 cubic inches of displacement.</p>
+<p>Let’s take a stab at interpreting the results from this second <span class="math inline">\(t\)</span>-test with displacement as the dependent variable, shown in Table <a href="#tab:table3">3</a>. The mean difference is 146.85, meaning that automatic transmissions are associated with an extra 146.85 cubic inches of displacement on average. So while you might gain ~7 miles to the gallon by going with a manual transmission, you can also expect to lose 146.85 cubic inches of displacement.</p>
 <p>OK, but what the heck does that mean? Is that an impressive number? It’s hard to tell for those who don’t spend time dealing with vehicle displacement. We might have been able to avoid this with miles per gallon, since miles per gallon is a familiar metric for those of us who drive and have to refill our gas tanks a few times a month. We readily understand how much money we would save if our vehicle got an extra 7 miles to the gallon. But I for one cannot readily understand how important a loss of 146.85 cubic inches of displacement is compared to a gain of 7 miles per gallon. If I were car shopping, I might like to know if this is an important difference, perhaps on the same scale as the difference in miles per gallon.</p>
-<p>In the above table, we see the Cohen’s <span class="math inline">\(d\)</span> statistics for miles per gallon and displacement conveniently side-by-side. Both are very large effect sizes - quite a bit larger than <span class="math inline">\(0.8\)</span>, the rule of thumb for a “large” effect size given above. It’s nice to have these means differences expressed on a comparable scale (<span class="math inline">\(d\)</span>), because now we can, of course, compare them. Although the sign for displacement is negative (indicating that manual transmissions are associated with lower displacement than automatics), the absolute value is very close to that of miles per gallon. We can now say that however much gas we save by using a manual transmission instead of an automatic, we can expect to lose a proportionately similar amount of displacement per cubic inch. That is, the <em>magnitude</em> of the differences between between automatic and manual transmissions (effect sizes of 1.53 and -1.49, respectively) are pretty similar, even though the mean differences (7.24 miles per gallon and -146.85 cubic inches of displacement, respectively) are not comparable numbers.</p>
+<p>In Table <a href="#tab:table3">3</a>, we see the Cohen’s <span class="math inline">\(d\)</span> statistics for miles per gallon and displacement conveniently side-by-side. Both are very large effect sizes - quite a bit larger than <span class="math inline">\(0.8\)</span>, the rule of thumb for a “large” effect size given above. It’s nice to have these means differences expressed on a comparable scale (<span class="math inline">\(d\)</span>), because now we can, of course, compare them. Although the sign for displacement is negative (indicating that manual transmissions are associated with lower displacement than automatics), the absolute value is very close to that of miles per gallon. We can now say that however much gas we save by using a manual transmission instead of an automatic, we can expect to lose a proportionately similar amount of displacement per cubic inch. That is, the <em>magnitude</em> of the differences between between automatic and manual transmissions (effect sizes of 1.53 and -1.49, respectively) are pretty similar, even though the mean differences (7.24 miles per gallon and -146.85 cubic inches of displacement, respectively) are not comparable numbers.</p>
 <p>Of course, this doesn’t <em>entirely</em> solve our problem: miles per gallon and displacement are too conceptually different to be compared meaningfully without added context. These tests would be most helpful if you also knew what adding 146.85 of displacement per cubic inch would feel like in terms of pushing your back against the seat as you accelerate in your new car. Maybe you would need twice as much displacement - 293.7, let’s say - in order for a gain in displacement to be noticeable. But in the absence of better information, it’s nice to know for the sake of car-shopping that the <em>magnitude of the difference between the groups</em> is basically the same for miles per gallon and displacement. And now you have a function that gives you that information!</p>
 </div>
 </div>

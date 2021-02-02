@@ -14,15 +14,17 @@ lastmod: '2021-01-31T18:55:54-05:00'
 keywords: []
 description: ''
 comment: yes
-toc: yes
-autoCollapseToc: yes
+output:
+  blogdown::html_page:
+    toc: yes
+    fig_cap: yes
 postMetaInFooter: no
 hiddenFromHomePage: no
 contentCopyright: no
 reward: no
 mathjax: yes
 mathjaxEnableSingleDollar: yes
-mathjaxEnableAutoNumber: no
+mathjaxEnableAutoNumber: yes
 hideHeaderAndFooter: no
 flowchartDiagrams:
   enable: no
@@ -38,6 +40,7 @@ csl: "/Users/home/Documents/Research and Writing/Misc/MyRefs/apa-web.csl"
 <!--more-->
 
 ```{r, include=FALSE}
+library(tidyverse)
 my.t <-
     function(data, IV, DV, long = FALSE, ...) {
       require(tidyverse)
@@ -123,17 +126,18 @@ I haven't been able to find any existing functions that check these boxes, so I 
 cat("my.t(mtcars, IV = am, DV = mpg)")
 ```
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, results="asis"}
-xtable::print.xtable(
-  xtable::xtable(
-    my.t(mtcars, IV = am, DV = mpg)
-  ),
-  type = "html",
-  include.rownames = FALSE
-)
+```{r table1, echo=FALSE, message=FALSE, warning=FALSE, results="asis"}
+knitr::kable(
+  my.t(mtcars, IV = am, DV = mpg),
+  caption = "T-Test With `my.t` (IV = Transmission and DV = Miles Per Gallon)",
+  digits = 2,
+  row.names = FALSE,
+  booktabs = TRUE
+) %>% 
+  kableExtra::kable_styling(position = "left")
 ```
 
-This output gives you everything, clearly labeled, with our friend Cohen's $d$ included. The \$d\$ measure of effect size is quite large (1.53), which is about twice the size of the cutoff for a "large" effect size.
+This output in Table \@ref(tab:table1) gives you all of the relevant statistics, clearly labeled, with Cohen's $d$ included. The \$d\$ measure of effect size is quite large (1.53), which is about twice the size of the cutoff for a "large" effect size.
 
 ## Formatting Option, and an Illustration
 
@@ -143,14 +147,15 @@ Currently the output is in wide format, meaning that each statistic is its own c
 cat("my.t(mtcars, IV = am, DV = mpg, long = TRUE)")
 ```
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, results="asis"}
-xtable::print.xtable(
-  xtable::xtable(
-    my.t(mtcars, IV = am, DV = mpg, long = TRUE)
-  ),
-  type = "html",
-  include.rownames = FALSE
-)
+```{r table2, echo=FALSE, message=FALSE, warning=FALSE, results="asis"}
+knitr::kable(
+  my.t(mtcars, IV = am, DV = mpg, long = TRUE),
+  caption = "T-Test With `my.t` in Long Format (IV = Transmission and DV = Miles Per Gallon)",
+  digits = 2,
+  row.names = FALSE,
+  booktabs = TRUE
+) %>% 
+  kableExtra::kable_styling(position = "left")
 ```
 
 Say that in your car shopping, miles per gallon was one of just several criteria you were using to help you decide what kind of car to buy. In addition to miles per gallon, you also wanted to compare automatic vs manual transmissions in their level of *displacement*, which roughly describes "how fast a vehicle gets up and goes" (my <a href="https://matthewevanaman.netlify.app/img/dad.jpeg" target="_blank">dad</a> is a self-taught engineer who has built engines for 40 years, so I hope he will forgive me for this is description is less than accurate!). If you wanted to repeat what we did for vehicle displacement - measured in this dataset as displacement per cubic inch - you might repeat the above $t$-test with displacement as your dependent variable instead of miles per gallon. Below is a table with the output of both tests side-by-side:
@@ -166,21 +171,22 @@ my.results <- cbind(mpg.test, select(disp.test, -Statistic))
 my.results
 ```
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, results="asis"}
-xtable::print.xtable(
-  xtable::xtable(
-    my.results
-  ),
-  type = "html",
-  include.rownames = FALSE
-)
+```{r table3, echo=FALSE, message=FALSE, warning=FALSE, results="asis"}
+knitr::kable(
+  my.results,
+  caption = "Comparing Group Differences in MPG and Displacement",
+  digits = 2,
+  row.names = FALSE,
+  booktabs = TRUE
+) %>% 
+  kableExtra::kable_styling(position = "left")
 ```
 
-Let's take a stab at interpreting the results from this second $t$-test with displacement as the dependent variable. The mean difference is 146.85, meaning that automatic transmissions are associated with an extra 146.85 cubic inches of displacement on average. So while you might gain \~7 miles to the gallon by going with a manual transmission, you can also expect to lose 146.85 cubic inches of displacement.
+Let's take a stab at interpreting the results from this second $t$-test with displacement as the dependent variable, shown in Table \@ref(tab:table3). The mean difference is 146.85, meaning that automatic transmissions are associated with an extra 146.85 cubic inches of displacement on average. So while you might gain \~7 miles to the gallon by going with a manual transmission, you can also expect to lose 146.85 cubic inches of displacement.
 
 OK, but what the heck does that mean? Is that an impressive number? It's hard to tell for those who don't spend time dealing with vehicle displacement. We might have been able to avoid this with miles per gallon, since miles per gallon is a familiar metric for those of us who drive and have to refill our gas tanks a few times a month. We readily understand how much money we would save if our vehicle got an extra 7 miles to the gallon. But I for one cannot readily understand how important a loss of 146.85 cubic inches of displacement is compared to a gain of 7 miles per gallon. If I were car shopping, I might like to know if this is an important difference, perhaps on the same scale as the difference in miles per gallon.
 
-In the above table, we see the Cohen's $d$ statistics for miles per gallon and displacement conveniently side-by-side. Both are very large effect sizes - quite a bit larger than $0.8$, the rule of thumb for a "large" effect size given above. It's nice to have these means differences expressed on a comparable scale ($d$), because now we can, of course, compare them. Although the sign for displacement is negative (indicating that manual transmissions are associated with lower displacement than automatics), the absolute value is very close to that of miles per gallon. We can now say that however much gas we save by using a manual transmission instead of an automatic, we can expect to lose a proportionately similar amount of displacement per cubic inch. That is, the *magnitude* of the differences between between automatic and manual transmissions (effect sizes of 1.53 and -1.49, respectively) are pretty similar, even though the mean differences (7.24 miles per gallon and -146.85 cubic inches of displacement, respectively) are not comparable numbers.
+In Table \@ref(tab:table3), we see the Cohen's $d$ statistics for miles per gallon and displacement conveniently side-by-side. Both are very large effect sizes - quite a bit larger than $0.8$, the rule of thumb for a "large" effect size given above. It's nice to have these means differences expressed on a comparable scale ($d$), because now we can, of course, compare them. Although the sign for displacement is negative (indicating that manual transmissions are associated with lower displacement than automatics), the absolute value is very close to that of miles per gallon. We can now say that however much gas we save by using a manual transmission instead of an automatic, we can expect to lose a proportionately similar amount of displacement per cubic inch. That is, the *magnitude* of the differences between between automatic and manual transmissions (effect sizes of 1.53 and -1.49, respectively) are pretty similar, even though the mean differences (7.24 miles per gallon and -146.85 cubic inches of displacement, respectively) are not comparable numbers.
 
 Of course, this doesn't *entirely* solve our problem: miles per gallon and displacement are too conceptually different to be compared meaningfully without added context. These tests would be most helpful if you also knew what adding 146.85 of displacement per cubic inch would feel like in terms of pushing your back against the seat as you accelerate in your new car. Maybe you would need twice as much displacement - `r 146.85 * 2`, let's say - in order for a gain in displacement to be noticeable. But in the absence of better information, it's nice to know for the sake of car-shopping that the *magnitude of the difference between the groups* is basically the same for miles per gallon and displacement. And now you have a function that gives you that information!
 
