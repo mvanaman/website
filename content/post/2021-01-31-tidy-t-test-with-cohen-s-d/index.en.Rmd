@@ -137,7 +137,7 @@ knitr::kable(
   kableExtra::kable_styling(position = "left")
 ```
 
-This output in Table \@ref(tab:table1) gives you all of the relevant statistics, clearly labeled, with Cohen's $d$ included. The \$d\$ measure of effect size is quite large (1.53), which is about twice the size of the cutoff for a "large" effect size.
+This output in Table \@ref(tab:table1) gives you all of the relevant statistics, clearly labeled, with Cohen's $d$ included. The \$d\$ measure of effect size is quite large (1.53), which is about twice the size of the cutoff for a large effect size.
 
 ## Formatting Option, and an Illustration
 
