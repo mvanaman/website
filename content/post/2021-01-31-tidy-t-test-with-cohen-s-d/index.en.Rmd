@@ -14,9 +14,9 @@ lastmod: '2021-01-31T18:55:54-05:00'
 keywords: []
 description: ''
 comment: yes
-output:
+output: 
   blogdown::html_page:
-    toc: yes
+    toc: true
     fig_cap: yes
 postMetaInFooter: no
 hiddenFromHomePage: no
@@ -37,8 +37,9 @@ link-citations: true
 csl: "/Users/home/Documents/Research and Writing/Misc/MyRefs/apa-web.csl"
 ---
 
+```{=html}
 <!--more-->
-
+```
 ```{r, include=FALSE}
 library(tidyverse)
 my.t <-
@@ -194,7 +195,7 @@ Of course, this doesn't *entirely* solve our problem: miles per gallon and displ
 
 Copy-and-paste this function to use it in your own `R` projects. You will be prompted to install the `tidyverse` and `psych` packages if you do not already have them.
 
-```{r, include=FALSE}
+```{r, evaluate=FALSE}
 my.t <-
     function(data, IV, DV, long = FALSE, ...) {
       require(tidyverse)

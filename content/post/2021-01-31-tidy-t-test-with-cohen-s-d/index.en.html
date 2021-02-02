@@ -14,9 +14,9 @@ lastmod: '2021-01-31T18:55:54-05:00'
 keywords: []
 description: ''
 comment: yes
-output:
+output: 
   blogdown::html_page:
-    toc: yes
+    toc: true
     fig_cap: yes
 postMetaInFooter: no
 hiddenFromHomePage: no
@@ -457,6 +457,59 @@ cohens.d
 <div id="full-function" class="section level1">
 <h1>Full Function</h1>
 <p>Copy-and-paste this function to use it in your own <code>R</code> projects. You will be prompted to install the <code>tidyverse</code> and <code>psych</code> packages if you do not already have them.</p>
+<pre class="r"><code>my.t &lt;-
+    function(data, IV, DV, long = FALSE, ...) {
+      require(tidyverse)
+      require(psych)
+      IV.1 &lt;- enquo(IV)
+      DV.1 &lt;- enquo(DV)
+      means &lt;- suppressMessages(
+        data %&gt;%
+        group_by(!!IV.1) %&gt;%
+        summarise(mean = mean(!!DV.1, na.rm = TRUE)) %&gt;%
+          pivot_wider(names_from = !!IV.1, values_from =  &quot;mean&quot;)
+        )
+      names(means) &lt;- paste(names(means), &quot;mean&quot;, sep = &quot;.&quot;)
+      SDs &lt;- suppressMessages(
+        data %&gt;%
+          group_by(!!IV.1) %&gt;%
+          summarise(sd = sd(!!DV.1, na.rm = TRUE)) %&gt;%
+          pivot_wider(names_from = !!IV.1, values_from =  &quot;sd&quot;)
+      )
+      names(SDs) &lt;- paste(names(SDs), &quot;sd&quot;, sep = &quot;.&quot;)
+
+      IV.2 &lt;- rlang::sym(rlang::as_label(rlang::enquo(IV)))
+      DV.2 &lt;- rlang::sym(rlang::as_label(rlang::enquo(DV)))
+      form &lt;- expr(!! DV.2 ~ !! IV.2)
+      t.tests &lt;- t.test(eval(form), data, var.equal = FALSE)
+      stats &lt;- t.tests %&gt;% broom::glance(x)
+      std.err &lt;- t.tests$stderr
+      Ds &lt;-
+        cohen.d(x = data %&gt;% select(!!DV.1, !!IV.1),
+                group = deparse(substitute(IV)))$cohen.d %&gt;%
+        as.data.frame %&gt;%
+        select(effect) %&gt;%
+        round(2) %&gt;%
+        format(nsmall = 2)
+      cols &lt;- c(&quot;conf.low&quot;, &quot;conf.high&quot;, &quot;statistic&quot;, &quot;parameter&quot;, &quot;p.value&quot;)
+      means.table &lt;-
+        cbind(means, SDs, stats[, &quot;estimate&quot;], std.err, stats[, cols], Ds)
+      means.table &lt;- means.table %&gt;%
+        rename(mean.difference = estimate, cohens.d = effect, t = statistic, df = parameter)
+      rownames(means.table) &lt;- NULL
+      if (long == TRUE) {
+        means.table.long &lt;-
+          means.table %&gt;% 
+          t %&gt;% 
+          data.frame(&quot;Value&quot; = .) %&gt;% 
+          rownames_to_column(&quot;Statistic&quot;) %&gt;% 
+          mutate(Value = as.numeric(as.character(Value))) %&gt;% 
+          mutate(Value = round(Value, 2))
+        return(means.table.long)
+      } else{
+        return(means.table)
+      }
+    }</code></pre>
 </div>
 <div id="references" class="section level1 unnumbered">
 <h1>References</h1>
