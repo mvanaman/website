@@ -7,24 +7,20 @@ weight: 50
 bibliography: "/Users/home/Documents/Research and Writing/Misc/MyRefs/MyRefs.bib"
 link-citations: true
 csl: "/Users/home/Documents/Research and Writing/Misc/MyRefs/apa-web.csl"
-nocite: | 
-   @vanaman2019novel, @vanaman2020disgust, @tierney2020creative
 ---
 
 <center>
 
-![](/img/meet.jpeg){width=50% height=50%}
-<br>
-[Meet Daytona](/img/daytona.jpeg)
+I have a 
+<a href="https://matthewevanaman.netlify.app/img/daytona.jpeg" target="blank" onMouseOver="this.style.color='#c05b4d'"> hipster roommate </a> 
+who doesn't pay rent and eats nonstop. She is 
+<a href="https://matthewevanaman.netlify.app/img/hyper.mov" target="blank" onMouseOver="this.style.color='#c05b4d'"> hyperactive 
+</a> 
+and has 
+<a href="https://matthewevanaman.netlify.app/img/meet.jpeg" target="blank" onMouseOver="this.style.color='#c05b4d'"> no respect 
+</a>  
+for personal space.
 
-[Google Scholar]( https://scholar.google.com/citations?user=dQ_TbawAAAAJ&hl=en) | [OSF](https://osf.io/4hz9q/) | [ResearchGate](https://www.researchgate.net/profile/Matthew_Vanaman)
 
 </center>
-
-
-
-
-<div style="padding-left: 4em; text-indent: -4em;">
-
-# Recent Publications
 
