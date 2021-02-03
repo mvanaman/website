@@ -32,6 +32,10 @@ menu:
       name: Blog
       url: /post/
       weight: 20
+    - identifier: research
+      name: Research
+      url: /Research/
+      weight: 20
     # - identifier: tags
     #   name: Tags
     #   url: /tags/
@@ -42,7 +46,7 @@ menu:
     #   weight: 40
 params:
   archivePaginate: 50
-  autoCollapseToc: no
+  autoCollapseToc: yes
   baiduAnalytics: ''
   baiduPush: no
   baiduVerification: ''
