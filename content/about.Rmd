@@ -9,13 +9,25 @@ link-citations: true
 csl: "/Users/home/Documents/Research and Writing/Misc/MyRefs/apa-web.csl"
 ---
 
-<figure>
+<figure style="float: left">
   <img src="https://matthewevanaman.netlify.app/img/city.png" alt="">   
-  <figcaption style="float: left">
+  <figcaption>
   My portrait (?) as rendered by 
   <a href="https://www.facebook.com/daniellesperandeoart/" target="blank" onMouseOver="this.style.color='#c05b4d'"> Danielle Sperandeo </a> 
   </figcaption>
 </figure>
+
+I've decided that any time someone insists on leading off a meeting or conversation with a fun fact, I'm simply going to copy and paste the link to the page.
+
+When I was 9, I broke my leg in a motocross accident, bringing my 
+<a href="https://matthewevanaman.netlify.app/img/glory.jpg" target="blank" onMouseOver="this.style.color='#c05b4d'"> streak of glory 
+</a> 
+to a sudden end. I have only been on a bike 
+<a href="https://matthewevanaman.netlify.app/img/bike.jpeg" target="blank" onMouseOver="this.style.color='#c05b4d'"> one time </a> 
+since then. I still watch pro motocross and supercross, finding amusement in having an interest that my academic colleagues know nothing about.
+
+
+
 
 
 I have a 
