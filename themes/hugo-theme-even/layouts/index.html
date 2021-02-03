@@ -11,8 +11,8 @@
 
   <a  href="  http://www.emotionmoralitylab.com/principalinvestigator#block-yui_3_17_2_3_1504189487184_27663
   " target="blank" onMouseOver="this.style.color='#c05b4d'" onMouseOut="this.style.color='#34495e'"> <strong>Doctoral Researcher</strong> </a>  |
-  <a href="http://www.cunybasp.org/students#vanaman" target="blank" onMouseOver="this.style.color='#c05b4d'" onMouseOut="this.style.color='#34495e'"> <strong>CUNY Graduate Center</strong> </a>  | 
-  <a href="https://writingcenter.commons.gc.cuny.edu/people/" target="blank" onMouseOver="this.style.color='#c05b4d'" onMouseOut="this.style.color='#34495e'"> <strong>Quantitative Reasoning Fellow</strong> </a>
+  <a href="https://writingcenter.commons.gc.cuny.edu/people/" target="blank" onMouseOver="this.style.color='#c05b4d'" onMouseOut="this.style.color='#34495e'"> <strong>Quantitative Reasoning Fellow</strong> </a> |
+  <a href="http://www.cunybasp.org/students#vanaman" target="blank" onMouseOver="this.style.color='#c05b4d'" onMouseOut="this.style.color='#34495e'"> <strong>CUNY Graduate Center</strong> </a> 
 
   <br>
   <br>
@@ -23,6 +23,34 @@ Why is it wrong to kiss your sister, even though no one gets hurt? Be relieved; 
     |
     <a href="/Vanaman Resume.pdf" target="blank" onMouseOver="this.style.color='#c05b4d'" onMouseOut="this.style.color='#34495e'">Resume (industry)</a>
 
+    <br>
+    <br>
+
+    <header style="font-size:28px; font-family:Source Sans Pro">Recent Blog Posts</header>
+
   </center>
+
+  <section id="posts" class="posts">
+    {{/* (index .Site.Paginate) */}}
+    {{- $paginator := .Paginate (where (where .Site.RegularPages "Type" "post") ".Params.hiddenfromhomepage" "!=" true) }}
+    {{- range $paginator.Pages -}}
+      {{ .Render "summary" }}
+    {{ end -}}
+  </section>
+  <!-- pagination -->
+  <nav class="pagination">
+    {{ with $paginator.Prev -}}
+      <a class="prev" href="{{ .URL }}">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text">{{ T "prevPage" }}</span>
+      </a>
+    {{- end }}
+    {{ with $paginator.Next -}}
+      <a class="next" href="{{ .URL }}">
+        <span class="next-text">{{ T "nextPage" }}</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    {{- end }}
+  </nav>
 
 {{- end -}}
