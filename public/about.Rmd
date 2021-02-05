@@ -1,0 +1,71 @@
+---
+date: "2017-08-20T21:38:52+08:00"
+lastmod: "2017-08-28T21:41:52+08:00"
+menu: main
+title: About
+weight: 50
+bibliography: "/Users/home/Documents/Research and Writing/Misc/MyRefs/MyRefs.bib"
+link-citations: true
+csl: "/Users/home/Documents/Research and Writing/Misc/MyRefs/apa-web.csl"
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+<figure style="float:left">
+
+<img src="https://matthewevanaman.netlify.app/img/city.png"/>\
+
+<figcaption>
+
+Artwork of
+<a href="https://www.facebook.com/daniellesperandeoart/" target="blank" onMouseOver="this.style.color='#c05b4d'">
+Danielle Sperandeo </a>
+
+</figcaption>
+
+</figure>
+
+You are probably here because of one of two reasons: either you were in
+the same Zoom group as me and are following up on the link I provided when asked for a fun fact; or, you are here because you chose to investigate the potential existence of a website dedicated to one
+Matthew E. Vanaman. In either case, you arrived here at your own volition to check out my website. Bless you.
+
+Here some interesting (?) facts about me:
+
+I used to race motocross, and we had a dirt bike track in our back yard. It was sweet indeed. Unfortunately my glory 
+<a href="https://matthewevanaman.netlify.app/img/glory.jpg" target="blank" onMouseOver="this.style.color='#c05b4d'">
+days </a> 
+were swiftly absconded with by a severely broken leg requiring airlift out of my back yard via helicopter. I peaked too early, as they say, and have only been on a bike
+<a href="https://matthewevanaman.netlify.app/img/bike.jpeg" target="blank" onMouseOver="this.style.color='#c05b4d'">
+once </a> 
+since. I still follow the sport closely, out of nostalgia and to maintain my blue-collar street cred among my ivory-tower colleagues. 
+
+Although possessing many of the quintessential traits of the head-in-the-clouds academic, I was in two 
+<a href="https://matthewevanaman.netlify.app/img/two.jpg" target="blank" onMouseOver="this.style.color='#c05b4d'">
+college </a> 
+<a href="https://matthewevanaman.netlify.app/img/musicals.jpg" target="blank" onMouseOver="this.style.color='#c05b4d'">
+musicals </a>.
+My solo was Pinball Wizard by The Who. For one moment, the light of the <a href="https://matthewevanaman.netlify.app/img/save_rock.jpg" target="blank" onMouseOver="this.style.color='#c05b4d'">
+rock </a> 
+gods was briefly shown upon me. 
+
+It's all downhill from here, really. I 
+<a href="https://matthewevanaman.netlify.app/img/definitely1.jpg" target="blank" onMouseOver="this.style.color='#c05b4d'">
+definitely </a>,
+<a href="https://matthewevanaman.netlify.app/img/definitely2.jpg" target="blank" onMouseOver="this.style.color='#c05b4d'">
+definitely </a>
+peaked too early.
+
+
+I now find myself trapped with a
+<a href="https://matthewevanaman.netlify.app/img/daytona.jpeg" target="blank" onMouseOver="this.style.color='#c05b4d'">
+hipster </a> 
+roommate who pays rent, eats for free, never cleans her bathroom, and needs. It hurts, how much she needs. And she's
+<a href="https://matthewevanaman.netlify.app/img/hyper.mov" target="blank" onMouseOver="this.style.color='#c05b4d'">
+hyperactive </a> 
+with no
+<a href="https://matthewevanaman.netlify.app/img/meet.jpeg" target="blank" onMouseOver="this.style.color='#c05b4d'">
+regard </a>\
+for personal space. We're all having a good time (mostly her).
+
+

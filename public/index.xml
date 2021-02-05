@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Matthew E. Vanaman</title>
+    <link>/</link>
+    <description>Recent content on Matthew E. Vanaman</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 31 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About</title>
+      <link>/about/</link>
+      <pubDate>Sun, 20 Aug 2017 21:38:52 +0800</pubDate>
+      
+      <guid>/about/</guid>
+      <description>Artwork of Danielle Sperandeo 
+  You are probably here because of one of two reasons: either you were in the same Zoom group as me and are following up on the link I provided when asked for a fun fact; or, you are here because you chose to investigate the potential existence of a website dedicated to one Matthew E. Vanaman. In either case, you arrived here at your own volition to check out my website.</description>
+    </item>
+    
+    <item>
+      <title>Research</title>
+      <link>/research/</link>
+      <pubDate>Sun, 20 Aug 2017 21:38:52 +0800</pubDate>
+      
+      <guid>/research/</guid>
+      <description>Lynch, David. “Red Man does magic near his house.” 2013. Ink and pencil on paper. Kayne Griffin Corcoran.
+  Google Scholar | OSF | ResearchGate
+ Recent Publications Tierney, W., Hardy, J. H., Ebersole, C. R., Viganola, D., Clemente, E. G., Gordon, D. M., Hoogeveen, S., Haaf, J., Dreber, A., Johannesson, M., Pfeiffer, T., Huang, J., Vaughn, L., DeMarree, K., Igou, E., Chapman, H., Gantman, A., Vanaman, M.</description>
+    </item>
+    
+    <item>
+      <title>Tidy T-Test in R With Cohen&#39;s D</title>
+      <link>/post/2021-01-31-tidy-t-test-with-cohen-s-d/</link>
+      <pubDate>Sun, 31 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2021-01-31-tidy-t-test-with-cohen-s-d/</guid>
+      <description>Where’s My Effect Size? Walk-Through of my.t()  Default T-Test in R T-Test Using my.t() Output Formatting  Full Function References   The independent-samples \(t\)-test is one of the most commonly used statistical tests and is taught in most introductory statistics courses. In broad strokes, the independent-samples $t$-test is used to compare the means of some continuous variable between two qualitatively different groups. Associated with this mean difference is a \(p\)-value.</description>
+    </item>
+    
+  </channel>
+</rss>

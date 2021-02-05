@@ -1,0 +1,25 @@
+---
+title: Research
+lastmod: '2017-08-28T21:41:52+08:00'
+date: '2017-08-20T21:38:52+08:00'
+menu: main
+weight: 50
+bibliography: /Users/home/Documents/Research and Writing/Misc/MyRefs/MyRefs.bib
+link-citations: yes
+csl: /Users/home/Documents/Research and Writing/Misc/MyRefs/apa-web.csl
+nocite: |
+  @vanaman2019novel, @vanaman2020disgust, @tierney2020creative
+---
+
+![<i>Lynch, David. “Red Man does magic near his house”. 2013. Ink and pencil on paper. Kayne Griffin Corcoran.</i>](/img/manydf.jpeg)
+
+<center>
+
+[Google Scholar]( https://scholar.google.com/citations?user=dQ_TbawAAAAJ&hl=en) | [OSF](https://osf.io/4hz9q/) | [ResearchGate](https://www.researchgate.net/profile/Matthew_Vanaman)
+
+</center>
+
+
+# Recent Publications
+
+

@@ -32,10 +32,6 @@ menu:
       name: Blog
       url: /post/
       weight: 20
-    - identifier: research
-      name: Research
-      url: /Research/
-      weight: 20
     # - identifier: tags
     #   name: Tags
     #   url: /tags/

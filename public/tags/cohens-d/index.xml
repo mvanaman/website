@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>cohens-d on Matthew E. Vanaman</title>
+    <link>/tags/cohens-d/</link>
+    <description>Recent content in cohens-d on Matthew E. Vanaman</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 31 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="/tags/cohens-d/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Tidy T-Test in R With Cohen&#39;s D</title>
+      <link>/post/2021-01-31-tidy-t-test-with-cohen-s-d/</link>
+      <pubDate>Sun, 31 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2021-01-31-tidy-t-test-with-cohen-s-d/</guid>
+      <description>Where’s My Effect Size? Walk-Through of my.t()  Default T-Test in R T-Test Using my.t() Output Formatting  Full Function References   The independent-samples \(t\)-test is one of the most commonly used statistical tests and is taught in most introductory statistics courses. In broad strokes, the independent-samples $t$-test is used to compare the means of some continuous variable between two qualitatively different groups. Associated with this mean difference is a \(p\)-value.</description>
+    </item>
+    
+  </channel>
+</rss>
