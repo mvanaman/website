@@ -18,7 +18,7 @@ output:
   md_document:
     toc: true
     fig_cap: yes
-postMetaInFooter: no
+postMetaInFooter: yes
 hiddenFromHomePage: no
 contentCopyright: no
 reward: no
