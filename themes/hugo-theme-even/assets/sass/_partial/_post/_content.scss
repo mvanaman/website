@@ -6,7 +6,7 @@
   word-wrap: break-word;
 
   @for $i from 1 through 6 {
-    #{$i} {
+    h#{$i} {
       font-weight: 400;
       font-family: $global-serif-font-family;
 
