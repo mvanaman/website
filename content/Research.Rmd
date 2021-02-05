@@ -11,6 +11,8 @@ nocite: |
    @vanaman2019novel, @vanaman2020disgust, @tierney2020creative
 ---
 
+![<i>Lynch, David. “Red Man does magic near his house”. 2013. Ink and pencil on paper. Kayne Griffin Corcoran.</i>](/img/manydf.jpeg)
+
 <center>
 
 [Google Scholar]( https://scholar.google.com/citations?user=dQ_TbawAAAAJ&hl=en) | [OSF](https://osf.io/4hz9q/) | [ResearchGate](https://www.researchgate.net/profile/Matthew_Vanaman)
@@ -18,9 +20,6 @@ nocite: |
 </center>
 
 
-
-
-<div style="padding-left: 4em; text-indent: -4em;">
-
 # Recent Publications
+
 
