@@ -95,6 +95,11 @@ my.t(mtcars, IV = am, DV = mpg)
 <table class="table" style>
 <caption>
 Table 1: T-Test With `my.t` (IV = Transmission and DV = Miles Per Gallon)
+
+<div id="table1">
+
+</div>
+
 </caption>
 <thead>
 <tr>
@@ -178,7 +183,7 @@ cohens.d
 </tbody>
 </table>
 
-The output in Table <a href="#tab:table1">1</a> above provides all of the relevant statistics, clearly labeled, with Cohen’s \$d\$ included, and in a tidy format that can easily be exported to a .csv file, copied-and-pasted into Word, or printed within an R Markdown as a table as I have done here (using `knitr::kable()`).
+The output in [Table 1](#table1) above provides all of the relevant statistics, clearly labeled, with Cohen’s \$d\$ included, and in a tidy format that can easily be exported to a .csv file, copied-and-pasted into Word, or printed within an R Markdown as a table as I have done here (using `knitr::kable()`).
 
 ## Output Formatting
 
@@ -191,6 +196,11 @@ my.t(mtcars, IV = am, DV = mpg, long = TRUE)
 <table class="table" style>
 <caption>
 Table 2: T-Test With `my.t` in Long Format (IV = Transmission and DV = Miles Per Gallon)
+
+<div id="table2">
+
+</div>
+
 </caption>
 <thead>
 <tr>
@@ -320,6 +330,11 @@ my.results
 <table class="table" style>
 <caption>
 Table 3: Comparing Group Differences in MPG and Displacement
+
+<div id="table3">
+
+</div>
+
 </caption>
 <thead>
 <tr>
@@ -470,11 +485,11 @@ cohens.d
 </tbody>
 </table>
 
-As shown in Table <a href="#tab:table3">3</a>, the mean difference in displacement between automatics and manuals is 146.85, meaning that automatic transmissions are associated with an extra 146.85 cubic inches of displacement on average. So while you might lose \~7 miles to the gallon by going with an automatic transmission, you can also expect to gain \~147 cubic inches of displacement.
+As shown in [Table 3](#table3), the mean difference in displacement between automatics and manuals is 146.85, meaning that automatic transmissions are associated with an extra 146.85 cubic inches of displacement on average. So while you might lose \~7 miles to the gallon by going with an automatic transmission, you can also expect to gain \~147 cubic inches of displacement.
 
 OK, but what the heck does that mean? Is that an impressive number? It’s hard to tell for those who don’t spend time dealing with vehicle displacement. At least with miles per gallon, I can readily discern about how much money I would save if my vehicle got an extra 7 miles to the gallon. Displacement is a black box to me - I can’t tell if that mean difference in displacement is meaningful or not, especially not compared to how meaningful the difference in miles per gallon was.
 
-In Table <a href="#tab:table3">3</a>, the Cohen’s \$d\$ statistics for miles per gallon and displacement are conveniently side-by-side. Both are very large effect sizes - quite a bit larger than 0.8, the rule of thumb for a large. Although the sign for displacement is negative (indicating that manual transmissions are associated with lower displacement than automatics), the absolute value is very close to that of miles per gallon. It seems like whatever gas I’d save with a manual transmission, I’d lose an equally-meaningful amount of displacement per cubic inch. That is, with Cohen’s \$d\$, I can see that the *magnitude* of the differences between between automatic and manual transmissions (effect sizes of 1.53 and -1.49, respectively) are pretty similar, even though the mean differences themselves (7.24 miles per gallon and -146.85 cubic inches of displacement, respectively) are not comparable numbers.
+In [Table 3](#table3), the Cohen’s \$d\$ statistics for miles per gallon and displacement are conveniently side-by-side. Both are very large effect sizes - quite a bit larger than 0.8, the rule of thumb for a large. Although the sign for displacement is negative (indicating that manual transmissions are associated with lower displacement than automatics), the absolute value is very close to that of miles per gallon. It seems like whatever gas I’d save with a manual transmission, I’d lose an equally-meaningful amount of displacement per cubic inch. That is, with Cohen’s \$d\$, I can see that the *magnitude* of the differences between between automatic and manual transmissions (effect sizes of 1.53 and -1.49, respectively) are pretty similar, even though the mean differences themselves (7.24 miles per gallon and -146.85 cubic inches of displacement, respectively) are not comparable numbers.
 
 Of course, miles per gallon and displacement might be too conceptually different to be compared meaningfully without added context. These tests would be most helpful if you also knew what adding 146.85 of displacement per cubic inch would feel like in terms of pushing your back against the seat as you accelerate in your new car. Maybe you would need, say, twice as much displacement (or 293.7 cubic inches) in order for a gain in displacement to be noticeable. But in the absence of better information, it’s nice to know for the sake of car shopping that the *magnitude of the difference between the groups* is basically the same for miles per gallon and displacement.
 
