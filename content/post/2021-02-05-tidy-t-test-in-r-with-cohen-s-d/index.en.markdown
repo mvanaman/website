@@ -495,6 +495,8 @@ Of course, miles per gallon and displacement might be too conceptually different
 
 # Full Function
 
+<div id='Function'/>
+
 Copy-and-paste this function to use it in your own `R` projects. You will be prompted to install the `tidyverse` and `psych` packages if you do not already have them.
 
 ``` r
