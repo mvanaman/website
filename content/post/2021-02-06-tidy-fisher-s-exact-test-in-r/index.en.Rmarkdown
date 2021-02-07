@@ -1,0 +1,440 @@
+---
+title: Tidy Fisher's Exact Test In R (And Why To Always Use It)
+author: Matthew E. Vanaman
+date: '2021-02-06'
+slug: []
+categories: []
+tags: []
+lastmod: '2021-02-06T15:13:40-05:00'
+keywords: []
+description: ''
+comment: yes
+toc: yes
+autoCollapseToc: yes
+postMetaInFooter: no
+hiddenFromHomePage: no
+contentCopyright: no
+reward: no
+mathjax: yes
+mathjaxEnableSingleDollar: yes
+mathjaxEnableAutoNumber: no
+hideHeaderAndFooter: no
+flowchartDiagrams:
+  enable: no
+  options: ''
+sequenceDiagrams:
+  enable: no
+  options: ''
+bibliography: "/Users/home/Documents/Research and Writing/Misc/MyRefs/MyRefs.bib"
+link-citations: true
+csl: "/Users/home/Documents/Research and Writing/Misc/MyRefs/apa-web.csl"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(comment = NA)
+```
+
+```{r, include=FALSE}
+library(tidyverse)
+library(janitor)
+library(broom)
+my.fisher <-
+  # ... allows you to pass arguments to functions where ... are present
+    function(data, ..., alternative = "two.sided") {
+      # load required packages
+      require(janitor)
+      require(dplyr)
+      require(broom)
+      # make.pretty is a function-within-a-function that
+      # adds totals and formatting using janitor package
+      make.pretty <- function(tab, ...){
+        tab %>%
+        janitor::adorn_totals(where = c("row", "col")) %>%
+        janitor::adorn_percentages(...) %>%
+        janitor::adorn_pct_formatting(digits = 2) %>%
+        janitor::adorn_ns() %>%
+        janitor::adorn_title()
+      }
+      # this gets the n x n crosstab
+      my.tab <- janitor::tabyl(
+        data,
+        ...,
+        show_na = FALSE,
+        show_missing_levels = FALSE)
+      # use make.pretty to add totals and formatting
+      my.tab.all <- make.pretty(tab = my.tab, denominator = "all")
+      my.tab.row <- make.pretty(tab = my.tab, denominator = "row")
+      my.tab.col <- make.pretty(tab = my.tab, denominator = "col")
+      # get the fisher's exact test
+      # can pass arguments to stats::fisher.test via ...
+      # this determines which type of test to run, depending
+      # on alternative = argument
+      # default is "two.sided"
+      if(alternative == "greater"){
+      fish <- my.tab %>%
+        janitor::fisher.test(., alternative = "greater")
+      } else {
+        if (alternative == "less"){
+           fish <- my.tab %>%
+        janitor::fisher.test(., alternative = "less")
+        }
+        fish <- my.tab %>%
+          janitor::fisher.test(., alternative = "two.sided")
+      }
+      fish <- fish %>%
+        # organizes output into a table
+        broom::tidy() %>% 
+        # rounds values
+          dplyr::mutate_if(is.numeric, round, 2) %>%
+        # makes them into character format with exactly 2 decimal points
+        # so that numeric and character columns can be combined (for long format)
+          dplyr::mutate_if(is.numeric, format, nsmall = 2)
+      # if estimate column is present (in case of 2x2's), rename as "odds.ratio"
+      if ("estimate" %in% names(fish)) {
+        fish <- fish %>% dplyr::rename(odds.ratio = estimate) 
+        fish.long <- fish %>% 
+          # reshape to long format
+          tidyr::pivot_longer(
+            cols = everything(), 
+            # name of column that gets the row values
+            values_to = "Value", 
+            # name of column that gets the column names
+            names_to = "Statistic")
+      }
+      # this is the same thing as above, except this gets done when
+      # estimate column is not present
+      fish.long <- fish %>% 
+          tidyr::pivot_longer(
+            cols = everything(), 
+            values_to = "Value", 
+            names_to = "Statistic")
+      # what does the function give as output?
+      # left side of = is what you'll see with $
+      # right side is object saved somewhere above
+      return(list(
+        crosstab.all = my.tab.all,
+        crosstab.row = my.tab.row,
+        crosstab.column = my.tab.col,
+        fish.test = fish, 
+        fish.test.long = fish.long))
+    }
+```
+
+If you are interested in some unsolicited advice about choosing tests and/or a walk-through of this function, keep reading. Otherwise, feel free to skip to the [full function](#Function) at the bottom.
+
+# Why You Should Always Use Fisher's Exact Test Instead
+
+Most students in the sciences learn about the \$\\chi^{2}\$ test of independence in their introductory statistics course. The idea is that if binary variables *x* and *y* are unrelated, then the observed values and expected values will be identical, in which cases \$\\chi^{2}\$ is equal to zero. The expected values are just the counts of each combination of *x* and *y* we would expect if *x* and *y* were unrelated in the population, while the observed counts are the counts we actually have. 
+
+The \$\\chi^{2}\$ value, then, is a function of the difference between the expected values and the values we actually have in our dataset (the observed values). The greater the difference between expected and observed values, the lower the probability that the difference between them (or a larger difference) is due to chance, assuming that there is actually no difference at the population level. Thus all the \$\\chi^{2}\$ "test" really means is that we check to see whether the \$p\$-value from the \$\\chi^{2}\$ we get is less than alpha, which is usually a cutoff \$p\$-value of .05.
+
+Sometimes the assumptions of the \$\\chi^{2}\$ test are violated. One assumption that gets violated fairly often is the assumption that no expected counts are less than 5. This is sort of an arbitrary cutoff - the larger the expected counts, the more accurate the \$\\chi^{2}\$ value will be (in general). The Fisher's exact test, which uses simulation to calculate the \$p\$-value, corrects for this violation. 
+
+In cases where the expected counts are less than 5, the \$p\$-value from Fisher's exact test will be more accurate than that of the \$\\chi^{2}\$ test. In cases where the expected values are all well above 5, the \$p\$-values from each test will be very close, if not identical. Therefore, it makes sense to just always use Fisher's exact test. This argument is analogous to the argument that we should always use Welch's instead of Student's\$t\$-test by default [@delacre2017psychologists].
+
+There is also added benefit of Fisher's exact test: unlike \$\\chi^{2}\$, it can give you a \$p\$-value in cases where *x*, *y*, or both have greater than 2 categories (resulting in a 2 \$\\times\$ 3 table, for example).
+
+As an illustration, check out the results of a \$\\chi^{2}\$ test checking to see if transmission type (`am`, 0 = automatic, 1 = manual) and engine shape (`vs`, 0 = V-shaped, 1 = straight) are related using the `mtcars` dataset:
+
+```{r, results="hide"}
+# run test
+x.sq <- stats::chisq.test(x = mtcars$am, y = mtcars$vs)
+# show observed values
+x.sq$observed
+```
+
+```{r, echo=FALSE}
+knitr::kable(
+  x.sq$observed, 
+  caption = "Observed Values", 
+  row.names = FALSE,
+  booktabs = TRUE
+) %>% 
+  kableExtra::kable_styling(position = "left")
+```
+
+```{r, results="hide"}
+# show expected values
+x.sq$expected
+```
+
+```{r, echo=FALSE}
+knitr::kable(
+  x.sq$expected, 
+  caption = "Expected Values", 
+  row.names = FALSE,
+  booktabs = TRUE
+) %>% 
+  kableExtra::kable_styling(position = "left")
+```
+
+```{r}
+x.sq
+```
+
+And here's the results from Fisher's exact test:
+
+```{r, echo=FALSE}
+fish.test <- stats::fisher.test(x = mtcars$am, y = mtcars$vs)
+fish.test
+```
+Taking a look at the output above, the \$p\$-values are a bit different, but not too different. In these cases, while the Fisher's exact test is more accurate, the \$\\chi^{2}\$ test is still fairly reliable. Assuming adequate sample size, the \$\\chi^2\$ test is usually fine.
+
+Now I'm going to induce some expected values smaller than five by reducing the size of the sample:
+
+```{r, results='hide', warning=FALSE}
+# make sure randomness is reproducible
+set.seed(352)
+# take random sample of would-be row numbers
+random.rows <- sample(1:nrow(mtcars), size = 20, replace = TRUE)
+# reduce the dataset to only include the randomly drawn rownumbers
+mtcars.reduced <- mtcars[random.rows, ]
+# run test
+x.sq <- stats::chisq.test(x = mtcars.reduced$am, y = mtcars.reduced$vs)
+x.sq$expected
+```
+
+```{r, echo=FALSE}
+knitr::kable(
+  x.sq$expected, 
+  caption = "Expected Values: Reduced Dataset", 
+  row.names = FALSE,
+  booktabs = TRUE
+) %>% 
+  kableExtra::kable_styling(position = "left")
+```
+
+Gah! We have some violations. Let's repeat the tests and compare them again:
+
+```{r}
+x.sq
+```
+
+And here's the results from Fisher's exact test:
+
+```{r, echo=FALSE}
+stats::fisher.test(x = mtcars.reduced$am, y = mtcars.reduced$vs)
+```
+
+Now the \$p\$-values are not-so-trivially different. In these circumstances, I'd go with the Fisher's exact test.
+
+# A Function for Tidy Crosstabulations and Fisher's Exact Tests
+
+The `stats` package, which comes preloaded in RStudio, provides `chi.sq` and `fisher.test` functions. Personally I don't like the format of the output. I've written a function that will conduct Fisher's exact test and provide output in tidy wide or long output, along with pre-formatted crosstabs with counts, percentages, and totals. Here's the first Fisher's exact test, but this time using `my.fisher`:
+
+```{r, results="hide"}
+fisher.results <- my.fisher(mtcars, am, vs)
+fisher.results$fish.test
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, results="asis"}
+knitr::kable(
+  fisher.results$fish.test,
+  caption = "Fisher's Exact Test <div id='table1'/>",
+  digits = 2,
+  row.names = FALSE,
+  booktabs = TRUE
+) %>% 
+  kableExtra::kable_styling(position = "left")
+```
+
+Ah, that's easier on the eyes. We can also get that in long format too:
+
+```{r, results="hide"}
+fisher.results <- my.fisher(mtcars, am, vs)
+fisher.results$fish.test.long
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, results="asis"}
+knitr::kable(
+  fisher.results$fish.test.long,
+  caption = "Fisher's Exact Test, Long Format <div id='table1'/>",
+  digits = 2,
+  row.names = FALSE,
+  booktabs = TRUE
+) %>% 
+  kableExtra::kable_styling(position = "left")
+```
+
+You can also pass arguments to `janitor::fisher.test()`. For example, say you wanted to do a tight-sided single-tailed test. Just add `alternative = "greater"` to `my.fisher()` (note that the default is a two-sided test):
+
+```{r, results="hide"}
+fisher.results <- my.fisher(mtcars, am, vs, alternative = "greater")
+fisher.results$fish.test
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, results="asis"}
+knitr::kable(
+  fisher.results$fish.test,
+  caption = "Fisher's Exact Test With One-Sided Test <div id='table1'/>",
+  digits = 2,
+  row.names = FALSE,
+  booktabs = TRUE
+) %>% 
+  kableExtra::kable_styling(position = "left")
+```
+
+Notice the \$p\$-value is smaller; that is because one-tailed tests are more powerful than two-tailed tests, assuming there is a real relationship at the population level, specifically in the direction of the test.
+
+This function can also accommodate nominal variables with greater than 2 categories. For example, a 2 $\times$ 3 table between transmission type and number of cylinders (`cyl`, 4, 6, or 8):
+
+```{r, results="hide"}
+fisher.results <- my.fisher(mtcars, am, cyl)
+fisher.results$fish.test
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, results="asis"}
+knitr::kable(
+  fisher.results$fish.test,
+  caption = "Fisher's Exact Test, Transmission Type and Number of Cylinders <div id='table1'/>",
+  digits = 2,
+  row.names = FALSE,
+  booktabs = TRUE
+) %>% 
+  kableExtra::kable_styling(position = "left")
+```
+
+The odds ratio left out of the output in these cases, because it is not applicable to exact tests  one or more variables has greater than 2 categories. In this case, you'd want to look at the crosstabs to contextualize the \$p\$-values. This function provides them for you in a nice format with the help of the `janitor` package.
+
+## Getting Crosstabs
+
+```{r, eval=FALSE}
+fisher.results$crosstab.all
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, results="asis"}
+knitr::kable(
+  fisher.results$crosstab.all,
+  caption = "Crosstab With Sample Total As Percentage Denominator <div id='table1'/>",
+  digits = 2,
+  row.names = FALSE,
+  booktabs = TRUE
+) %>% 
+  kableExtra::kable_styling(position = "left")
+```
+
+Table 7 shows the crosstab between transmission type and number of cylinders, with percentages and counts (the latter in parentheses). You also get row and column totals, along with the sample total in the right-most bottom corner. You also get two other crosstabs, one with percentages calculated relative the row total; the other with percentages calculated relative to the column total:
+
+```{r, eval=FALSE}
+fisher.results$crosstab.row
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, results="asis"}
+knitr::kable(
+  fisher.results$crosstab.row,
+  caption = "Crosstab With Row Total As Percentage Denominator <div id='table1'/>",
+  digits = 2,
+  row.names = FALSE,
+  booktabs = TRUE
+) %>% 
+  kableExtra::kable_styling(position = "left")
+```
+
+```{r, eval=FALSE}
+fisher.results$crosstab.column
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, results="asis"}
+knitr::kable(
+  fisher.results$crosstab.column,
+  caption = "Crosstab With Column Total As Percentage Denominator <div id='table1'/>",
+  digits = 2,
+  row.names = FALSE,
+  booktabs = TRUE
+) %>% 
+  kableExtra::kable_styling(position = "left")
+```
+
+Looks to me like one driver of statistical significance here is the inverse relationship between transmission type and cylinder. More than half of automatics have 8 cylinders, while more than half of manuals have only 4 cylinders. Looks like an <a href="https://en.wikipedia.org/wiki/Interaction_(statistics)" target="_blank">interaction effect</a>!
+
+# Full Function
+
+<div id='Function'/>
+
+Copy-and-paste this function to use it in your own `R` projects. You will be prompted to install the `tidyverse` `broom`, and `janitor` packages if you do not already have them.
+
+```{r, eval=FALSE}
+library(tidyverse)
+library(janitor)
+library(broom)
+my.fisher <-
+  # ... allows you to pass arguments to functions where ... are present
+    function(data, ..., alternative = "two.sided") {
+      # load required packages
+      require(janitor)
+      require(dplyr)
+      require(broom)
+      # make.pretty is a function-within-a-function that
+      # adds totals and formatting using janitor package
+      make.pretty <- function(tab, ...){
+        tab %>%
+        janitor::adorn_totals(where = c("row", "col")) %>%
+        janitor::adorn_percentages(...) %>%
+        janitor::adorn_pct_formatting(digits = 2) %>%
+        janitor::adorn_ns() %>%
+        janitor::adorn_title()
+      }
+      # this gets the n x n crosstab
+      my.tab <- janitor::tabyl(
+        data,
+        ...,
+        show_na = FALSE,
+        show_missing_levels = FALSE)
+      # use make.pretty to add totals and formatting
+      my.tab.all <- make.pretty(tab = my.tab, denominator = "all")
+      my.tab.row <- make.pretty(tab = my.tab, denominator = "row")
+      my.tab.col <- make.pretty(tab = my.tab, denominator = "col")
+      # get the fisher's exact test
+      # can pass arguments to stats::fisher.test via ...
+      # this determines which type of test to run, depending
+      # on alternative = argument
+      # default is "two.sided"
+      if(alternative == "greater"){
+      fish <- my.tab %>%
+        janitor::fisher.test(., alternative = "greater")
+      } else {
+        if (alternative == "less"){
+           fish <- my.tab %>%
+        janitor::fisher.test(., alternative = "less")
+        }
+        fish <- my.tab %>%
+          janitor::fisher.test(., alternative = "two.sided")
+      }
+      fish <- fish %>%
+        # organizes output into a table
+        broom::tidy() %>% 
+        # rounds values
+          dplyr::mutate_if(is.numeric, round, 2) %>%
+        # makes them into character format with exactly 2 decimal points
+        # so that numeric and character columns can be combined (for long format)
+          dplyr::mutate_if(is.numeric, format, nsmall = 2)
+      # if estimate column is present (in case of 2x2's), rename as "odds.ratio"
+      if ("estimate" %in% names(fish)) {
+        fish <- fish %>% dplyr::rename(odds.ratio = estimate) 
+        fish.long <- fish %>% 
+          # reshape to long format
+          tidyr::pivot_longer(
+            cols = everything(), 
+            # name of column that gets the row values
+            values_to = "Value", 
+            # name of column that gets the column names
+            names_to = "Statistic")
+      }
+      # this is the same thing as above, except this gets done when
+      # estimate column is not present
+      fish.long <- fish %>% 
+          tidyr::pivot_longer(
+            cols = everything(), 
+            values_to = "Value", 
+            names_to = "Statistic")
+      # what does the function give as output?
+      # left side of = is what you'll see with $
+      # right side is object saved somewhere above
+      return(list(
+        crosstab.all = my.tab.all,
+        crosstab.row = my.tab.row,
+        crosstab.column = my.tab.col,
+        fish.test = fish, 
+        fish.test.long = fish.long))
+    }
+```
