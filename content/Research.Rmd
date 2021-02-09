@@ -19,7 +19,9 @@ nocite: |
 
 </center>
 
-<div style="padding-left: 4em; text-indent: -4em;">
+<hr style="border: none; color:#000000; background-color:#000000; height:1px; opacity:0.25">
+
+<div style="padding-left: 4em; text-indent: -4em">
 
 # Recent Publications
 
