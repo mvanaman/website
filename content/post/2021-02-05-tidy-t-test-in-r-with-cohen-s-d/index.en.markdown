@@ -72,17 +72,17 @@ The `t.test()` function, which is built in to base-`R` along with other mainstre
 t.test(mpg ~ am, mtcars)
 ```
 
-    ## 
-    ##  Welch Two Sample t-test
-    ## 
-    ## data:  mpg by am
-    ## t = -3.7671, df = 18.332, p-value = 0.001374
-    ## alternative hypothesis: true difference in means is not equal to 0
-    ## 95 percent confidence interval:
-    ##  -11.280194  -3.209684
-    ## sample estimates:
-    ## mean in group 0 mean in group 1 
-    ##        17.14737        24.39231
+
+        Welch Two Sample t-test
+
+    data:  mpg by am
+    t = -3.7671, df = 18.332, p-value = 0.001374
+    alternative hypothesis: true difference in means is not equal to 0
+    95 percent confidence interval:
+     -11.280194  -3.209684
+    sample estimates:
+    mean in group 0 mean in group 1 
+           17.14737        24.39231 
 
 In this dataset, vehicles with automatic transmissions are coded as 0, and manuals as 1. The dependent variable is miles per gallon. The mean miles per gallon for vehicles with automatic transmissions (17.15) is quite a bit lower than for vehicles with manual transmissions (24.39). This difference is statistically significant, \$p = .001\$ (that’s less than an alpha of .05), meaning the means are different enough that we might interested in investigating a bit further. At this point, you’d usually calculate Cohen’s \$d\$.
 
