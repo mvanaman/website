@@ -58,13 +58,9 @@ If you are interested in some unsolicited advice about choosing tests and/or a w
 
 Most students in the sciences learn about the \$\\chi^{2}\$ test of independence in their introductory statistics course. The idea is that if binary variables *x* and *y* are unrelated, then the observed values and expected values will be identical, in which cases \$\\chi^{2}\$ is equal to zero. The expected values are just the counts of each combination of *x* and *y* we would expect if *x* and *y* were unrelated in the population, while the observed counts are the counts we actually have.
 
-The \$\\chi^{2}\$ value, then, is a function of the difference between the expected values and the values we actually have in our dataset (the observed values). The greater the difference between expected and observed values, the lower the probability that the difference between them (or a larger difference) is due to chance, assuming that there is actually no difference at the population level. Thus all the \$\\chi^{2}\$ “test” really means is that we check to see whether the \$p\$-value from the \$\\chi^{2}\$ we get is less than alpha, which is usually a cutoff \$p\$-value of .05.
+The \$\\chi^{2}\$ value, then, is a function of the difference between the expected values and the observed values (the values in from the sample). The greater the difference between expected and observed values, the lower the probability that the difference between them (or a larger difference) is due to chance, assuming that there is actually no difference at the population level. Thus all the \$\\chi^{2}\$ “test” really means is that we check to see whether the \$p\$-value from the \$\\chi^{2}\$ we get is less than alpha, which is usually a cutoff \$p\$-value of .05.
 
-Sometimes the assumptions of the \$\\chi^{2}\$ test are violated. One assumption that gets violated fairly often is the assumption that no expected counts are less than 5. This is sort of an arbitrary cutoff - the larger the expected counts, the more accurate the \$\\chi^{2}\$ value will be (in general). The Fisher’s exact test, which uses simulation to calculate the \$p\$-value, corrects for this violation.
-
-In cases where the expected counts are less than 5, the \$p\$-value from Fisher’s exact test will be more accurate than that of the \$\\chi^{2}\$ test. In cases where the expected values are all well above 5, the \$p\$-values from each test will be very close, if not identical. Therefore, it makes sense to just always use Fisher’s exact test. This argument is analogous to the argument that we should always use Welch’s instead of Student’s\$t\$-test by default ([Delacre et al., 2017](#ref-delacre2017psychologists)).
-
-There is also added benefit of Fisher’s exact test: unlike \$\\chi^{2}\$, it can give you a \$p\$-value in cases where *x*, *y*, or both have greater than 2 categories (resulting in a 2 \$\\times\$ 3 table, for example).
+One assumption of the \$\\chi^{2}\$ test violated fairly often is that no expected values are less than 5. This is sort of an arbitrary cutoff - the larger the expected counts, the more accurate the \$\\chi^{2}\$ value will be (in general). Unlike the \$\\chi^{2}\$ test, the Fisher’s exact test is accurate even in the presence of expected values less than 5. In cases where the expected values are all well above 5, the \$p\$-values from the tests will be close, if not identical. There isn’t really a drawback to using Fisher’s exact test, so it makes sense to just always use Fisher’s exact test. This argument is analogous to the argument that we should always use Welch’s instead of Student’s\$t\$-test by default ([Delacre et al., 2017](#ref-delacre2017psychologists)).
 
 As an illustration, check out the results of a \$\\chi^{2}\$ test checking to see if transmission type (`am`, 0 = automatic, 1 = manual) and engine shape (`vs`, 0 = V-shaped, 1 = straight) are related using the `mtcars` dataset:
 
@@ -456,7 +452,7 @@ greater
 
 Notice the \$p\$-value is smaller; that is because one-tailed tests are more powerful than two-tailed tests, assuming there is a real relationship at the population level, specifically in the direction of the test.
 
-This function can also accommodate nominal variables with greater than 2 categories. For example, a 2 `\(\times\)` 3 table between transmission type and number of cylinders (`cyl`, 4, 6, or 8):
+An added benefit of Fisher’s exact test is that unlike \$\\chi^{2}\$, it can give you a \$p\$-value in cases where *x*, *y*, or both have greater than 2 categories (resulting in a 2 \$\\times\$ 3 table, for example). This function can also accommodate nominal variables with greater than 2 categories. For example, a 2 \$\\times\$ 3 table between transmission type and number of cylinders (`cyl`, 4, 6, or 8):
 
 ``` r
 fisher.results <- my.fisher(mtcars, am, cyl)
@@ -500,7 +496,7 @@ two.sided
 </tbody>
 </table>
 
-The odds ratio left out of the output in these cases, because it is not applicable to exact tests one or more variables has greater than 2 categories. In this case, you’d want to look at the crosstabs to contextualize the \$p\$-values. This function provides them for you in a nice format with the help of the `janitor` package.
+The odds ratio left out of the output in these cases, because it is not applicable to exact tests one or more variables has greater than 2 categories. In this case, you’d want to look at a crosstabulation of *x* and *y* to contextualize the \$p\$-value. This function provides them for you in a nice format with the help of the `janitor` package.
 
 ## Getting Crosstabs
 
@@ -512,7 +508,7 @@ fisher.results$crosstab.all
 <caption>
 Table 8: Crosstab With Sample Total As Percentage Denominator
 
-<div id="table1">
+<div id="table7">
 
 </div>
 
@@ -604,7 +600,7 @@ Total
 </tbody>
 </table>
 
-Table 7 shows the crosstab between transmission type and number of cylinders, with percentages and counts (the latter in parentheses). You also get row and column totals, along with the sample total in the right-most bottom corner. You also get two other crosstabs, one with percentages calculated relative the row total; the other with percentages calculated relative to the column total:
+[Table 7](#table7) shows the crosstab between transmission type and number of cylinders, with percentages and counts (the latter in parentheses). You also get row and column totals, along with the sample total in the right-most bottom corner. You also get two other crosstabs, one with percentages calculated relative the row total; the other with percentages calculated relative to the column total:
 
 ``` r
 fisher.results$crosstab.row
@@ -706,6 +702,10 @@ Total
 </tbody>
 </table>
 
+Ah - with the row-wise percentages, you can see that the likely driver of statistical significance here is the inverse relationship between transmission type and cylinder. More than half of automatics have 8 cylinders, while more than half of manuals have only 4 cylinders. Looks like an <a href="https://en.wikipedia.org/wiki/Interaction_(statistics)" target="_blank">interaction effect</a>!
+
+And here’s a crosstab with column-wise percentages:
+
 ``` r
 fisher.results$crosstab.column
 ```
@@ -805,8 +805,6 @@ Total
 </tr>
 </tbody>
 </table>
-
-Looks to me like one driver of statistical significance here is the inverse relationship between transmission type and cylinder. More than half of automatics have 8 cylinders, while more than half of manuals have only 4 cylinders. Looks like an <a href="https://en.wikipedia.org/wiki/Interaction_(statistics)" target="_blank">interaction effect</a>!
 
 # Full Function
 
