@@ -19,6 +19,7 @@ nocite: |
 
 </center>
 
+<div style="padding-left: 4em; text-indent: -4em;">
 
 # Recent Publications
 
