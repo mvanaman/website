@@ -71,7 +71,7 @@ fall.18.q19.q23 <- fall.18 %>% get.q(., 26:nrow(.), q19.23.names)
 
 Due to the COVID-19 pandemic, faculty and student teaching evaluations were waived for the Spring 2020 semester. Nevertheless, students did reach out via email to give unsolicited feedback about their experience for the course. I provide excerpts (edited slightly for grammar) in the [table below](#email-feedback) in lieu of evaluations submitted through the university. 
 
-<button title="Click to show answer" type="button" onclick="if(document.getElementById('spring20') .style.display=='none') {document.getElementById('spring20') .style.display=''} else{document.getElementById('spring20') .style.display='none'}">View Student Evaluations </button>
+<button title="Click to show answer" type="button" onclick="if(document.getElementById('spring20') .style.display=='none') {document.getElementById('spring20') .style.display=''} else{document.getElementById('spring20') .style.display='none'}">View Student Feedback </button>
 
 <div id="spring20" style="display:none">
 ```{r cache=FALSE, collapse=TRUE, echo=FALSE, results="asis"}
