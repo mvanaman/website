@@ -98,8 +98,8 @@ knitr::kable(spring.19.q19.q23, align = "lccccccc") %>%
 <button title="Click to show answer" type="button" onclick="if(document.getElementById('fall18') .style.display=='none') {document.getElementById('fall18') .style.display=''} else{document.getElementById('fall18') .style.display='none'}">View Student Evaluations </button>
 
 <button 
-onclick="location.href='https://matthewevanaman.netlify.app//PDFs/eval_fall18.pdf'"
-type="button" target='_blank' >View Faculty Evaluation
+onclick=window.open('https://matthewevanaman.netlify.app//PDFs/eval_fall18.pdf','_blank')
+type="button">View Faculty Evaluation
 </button>
 
 <div id="fall18" style="display:none">
