@@ -78,7 +78,7 @@ Due to the COVID-19 pandemic, faculty and student teaching evaluations were waiv
 knitr::kable(spring.20, align = "cc",
   caption = "Student Feedback, Statistical Programming (Spring 2020) <div id='email-feedback' />") %>% 
   kableExtra::kable_styling(position = "left") %>% 
-  kableExtra::footnote(general = "Students are numerically coded for confidentiality. There were 7 students in the course; the one student missing from this table later emailed me to ask for mentorship beyond the course.")
+  kableExtra::footnote(general = "Students are numerically coded to protect their confidentiality. There were 7 students in the course; the one student missing from this table later emailed me to ask for mentorship beyond the course.")
 ```
 </div>
 
