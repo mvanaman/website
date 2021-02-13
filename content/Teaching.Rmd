@@ -15,12 +15,14 @@ csl: /Users/home/Documents/Research and Writing/Misc/MyRefs/apa-web.csl
 library(readr)
 library(tidyverse)
 library(janitor)
+spring.20 <- 
+  read_csv("/Users/home/GitHub/website/themes/hugo-theme-even/static/data/spring2020_evals.csv")
 spring.19 <- read_csv("/Users/home/GitHub/website/themes/hugo-theme-even/static/data/spring19.csv")
 fall.18 <- read_csv("/Users/home/GitHub/website/themes/hugo-theme-even/static/data/fall18.csv")
 
 # format data
 # term.year.startingQ.endingQ
-## write a function to save some space
+## write a function for getting tables to save some space
 get.q <- function(data, rows, names){
   data <- data %>% slice(rows) %>% row_to_names(row_number = 1)
    names(data) <- names
@@ -38,7 +40,10 @@ q17.names <- c("Question",	"Very Fair",	"Fair",	"Somewhat Unfair", "Unfair",	"No
 q18.names <- c("Question", "Very Likely", "Somewhat Likely", "Don't Know", "Somewhat Unlikely", "Very Unlikely", "Responses")
 q19.23.names <- c("Question", "A Lot", "A Fair amount", "Some", "A Little", "Hardly Anything", "Not Applicable", "Responses")
 ## get tables
-spring.19.q1 <- spring.19 %>% slice(1) %>% select(-c(X4:X7)) %>% rename(Responses = "N.answers")
+spring.19.q1 <- spring.19 %>% 
+  slice(1) %>% 
+  select(-c(X4:X7)) %>% 
+  rename(Responses = "N.answers")
 spring.19.q2.q12 <- get.q(spring.19, 2:13, names = q1.q12.names)
 spring.19.q13 <- spring.19 %>% select(-c(X6:X7)) %>% get.q(., 14:15, names = q13.names)
 spring.19.q14 <- spring.19 %>% select(-X7) %>% get.q(., 16:17, names = q14.names)
@@ -60,18 +65,35 @@ fall.18.q18 <- fall.18 %>% select(-X7) %>% get.q(., 24:25, q18.names)
 fall.18.q19.q23 <- fall.18 %>% get.q(., 26:nrow(.), q19.23.names)
 ```
 
+# Spring 2020
+
+### Lecturer, Statistical Programming in R (Graduate Course), Brooklyn College
+
+Due to the COVID-19 pandemic, faculty and student teaching evaluations were waived for the Spring 2020 semester. Nevertheless, students did reach out via email to give unsolicited feedback about their experience for the course. I provide excerpts (edited slightly for grammar) in the [table below](#email-feedback) in lieu of evaluations submitted through the university. 
+
+<button title="Click to show answer" type="button" onclick="if(document.getElementById('spring20') .style.display=='none') {document.getElementById('spring20') .style.display=''} else{document.getElementById('spring20') .style.display='none'}">View Student Evaluations </button>
+
+<div id="spring20" style="display:none">
+```{r cache=FALSE, collapse=TRUE, echo=FALSE, results="asis"}
+knitr::kable(spring.20, align = "cc",
+  caption = "Student Feedback, Statistical Programming (Spring 2020) <div id='email-feedback' />") %>% 
+  kableExtra::kable_styling(position = "left") %>% 
+  kableExtra::footnote(general = "Students are numerically coded for confidentiality. There were 7 students in the course; the one student missing from this table later emailed me to ask for mentorship beyond the course.")
+```
+</div>
 
 # Spring 2019
 
 ### Lab Instructor, Statistical Methods in Psychological Research, Brooklyn College
 
+
 <button title="Click to show answer" type="button" onclick="if(document.getElementById('spring19') .style.display=='none') {document.getElementById('spring19') .style.display=''} else{document.getElementById('spring19') .style.display='none'}">View Student Evaluations </button>
 
 <div id="spring19" style="display:none">
-```{r cache=FALSE, collapse=TRUE, echo=FALSE}
+```{r cache=FALSE, collapse=TRUE, echo=FALSE, results="asis"}
 knitr::kable(
   spring.19.q1, 
-  caption = "Spring 2019 Student Evaluations, Statistics Lab",
+  caption = "Student Evaluations, Statistics Lab (Spring 2019)",
   align = "lccc") %>% 
   kableExtra::kable_styling(position = "left")
 knitr::kable(spring.19.q2.q12, align = "lccccccc") %>% 
@@ -91,6 +113,7 @@ knitr::kable(spring.19.q19.q23, align = "lccccccc") %>%
 ```
 </div>
 
+
 # Fall 2018
 
 ### Lab Instructor, Statistical Methods in Psychological Research, Brooklyn College
@@ -103,10 +126,10 @@ type="button">View Faculty Evaluation
 </button>
 
 <div id="fall18" style="display:none">
-```{r cache=FALSE, collapse=TRUE, echo=FALSE}
+```{r cache=FALSE, collapse=TRUE, echo=FALSE, results="asis"}
 knitr::kable(
   fall.18.q1, 
-  caption = "Fall 2018 Student Evaluations, Statistics Lab",
+  caption = "Student Evaluations, Statistics Lab (Fall 2018)",
    align = "lccc") %>% 
   kableExtra::kable_styling(position = "left")
 knitr::kable(fall.18.q2.q12, align = "lccccccc") %>% 
