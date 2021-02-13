@@ -1,0 +1,78 @@
+---
+title: Teaching
+lastmod: '2017-08-28T21:41:52+08:00'
+date: '2017-08-20T21:38:52+08:00'
+menu: main
+weight: 50
+bibliography: /Users/home/Documents/Research and Writing/Misc/MyRefs/MyRefs.bib
+link-citations: yes
+csl: /Users/home/Documents/Research and Writing/Misc/MyRefs/apa-web.csl
+---
+
+![<i>Raphael. “The school of athens”. Circa 1510. Fresca. Stanze di Raffaello, in the Apostolic Palace in the Vatican.</i>](/img/athens.jpg)
+
+```{r, include=FALSE}
+library(readr)
+library(tidyverse)
+library(janitor)
+spring.19 <- read_csv("/Users/home/GitHub/website/themes/hugo-theme-even/static/data/spring19.csv")
+fall.18 <- read_csv("/Users/home/GitHub/website/themes/hugo-theme-even/static/data/fall18.csv")
+
+# format data
+# term.year.startingQ.endingQ
+## write a function to save some space
+get.q <- function(data, rows, names){
+  data <- data %>% slice(rows) %>% row_to_names(row_number = 1)
+   names(data) <- names
+   return(data)}
+## spring 19
+### colnames
+q1.q12.names <- 
+  c("Question", "Excellent", "Good", "Fair", "Poor", "Unacceptable", "Not applicable", "Responses")
+q13.names <- c("Question", "Too Many", 	"Just Right",	"Too few",	"Not Applicable", "Responses")
+q14.names <- c("Question", "Very Challenging",	"Challenging",	"Somewhat Challenging",	"Not Challenging", "Not Applicable",  "Responses")
+q15.names <- 
+  c("Question","Very useful","Useful","Somewhat Useful","Not Useful","Not Applicable", "Responses")
+q16.names <- c("Question", "Very Difficult", "Difficult", "Somewhat Difficult",	"Not Difficult",	"Not Applicable", "Responses")
+q17.names <- c("Question",	"Very Fair",	"Fair",	"Somewhat Unfair", "Unfair",	"Not Applicable", "Responses")
+q18.names <- c("Question", "Very Likely", "Somewhat Likely", "Don't Know", "Somewhat Unlikely", "Very Unlikely", "Responses")
+q19.23.names <- c("Question", "A Lot", "A Fair amount", "Some", "A Little", "Hardly Anything", "Not Applicable", "Responses")
+## get tables
+spring.19.q1 <- spring.19 %>% slice(1) %>% select(-c(X4:X7)) %>% rename(Responses = "N.answers")
+spring.19.q2.q12 <- get.q(spring.19, 2:13, names = q1.q12.names)
+spring.19.q13 <- spring.19 %>% select(-c(X6:X7)) %>% get.q(., 14:15, names = q13.names)
+spring.19.q14 <- spring.19 %>% select(-X7) %>% get.q(., 16:17, names = q14.names)
+spring.19.q15 <- spring.19 %>% select(-X7) %>% get.q(., 18:19, names = q15.names)
+spring.19.q16 <- spring.19 %>% select(-X7) %>% get.q(., 20:21, q16.names)
+spring.19.q17 <- spring.19 %>% select(-X7) %>% get.q(., 22:23, q17.names)
+spring.19.q18 <- spring.19 %>% select(-X7) %>% get.q(., 24:25, q18.names)
+spring.19.q19.q23 <- spring.19 %>% get.q(., 26:nrow(.), q19.23.names)
+```
+
+
+# Spring 2019
+
+### Lab Instructor, Statistical Methods in Psychological Research, Brooklyn College
+
+<button title="Click to show answer" type="button" onclick="if(document.getElementById('spring19') .style.display=='none') {document.getElementById('spring19') .style.display=''} else{document.getElementById('spring19') .style.display='none'}">View Student Evaluations </button>
+<div id="spring19" style="display:none">
+```{r cache=FALSE, collapse=TRUE, results='asis', echo=FALSE}
+knitr::kable(spring.19.q1, caption = "Spring 2019 Student Evaluations, Statistics Lab") %>% 
+  kableExtra::kable_styling(position = "left")
+
+knitr::kable(spring.19.q2.q12) %>% 
+  kableExtra::kable_styling(position = "left")
+knitr::kable(spring.19.q13) %>% 
+  kableExtra::kable_styling(position = "left")
+knitr::kable(spring.19.q14) %>% 
+  kableExtra::kable_styling(position = "left")
+knitr::kable(spring.19.q15) %>% 
+  kableExtra::kable_styling(position = "left")
+knitr::kable(spring.19.q16) %>% 
+  kableExtra::kable_styling(position = "left")
+knitr::kable(spring.19.q17) %>% 
+  kableExtra::kable_styling(position = "left")
+knitr::kable(spring.19.q19.q23) %>% 
+  kableExtra::kable_styling(position = "left")
+```
+</div>
