@@ -12,21 +12,15 @@ editor_options:
     wrap: 72
 ---
 
-<figure style="float:left">
+<center>
 
-<img src="https://matthewevanaman.netlify.app/img/city.png"/>\
+![<i> <a href="https://www.facebook.com/daniellesperandeoart/" target="blank" onMouseOver="this.style.color='#c05b4d'">Sperandeo, Danielle </a>. “I have a city on my head”. <br> Circa 2012. Pencil on paper. On my bedroom wall.</i>](/img/city.png){width=300 height=600 style="opacity:0.9; filter:grayscale(25%);"}
 
-<figcaption>
+</center> 
 
-Artwork of
-<a href="https://www.facebook.com/daniellesperandeoart/" target="blank" onMouseOver="this.style.color='#c05b4d'">
-Danielle Sperandeo </a>
 
-</figcaption>
+<hr style="border: none; color:#000000; background-color:#000000; height:1px; opacity:0.25">
 
-</figure>
-
-<br>
 
 You are probably here because of one of two reasons: either you were in
 the same Zoom group as me and are following up on the link I provided when asked for a fun fact; or, you are here because you chose to investigate the potential existence of a website dedicated to one
