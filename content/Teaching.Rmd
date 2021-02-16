@@ -96,20 +96,21 @@ fall.18.q19.q23 <- fall.18 %>% get.q(., 26:nrow(.), q19.23.names)
 
 <hr style="border: none; color:#000000; background-color:#000000; height:1px; opacity:0.25">
 
-<div   
-class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Contents</h2>
-  <div class="post-toc-content">
-  <ul class="toc_list">
-    <li><a href="#Courses">Courses Taught</a>
-		<ol>
-			<li><a href="#Spring20">Spring 2020</a></li>
-			<li><a href="#Spring19">Spring 2019</a></li>
-			<li><a href="#Fall18">Fall 2018</a></li>
-  </ul>
-  </div>
-</div>
-<div id="TableOfContents"/>
+<!-- this makes a toc, but without some of the features present on the other pages -->
+<!-- <div -->
+<!-- class="post-toc" id="post-toc"> -->
+<!--   <h2 class="post-toc-title">Contents</h2> -->
+<!--   <div class="post-toc-content"> -->
+<!--   <ul class="toc_list"> -->
+<!--     <li><a href="#Courses">Courses Taught</a> -->
+<!-- 		<ol> -->
+<!-- 			<li><a href="#Spring20">Spring 2020</a></li> -->
+<!-- 			<li><a href="#Spring19">Spring 2019</a></li> -->
+<!-- 			<li><a href="#Fall18">Fall 2018</a></li> -->
+<!--   </ul> -->
+<!--   </div> -->
+<!-- </div> -->
+<!-- <div id="TableOfContents"/> -->
 
 # Courses Taught {#Courses}
 
@@ -138,6 +139,12 @@ knitr::kable(spring.20, align = "cc",
 
 
 <button class="button button1" type="button" onclick="if(document.getElementById('spring19') .style.display=='none') {document.getElementById('spring19') .style.display=''} else{document.getElementById('spring19') .style.display='none'}">View Student Evaluations </button>
+
+<button 
+class="button button1" type="button"
+onclick=window.open('https://matthewevanaman.netlify.app//PDFs/eval_spring20.pdf','_blank')
+>View Faculty Evaluation
+</button>
 
 <div id="spring19" style="display:none">
 ```{r cache=FALSE, collapse=TRUE, echo=FALSE, results="asis"}
