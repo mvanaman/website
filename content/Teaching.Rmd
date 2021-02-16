@@ -94,21 +94,26 @@ fall.18.q19.q23 <- fall.18 %>% get.q(., 26:nrow(.), q19.23.names)
 }
 </style>
 
-<div class="post-toc" id="post-toc">
+<hr style="border: none; color:#000000; background-color:#000000; height:1px; opacity:0.25">
+
+<div   
+class="post-toc" id="post-toc">
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content">
-  <ul>
-    <li><a href="#Courses">Why You Should Always Use Fisher’s Exact Test Instead</a></li>
-  <ul>
+  <ul class="toc_list">
+    <li><a href="#Courses">Courses Taught</a>
+		<ol>
+			<li><a href="#Spring20">Spring 2020</a></li>
+			<li><a href="#Spring19">Spring 2019</a></li>
+			<li><a href="#Fall18">Fall 2018</a></li>
+  </ul>
   </div>
 </div>
-
-
-<hr style="border: none; color:#000000; background-color:#000000; height:1px; opacity:0.25">
+<div id="TableOfContents"/>
 
 # Courses Taught {#Courses}
 
-## Spring 2020
+## Spring 2020 {#Spring20}
 
 ### Lecturer, Statistical Programming in R (Graduate Course), Brooklyn College
 
@@ -127,7 +132,7 @@ knitr::kable(spring.20, align = "cc",
 ```
 </div>
 
-## Spring 2019
+## Spring 2019 {#Spring19}
 
 ### Lab Instructor, Statistical Methods in Psychological Research, Brooklyn College
 
@@ -159,7 +164,7 @@ knitr::kable(spring.19.q19.q23, align = "lccccccc") %>%
 </div>
 
 
-## Fall 2018
+## Fall 2018 {#Fall18}
 
 ### Lab Instructor, Statistical Methods in Psychological Research, Brooklyn College
 
