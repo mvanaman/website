@@ -141,7 +141,7 @@ params:
  #   f-google: https://scholar.google.com/citations?user=dQ_TbawAAAAJ&hl=en
   #  g-github: https://github.com/mvanaman
     #n-gitlab: http://localhost:1313
-  toc: true
+  toc: no
   uglyURLs: no
   utterances:
     owner: ''
