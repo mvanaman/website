@@ -22,8 +22,8 @@ nocite: |
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 30px;
-  margin: 4px 5px;
+  font-size: 25px;
+  margin: 4px 0px;
   transition-duration: 1s;
   cursor: pointer;
   font-family:Source Sans Pro;
