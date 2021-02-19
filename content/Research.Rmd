@@ -9,7 +9,7 @@ bibliography: /Users/home/Documents/Research and Writing/Misc/MyRefs/MyRefs.bib
 link-citations: yes
 csl: /Users/home/Documents/Research and Writing/Misc/MyRefs/apa-web.csl
 nocite: |
-  @vanaman2019novel, @vanaman2020disgust, @tierney2020creative
+  @vanaman2019novel, @vanaman2020disgusta, @tierney2020creative; @leggett2021development
 ---
 
 <style>
@@ -45,7 +45,7 @@ border: none;
 
 <center>
 
-![<i>Lynch, David. “Red Man does magic near his house”. 2013. Ink and pencil on paper. Kayne Griffin Corcoran.</i>](/img/manydf.jpeg){style="border-radius: 2%; opacity:0.9; filter:grayscale(25%)"}
+![<i style="color:#6e6e6e">Lynch, David. “Red Man does magic near his house”. 2013. Ink and pencil on paper. Kayne Griffin Corcoran.</i>](/img/manydf.jpeg){style="border-radius: 2%; opacity:0.9; filter:grayscale(25%)"}
 
 <button 
 class="button button1" type="button"
@@ -83,15 +83,11 @@ onclick=window.open('https://www.researchgate.net/profile/Matthew_Vanaman','_bla
   </div>
 </div>
 
-<p style="font-family:Source Sans Pro; color:#6e6e6e">
   
 # Why is it wrong to kiss your sister? {#Sister}
 
 No one gets hurt, right? Be relieved; that is a rhetorical question. While philosophers have debated what acts <i>ought</i> to be condemned, my work has explored <i>why</i> people condemn them - especially when no one gets hurt. Beyond trying to understand the various shades of immorality, my more recent work seeks to uncover the structure of the moral domain, and how that structure influences which acts or issues become morally relevant.
-</p>
-
-<div style="padding-left: 4em; text-indent: -4em">
 
 # Recent Publications {#Publications}
 
-
+<div style="padding-left: 4em; text-indent: -4em;" />
