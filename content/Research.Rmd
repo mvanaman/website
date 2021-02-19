@@ -47,6 +47,8 @@ border: none;
 
 ![<i style="color:#6e6e6e">Lynch, David. “Red Man does magic near his house”. 2013. Ink and pencil on paper. Kayne Griffin Corcoran.</i>](/img/manydf.jpeg){style="border-radius: 2%; opacity:0.9; filter:grayscale(25%)"}
 
+<hr style="border: none; color:#000000; background-color:#000000; height:1px; opacity:0.25">
+
 <button 
 class="button button1" type="button"
 onclick=window.open('https://scholar.google.com/citations?user=dQ_TbawAAAAJ&hl=en','_blank')><i class="ai ai-google-scholar"></i></button>
@@ -65,10 +67,7 @@ onclick=window.open('https://github.com/mvanaman','_blank')><i class="fab fa-git
 class="button button1" type="button"
 onclick=window.open('https://www.researchgate.net/profile/Matthew_Vanaman','_blank')><i class="ai ai-researchgate"></i>
 </button>
-
 </center>
-
-<hr style="border: none; color:#000000; background-color:#000000; height:1px; opacity:0.25">
 
 <!-- this makes a toc, but without some of the features present on the other pages -->
 <div class="post-toc" id="post-toc">
