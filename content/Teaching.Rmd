@@ -13,7 +13,7 @@ csl: /Users/home/Documents/Research and Writing/Misc/MyRefs/apa-web.csl
 
 <center>
 
-![<i>Raphael. “The school of athens”. Circa 1510. Fresca. Stanze di Raffaello, in the Apostolic Palace in the Vatican.</i>](/img/athens.jpg){style="border-radius: 2%; opacity:0.9; filter:grayscale(25%)"}
+![<i style="color:#6e6e6e">Raphael. “The school of athens”. Circa 1510. Fresca. Stanze di Raffaello, in the Apostolic Palace in the Vatican.</i>](/img/athens.jpg){style="border-radius: 2%; opacity:0.9; filter:grayscale(25%)"}
 
 </center>
 
