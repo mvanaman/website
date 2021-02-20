@@ -5,7 +5,7 @@ date: '2017-08-20T21:38:52+08:00'
 menu: main
 weight: 50
 toc: yes
-bibliography: /Users/home/Documents/Research and Writing/Misc/MyRefs/MyRefs.bib
+bibliography: /Users/home/Documents/Research and Writing/Misc/MyRefs/MyPubs.bib
 link-citations: yes
 csl: /Users/home/Documents/Research and Writing/Misc/MyRefs/apa-web.csl
 nocite: |
@@ -45,7 +45,7 @@ border: none;
 
 <center>
 
-![<i style="color:#6e6e6e">Lynch, David. “Red Man does magic near his house”. 2013. Ink and pencil on paper. Kayne Griffin Corcoran.</i>](/img/manydf.jpeg){style="border-radius: 2%; opacity:0.9; filter:grayscale(25%)"}
+![<i style="color:#6e6e6e; font-family:Source Sans Pro;">Lynch, David. “Red Man does magic near his house”. 2013. Ink and pencil on paper. Kayne Griffin Corcoran.</i>](/img/manydf.jpeg){style="border-radius: 2%; opacity:0.9; filter:grayscale(25%)"}
 
 <hr style="border: none; color:#000000; background-color:#000000; height:1px; opacity:0.25">
 
@@ -76,6 +76,7 @@ onclick=window.open('https://www.researchgate.net/profile/Matthew_Vanaman','_bla
    <nav id="TableOfContents">
    <ul>
      <li><a href="#Sister">Sister-Kissing?</a>
+     <li><a href="#Sister">Media Coverage</a>
      <li><a href="#Publications">Recent Publications</a>
 	 </ul>
   </nav>
@@ -85,8 +86,33 @@ onclick=window.open('https://www.researchgate.net/profile/Matthew_Vanaman','_bla
   
 # Why is it wrong to kiss your sister? {#Sister}
 
-No one gets hurt, right? Be relieved; that is a rhetorical question. While philosophers have debated what acts <i>ought</i> to be condemned, my work has explored <i>why</i> people condemn them - especially when no one gets hurt. Beyond trying to understand the various shades of immorality, my more recent work seeks to uncover the structure of the moral domain, and how that structure influences which acts or issues become morally relevant.
+<p style="color:#6e6e6e; font-family:Source Sans Pro;">
+No one gets hurt, right? Be relieved; that is a rhetorical question. While philosophers have debated what acts <i>ought</i> to be condemned, my work has explored <i>why</i> people condemn them - especially when no one gets hurt. Beyond trying to understand the various shades of immorality, my more recent work seeks to uncover the structure of the moral domain, and how that structure influences which acts or issues become morally relevant.</p>
+
+# Media Coverage {#Media}
+
+<ul>
+  <li>
+  <button 
+class="button button1" type="button" style="width:auto; text-align:left; font-size:16px;"
+onclick=window.open('https://www.psychologytoday.com/us/blog/inclusive-insight/202012/disgust-morality-and-the-transgender-bathroom-debate','_blank')><b>Disgust, Morality, and the Transgender Bathroom Debate.</b> Karen L. Blair. <i>Psychology Today</i>. December 30th, 2020.</button>
+  </li>
+</ul>  
 
 # Recent Publications {#Publications}
 
-<div style="padding-left: 4em; text-indent: -4em;" />
+<style>
+#refs {
+  padding-left:2em; 
+  text-indent:-4em; 
+  color:#6e6e6e; 
+  line-height: 1.5;
+  font-family:Source Sans Pro;
+}
+.csl-entry {
+  padding-top:1em
+}
+</style>
+
+<div id="refs" />
+
