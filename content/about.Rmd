@@ -16,6 +16,7 @@ editor_options:
 
 ![<i style="color:#6e6e6e"> <a href="https://www.facebook.com/daniellesperandeoart/" target="blank" onMouseOver="this.style.color='#c05b4d'">Sperandeo, Danielle </a>. “I have a city on my head”. <br> Circa 2012. Pencil on paper. On my bedroom wall.</i>](/img/city.png){width=300 height=600 style="opacity:0.9; filter:grayscale(25%);"}
 
+
 </center> 
 
 
