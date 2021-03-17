@@ -1,5 +1,5 @@
 ---
-title: Extremely Simple Guide To Collaborative Writing Between R Markdown and Google
+title: An Extremely Simple Guide To Collaborative Writing Between R Markdown and Google
   Docs Users
 author: Matthew E. Vanaman
 date: '2021-03-17'
@@ -32,9 +32,10 @@ csl: "/Users/home/Documents/Research and Writing/Misc/MyRefs/apa-web.csl"
 ---
 
 <!--more-->
+
 Feel free to skip my treatise and [get right to it](#getting-set-up).
 
-Get this guide as <a href="https://matthewevanaman.netlify.app/PDFs/Collab_With_Google.pdf" target="_blank">a PDF</a>
+Get this guide as <a href="https://matthewevanaman.netlify.app/PDFs/Collab_With_Google.pdf" target="_blank">a PDF</a>.
 
 We scientists write a lot. We format a lot too, because our journals have scrupulous formatting requirements. If indeed you are a scientist who writes, you have probably been as frustrated as I have with how tedious that stuff can be, especially formatting tables.
 

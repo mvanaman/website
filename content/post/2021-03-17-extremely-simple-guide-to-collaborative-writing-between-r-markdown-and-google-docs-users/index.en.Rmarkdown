@@ -1,5 +1,5 @@
 ---
-title: Extremely Simple Guide To Collaborative Writing Between R Markdown and Google
+title: An Extremely Simple Guide To Collaborative Writing Between R Markdown and Google
   Docs Users
 author: Matthew E. Vanaman
 date: '2021-03-17'
@@ -38,14 +38,10 @@ knitr::opts_chunk$set(eval = FALSE, echo = TRUE, comment = NA, warning = FALSE, 
 options(scipen = 999, papaja.comment = FALSE)
 ```
 
-```{=tex}
-\captionsetup{justification = raggedright, singlelinecheck = false}
-\newcommand{\mybottomrule}{\specialrule{0.15ex}{0em}{0em}} 
-\newpage
-```
+
 Feel free to skip my treatise and [get right to it](#getting-set-up).
 
-Get this guide as [a PDF](https://matthewevanaman.netlify.app/PDFs/Collab_With_Google.pdf){target="_blank"}
+Get this guide as [a PDF](https://matthewevanaman.netlify.app/PDFs/Collab_With_Google.pdf){target="_blank"}.
 
 We scientists write a lot. We format a lot too, because our journals have scrupulous formatting requirements. If indeed you are a scientist who writes, you have probably been as frustrated as I have with how tedious that stuff can be, especially formatting tables.
 
