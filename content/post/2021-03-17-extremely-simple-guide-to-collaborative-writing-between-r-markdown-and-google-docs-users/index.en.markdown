@@ -150,7 +150,7 @@ Enjoy!
 
 ## Updating Google Drive File
 
-Say you messed up the first draft, or have written some revisions yourself before your other authors got a chance to start revising on Google Drive. Or whatever. You want to throw some more recent changes to the extant Google Doc, which will add the changes in while preserving anything that did not change. Easy, just use the code below. Beware: Google Doc’s track changes will not pick this up.
+Say you messed up the first draft, or have written some revisions yourself before your collaborators got a chance to start revising on Google Drive. Or whatever. The point is, you want to throw some more recent changes up to an extant Google Doc, which will add the changes while preserving anything that did not change. Easy, just use the code below. Beware: Google Doc’s track changes will not pick this up.
 
 ``` r
 # to update an existing google drive file
@@ -163,7 +163,7 @@ trackdown::update_rmd(
 
 ## Sending the File To A Particular Location in Google Drive
 
-Simple: all you need to do is add the `path =` argument:
+Simple: all you need to do is add the `path =` argument in `upload_rmd()`:
 
 ``` r
 # to send to google drive
