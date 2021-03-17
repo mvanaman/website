@@ -25,10 +25,7 @@ keywords:
   - matt-vanaman
 description: ''
 comment: yes
-output: 
-  md_document:
-    toc: true
-    fig_cap: yes
+toc: yes
 postMetaInFooter: yes
 hiddenFromHomePage: no
 contentCopyright: no
@@ -43,7 +40,7 @@ flowchartDiagrams:
 sequenceDiagrams:
   enable: no
   options: ''
-bibliography: "/Users/home/Documents/Research and Writing/Misc/MyRefs/MyRefs.bib"
+bibliography: "/Users/home/Documents/Research and Writing/Misc/MyRefs/Refs.bib"
 link-citations: true
 csl: "/Users/home/Documents/Research and Writing/Misc/MyRefs/apa-web.csl"
 ---
@@ -113,7 +110,7 @@ The independent-samples \$t\$-test is one of the most commonly used statistical 
 
 # Where's My Effect Size?
 
-Effect sizes help contextualize the results of statistical tests, which consensus is more often beginning to recognize as the least interesting part of statistical output [@sullivan2012using]. Indeed, researchers have been pressured to report measures of effect size alongside descriptive and inferential statistics in their published work for about two decades now [@coe2002effect]. As most introductory statistics courses will teach, Cohen's \$d\$ follows some rules of thumb that help give a sense of how impressive the magnitude of the mean difference is [@cohen2013statistical]:
+Effect sizes help contextualize the results of statistical tests, which consensus is more often beginning to recognize as the [least interesting part of statistical output](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3444174/#i1949-8357-4-3-279-Kline1){target="_blank"}. As most introductory statistics courses will teach, you should use effect sizes like Cohen's \$d\$ to get a sense of how impressive the magnitude of the mean difference is. The suggested rules of thumb for interpreting Cohen's \$d\$ are [@cohen2013statistical]:
 
 -   \$\\le 0.2\$ is "small"
 -   \$0.5\$ is "medium"
