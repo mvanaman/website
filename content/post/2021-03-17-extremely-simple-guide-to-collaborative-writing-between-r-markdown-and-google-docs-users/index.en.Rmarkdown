@@ -192,7 +192,7 @@ Easy. It even displays in a tidy tibble. Friggin sweet, right? Just use:
 
 ```{r}
 # view contents of google drive in a tibble
-# "n = n" limits the output to the first two files it finds
-# "pattern = 'pattern'" returns files with the name specified in the pattern
+# "n = n" limits the output to the first n files it finds
+# "pattern = 'pattern'" returns files with the name specified as the pattern
 googledrive::drive_find()
 ```
