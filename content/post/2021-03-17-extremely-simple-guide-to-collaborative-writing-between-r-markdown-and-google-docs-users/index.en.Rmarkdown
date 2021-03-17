@@ -111,7 +111,7 @@ Once your draft is ready to share with others, you can use the following steps t
 
     1.  Restart R with a fresh environment.
 
-    2.  Run the `googledrive::drive_find()` command (do not add arguments). In the R console, you should see a prompt asking you to select 1 or 2. Option 1 didn't work for me, so I entered option 2.
+    2.  Run the `googledrive::drive_auth()` command (do not add arguments). In the R console, you should see a prompt asking you to select 1 or 2. Option 1 didn't work for me, so I entered option 2.
 
     3.  Your web browser should open with a Google sign-in page. Sign in to Google, and follow the steps to allow access.
 
