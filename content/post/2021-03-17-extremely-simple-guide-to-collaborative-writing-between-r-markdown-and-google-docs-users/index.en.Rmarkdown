@@ -4,10 +4,28 @@ title: An Extremely Simple Guide To Collaborative Writing Between R Markdown and
 author: Matthew E. Vanaman
 date: '2021-03-17'
 slug: []
-categories: [collaboration, reproducibility, transparency]
-tags: [r markdown, google docs, collaboration, open science, writing, efficiency]
-lastmod: '2021-03-17T12:20:52-04:00'
-keywords: []
+categories: 
+  - collaboration
+  - reproducibility
+  - transparency
+tags: 
+  - r-markdown
+  - google-docs
+  - collaboration
+  - open-science
+  - writing
+  - efficiency
+lastmod: 2021-03-17
+keywords: 
+  - r-markdown
+  - google-docs
+  - collaboration
+  - open-science
+  - writing
+  - efficiency
+  - matthew-vanaman
+  - matthew-e-vanaman
+  - matt-vanaman
 description: ''
 comment: no
 toc: yes

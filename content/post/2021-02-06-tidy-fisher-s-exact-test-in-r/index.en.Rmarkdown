@@ -3,15 +3,32 @@ title: Tidy Fisher's Exact Test In R (And Why To Always Use It)
 author: Matthew E. Vanaman
 date: '2021-02-06'
 slug: []
-categories: []
-tags: []
-lastmod: '2021-02-06T15:13:40-05:00'
-keywords: []
+categories: 
+  - efficiency
+  - functions
+tags:
+  - r
+  - rstudio
+  - tidy
+  - chi-squared
+  - effect-size
+  - fisher-exact
+lastmod: 2021-03-17
+keywords: 
+  - r
+  - rstudio
+  - tidy
+  - chi-squared
+  - effect-size
+  - fisher-exact
+  - matthew-e-vanaman
+  - matthew-vanaman
+  - matt-vanaman
 description: ''
 comment: yes
 toc: yes
 autoCollapseToc: yes
-postMetaInFooter: no
+postMetaInFooter: yes
 hiddenFromHomePage: no
 contentCopyright: no
 reward: no
@@ -25,7 +42,7 @@ flowchartDiagrams:
 sequenceDiagrams:
   enable: no
   options: ''
-bibliography: "/Users/home/Documents/Research and Writing/Misc/MyRefs/MyRefs.bib"
+bibliography: "/Users/home/Documents/Research and Writing/Misc/MyRefs/Refs.bib"
 link-citations: true
 csl: "/Users/home/Documents/Research and Writing/Misc/MyRefs/apa-web.csl"
 ---

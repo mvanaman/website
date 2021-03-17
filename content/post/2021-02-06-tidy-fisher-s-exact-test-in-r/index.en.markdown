@@ -3,15 +3,32 @@ title: Tidy Fisher's Exact Test In R (And Why To Always Use It)
 author: Matthew E. Vanaman
 date: '2021-02-06'
 slug: []
-categories: []
-tags: []
-lastmod: '2021-02-06T15:13:40-05:00'
-keywords: []
+categories: 
+  - efficiency
+  - functions
+tags:
+  - r
+  - rstudio
+  - tidy
+  - chi-squared
+  - effect-size
+  - fisher-exact
+lastmod: 2021-03-17
+keywords: 
+  - r
+  - rstudio
+  - tidy
+  - chi-squared
+  - effect-size
+  - fisher-exact
+  - matthew-e-vanaman
+  - matthew-vanaman
+  - matt-vanaman
 description: ''
 comment: yes
 toc: yes
 autoCollapseToc: yes
-postMetaInFooter: no
+postMetaInFooter: yes
 hiddenFromHomePage: no
 contentCopyright: no
 reward: no
@@ -25,7 +42,7 @@ flowchartDiagrams:
 sequenceDiagrams:
   enable: no
   options: ''
-bibliography: "/Users/home/Documents/Research and Writing/Misc/MyRefs/MyRefs.bib"
+bibliography: "/Users/home/Documents/Research and Writing/Misc/MyRefs/Refs.bib"
 link-citations: true
 csl: "/Users/home/Documents/Research and Writing/Misc/MyRefs/apa-web.csl"
 ---
@@ -60,7 +77,7 @@ Most students in the sciences learn about the \$\\chi^{2}\$ test of independence
 
 The \$\\chi^{2}\$ value, then, is a function of the difference between the expected values and the observed values (the values in from the sample). The greater the difference between expected and observed values, the lower the probability that the difference between them (or a larger difference) is due to chance, assuming that there is actually no difference at the population level. Thus all the \$\\chi^{2}\$ “test” really means is that we check to see whether the \$p\$-value from the \$\\chi^{2}\$ we get is less than alpha, which is usually a cutoff \$p\$-value of .05.
 
-One assumption of the \$\\chi^{2}\$ test violated fairly often is that no expected values are less than 5. This is sort of an arbitrary cutoff - the larger the expected counts, the more accurate the \$\\chi^{2}\$ value will be (in general). Unlike the \$\\chi^{2}\$ test, the Fisher’s exact test is accurate even in the presence of expected values less than 5. In cases where the expected values are all well above 5, the \$p\$-values from the tests will be close, if not identical. There isn’t really a drawback to using Fisher’s exact test, so it makes sense to just always use Fisher’s exact test. This argument is analogous to the argument that we should always use Welch’s instead of Student’s\$t\$-test by default ([Delacre et al., 2017](#ref-delacre2017psychologists)).
+One assumption of the \$\\chi^{2}\$ test violated fairly often is that no expected values are less than 5. This is sort of an arbitrary cutoff - the larger the expected counts, the more accurate the \$\\chi^{2}\$ value will be (in general). Unlike the \$\\chi^{2}\$ test, the Fisher’s exact test is accurate even in the presence of expected values less than 5. In cases where the expected values are all well above 5, the \$p\$-values from the tests will be close, if not identical. There isn’t really a drawback to using Fisher’s exact test, so it makes sense to just always use Fisher’s exact test. This argument is analogous to the argument that we should always use Welch’s instead of Student’s\$t\$-test by default ([**delacre2017psychologists?**](#ref-delacre2017psychologists)).
 
 As an illustration, check out the results of a \$\\chi^{2}\$ test checking to see if transmission type (`am`, 0 = automatic, 1 = manual) and engine shape (`vs`, 0 = V-shaped, 1 = straight) are related using the `mtcars` dataset:
 
@@ -897,13 +914,3 @@ my.fisher <-
         fish.test.long = fish.long))
     }
 ```
-
-<div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
-
-<div id="ref-delacre2017psychologists" class="csl-entry">
-
-Delacre, M., Lakens, D., & Leys, C. (2017). Why psychologists should by default use welch’s t-test instead of student’s t-test. *International Review of Social Psychology*, *30*(1). [Full Text](https://www.rips-irsp.com/articles/10.5334/irsp.82/)
-
-</div>
-
-</div>
