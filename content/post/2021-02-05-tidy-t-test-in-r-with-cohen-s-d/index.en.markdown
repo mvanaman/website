@@ -555,7 +555,7 @@ In [Table 3](#table3), the Cohen’s \$d\$ statistics for miles per gallon and d
 
 Of course, miles per gallon and displacement might be too conceptually different to be compared meaningfully without added context. These tests would be most helpful if you also knew what adding 146.85 of displacement per cubic inch would feel like in terms of pushing your back against the seat as you accelerate in your new car. Maybe you would need, say, twice as much displacement (or 293.7 cubic inches) in order for a gain in displacement to be noticeable. But in the absence of better information, it’s nice to know for the sake of car shopping that the *magnitude of the difference between the groups* is basically the same for miles per gallon and displacement.
 
-# Paired Samples T-Tests
+## Paired Samples T-Tests
 
 The function can handle repeated-measures data. For example, say we had data from a study that looked to see whether anxiety decreases following a round of exercise. I have two columns in my dataset: anxiety score, and time.point (before or after exercise). This would call for a paired samples t-test.
 
