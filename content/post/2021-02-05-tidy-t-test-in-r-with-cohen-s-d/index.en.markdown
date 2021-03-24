@@ -50,6 +50,10 @@ csl: "/Users/home/Documents/Research and Writing/Misc/MyRefs/apa-web.csl"
 <script src="{{< blogdown/postref >}}index.en_files/kePrint/kePrint.js"></script>
 <link href="{{< blogdown/postref >}}index.en_files/lightable/lightable.css" rel="stylesheet" />
 <script src="{{< blogdown/postref >}}index.en_files/kePrint/kePrint.js"></script>
+<link href="{{< blogdown/postref >}}index.en_files/lightable/lightable.css" rel="stylesheet" />
+<script src="{{< blogdown/postref >}}index.en_files/kePrint/kePrint.js"></script>
+<link href="{{< blogdown/postref >}}index.en_files/lightable/lightable.css" rel="stylesheet" />
+<script src="{{< blogdown/postref >}}index.en_files/kePrint/kePrint.js"></script>
 
 <link href="{{< blogdown/postref >}}index.en_files/lightable/lightable.css" rel="stylesheet" />
 
@@ -74,7 +78,7 @@ Feel free to skip to the [full function](#Function) at the bottom; if you want a
 The `t.test()` function, which is built in to base-`R` along with other mainstream tests, has messy output. It also doesn’t provide the mean difference, the standard error of the difference, or Cohen’s \$d\$. As an example of its use, I’ll conduct a \$t\$-test to see whether automatic or manual transmissions are associated with greater miles per gallon. This data can be found in the `mtcars` dataset (from the `datasets` package, also available in base-`R`):
 
 ``` r
-# t.test(DV ~ IV, data)
+# t.test(dv ~ iv, data)
 # am = automatic or manual
 # mpg = miles per gallon
 t.test(mpg ~ am, mtcars)
@@ -97,12 +101,12 @@ In this dataset, vehicles with automatic transmissions are coded as 0, and manua
 ## T-Test Using `my.t()`
 
 ``` r
-my.t(mtcars, IV = am, DV = mpg)
+my.t(mtcars, iv = "am", dv = "mpg")
 ```
 
 <table class="table" style>
 <caption>
-Table 1: T-Test With `my.t` (IV = Transmission and DV = Miles Per Gallon)
+Table 1: T-Test With my.t() (IV = Transmission and DV = Miles Per Gallon)
 
 <div id="table1">
 
@@ -112,16 +116,16 @@ Table 1: T-Test With `my.t` (IV = Transmission and DV = Miles Per Gallon)
 <thead>
 <tr>
 <th style="text-align:right;">
-0.mean
+mean.0
 </th>
 <th style="text-align:right;">
-1.mean
+mean.1
 </th>
 <th style="text-align:right;">
-0.sd
+sd.0
 </th>
 <th style="text-align:right;">
-1.sd
+sd.1
 </th>
 <th style="text-align:right;">
 mean.difference
@@ -130,10 +134,10 @@ mean.difference
 std.err
 </th>
 <th style="text-align:right;">
-conf.low
+CI.diff.lwr
 </th>
 <th style="text-align:right;">
-conf.high
+CI.diff.upr
 </th>
 <th style="text-align:right;">
 t
@@ -144,8 +148,14 @@ df
 <th style="text-align:right;">
 p.value
 </th>
-<th style="text-align:left;">
+<th style="text-align:right;">
 cohens.d
+</th>
+<th style="text-align:right;">
+CI.d.lwr
+</th>
+<th style="text-align:right;">
+CI.d.upr
 </th>
 </tr>
 </thead>
@@ -164,7 +174,7 @@ cohens.d
 6.17
 </td>
 <td style="text-align:right;">
--7.24
+-7.25
 </td>
 <td style="text-align:right;">
 1.92
@@ -184,8 +194,14 @@ cohens.d
 <td style="text-align:right;">
 0
 </td>
-<td style="text-align:left;">
-1.53
+<td style="text-align:right;">
+-1.48
+</td>
+<td style="text-align:right;">
+-2.27
+</td>
+<td style="text-align:right;">
+-0.67
 </td>
 </tr>
 </tbody>
@@ -198,12 +214,12 @@ The output in [Table 1](#table1) above provides all of the relevant statistics, 
 Currently the output is in wide format, meaning that each statistic is its own column with the values for those statistics contained in the table row. If you prefer a different format, I have also added the `long =` argument that can optionally display output in long format, with all of the values in a single column with the statistic indicated by the row:
 
 ``` r
-my.t(mtcars, IV = am, DV = mpg, long = TRUE)
+my.t(mtcars, iv = "am", dv = "mpg", long = TRUE)
 ```
 
 <table class="table" style>
 <caption>
-Table 2: T-Test With `my.t` in Long Format (IV = Transmission and DV = Miles Per Gallon)
+Table 2: T-Test With my.t() in Long Format (IV = Transmission and DV = Miles Per Gallon)
 
 <div id="table2">
 
@@ -223,7 +239,7 @@ Value
 <tbody>
 <tr>
 <td style="text-align:left;">
-0.mean
+mean.0
 </td>
 <td style="text-align:right;">
 17.15
@@ -231,7 +247,7 @@ Value
 </tr>
 <tr>
 <td style="text-align:left;">
-1.mean
+mean.1
 </td>
 <td style="text-align:right;">
 24.39
@@ -239,7 +255,7 @@ Value
 </tr>
 <tr>
 <td style="text-align:left;">
-0.sd
+sd.0
 </td>
 <td style="text-align:right;">
 3.83
@@ -247,7 +263,7 @@ Value
 </tr>
 <tr>
 <td style="text-align:left;">
-1.sd
+sd.1
 </td>
 <td style="text-align:right;">
 6.17
@@ -258,7 +274,7 @@ Value
 mean.difference
 </td>
 <td style="text-align:right;">
--7.24
+-7.25
 </td>
 </tr>
 <tr>
@@ -271,7 +287,7 @@ std.err
 </tr>
 <tr>
 <td style="text-align:left;">
-conf.low
+CI.diff.lwr
 </td>
 <td style="text-align:right;">
 -11.28
@@ -279,7 +295,7 @@ conf.low
 </tr>
 <tr>
 <td style="text-align:left;">
-conf.high
+CI.diff.upr
 </td>
 <td style="text-align:right;">
 -3.21
@@ -314,7 +330,23 @@ p.value
 cohens.d
 </td>
 <td style="text-align:right;">
-1.53
+-1.48
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CI.d.lwr
+</td>
+<td style="text-align:right;">
+-2.27
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CI.d.upr
+</td>
+<td style="text-align:right;">
+-0.67
 </td>
 </tr>
 </tbody>
@@ -324,9 +356,9 @@ Personally, I like the long format, because usually I am running more than one \
 
 ``` r
 # conduct the tests
-mpg.test <- my.t(mtcars, IV = am, DV = mpg, long = TRUE)
-disp.test <- my.t(mtcars, IV = am, DV = disp, long = TRUE)
-# relabel the columns with the name of the DV
+mpg.test <- my.t(mtcars, iv = "am", dv = "mpg", long = TRUE)
+disp.test <- my.t(mtcars, iv = "am", dv = "disp", long = TRUE)
+# relabel the columns with the name of the dv
 mpg.test <- mpg.test %>% rename(MPG = Value)
 disp.test <- disp.test %>% rename("Disp." = Value)
 # combine into one dataframe
@@ -360,7 +392,7 @@ Disp.
 <tbody>
 <tr>
 <td style="text-align:left;">
-0.mean
+mean.0
 </td>
 <td style="text-align:right;">
 17.15
@@ -371,7 +403,7 @@ Disp.
 </tr>
 <tr>
 <td style="text-align:left;">
-1.mean
+mean.1
 </td>
 <td style="text-align:right;">
 24.39
@@ -382,7 +414,7 @@ Disp.
 </tr>
 <tr>
 <td style="text-align:left;">
-0.sd
+sd.0
 </td>
 <td style="text-align:right;">
 3.83
@@ -393,7 +425,7 @@ Disp.
 </tr>
 <tr>
 <td style="text-align:left;">
-1.sd
+sd.1
 </td>
 <td style="text-align:right;">
 6.17
@@ -407,7 +439,7 @@ Disp.
 mean.difference
 </td>
 <td style="text-align:right;">
--7.24
+-7.25
 </td>
 <td style="text-align:right;">
 146.85
@@ -426,7 +458,7 @@ std.err
 </tr>
 <tr>
 <td style="text-align:left;">
-conf.low
+CI.diff.lwr
 </td>
 <td style="text-align:right;">
 -11.28
@@ -437,7 +469,7 @@ conf.low
 </tr>
 <tr>
 <td style="text-align:left;">
-conf.high
+CI.diff.upr
 </td>
 <td style="text-align:right;">
 -3.21
@@ -484,10 +516,32 @@ p.value
 cohens.d
 </td>
 <td style="text-align:right;">
-1.53
+-1.48
 </td>
 <td style="text-align:right;">
--1.49
+1.45
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CI.d.lwr
+</td>
+<td style="text-align:right;">
+-2.27
+</td>
+<td style="text-align:right;">
+0.64
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CI.d.upr
+</td>
+<td style="text-align:right;">
+-0.67
+</td>
+<td style="text-align:right;">
+2.23
 </td>
 </tr>
 </tbody>
@@ -501,6 +555,241 @@ In [Table 3](#table3), the Cohen’s \$d\$ statistics for miles per gallon and d
 
 Of course, miles per gallon and displacement might be too conceptually different to be compared meaningfully without added context. These tests would be most helpful if you also knew what adding 146.85 of displacement per cubic inch would feel like in terms of pushing your back against the seat as you accelerate in your new car. Maybe you would need, say, twice as much displacement (or 293.7 cubic inches) in order for a gain in displacement to be noticeable. But in the absence of better information, it’s nice to know for the sake of car shopping that the *magnitude of the difference between the groups* is basically the same for miles per gallon and displacement.
 
+# Paired Samples T-Tests
+
+The function can handle repeated-measures data. For example, say we had data from a study that looked to see whether anxiety decreases following a round of exercise. I have two columns in my dataset: anxiety score, and time.point (before or after exercise). This would call for a paired samples t-test.
+
+All you have to do is tack on the `paired = TRUE` argument to `my.t`:
+
+``` r
+my.t(anxiety, iv = "time.point", dv = "anxiety", paired = TRUE)
+```
+
+<table class="table" style>
+<caption>
+Table 4: Comparing Anxiety Before and After Exercise
+
+<div id="table4">
+
+</div>
+
+</caption>
+<thead>
+<tr>
+<th style="text-align:right;">
+mean.before
+</th>
+<th style="text-align:right;">
+mean.after
+</th>
+<th style="text-align:right;">
+sd.before
+</th>
+<th style="text-align:right;">
+sd.after
+</th>
+<th style="text-align:right;">
+mean.difference
+</th>
+<th style="text-align:right;">
+std.err
+</th>
+<th style="text-align:right;">
+CI.diff.lwr
+</th>
+<th style="text-align:right;">
+CI.diff.upr
+</th>
+<th style="text-align:right;">
+t
+</th>
+<th style="text-align:right;">
+df
+</th>
+<th style="text-align:right;">
+p.value
+</th>
+<th style="text-align:right;">
+cohens.d
+</th>
+<th style="text-align:right;">
+CI.d.lwr
+</th>
+<th style="text-align:right;">
+CI.d.upr
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+20.66
+</td>
+<td style="text-align:right;">
+16.96
+</td>
+<td style="text-align:right;">
+6.61
+</td>
+<td style="text-align:right;">
+8.27
+</td>
+<td style="text-align:right;">
+3.7
+</td>
+<td style="text-align:right;">
+1.12
+</td>
+<td style="text-align:right;">
+1.41
+</td>
+<td style="text-align:right;">
+5.99
+</td>
+<td style="text-align:right;">
+3.3
+</td>
+<td style="text-align:right;">
+29
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.6
+</td>
+<td style="text-align:right;">
+0.21
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+</tbody>
+</table>
+
+Because the after group had a lower anxiety score than the before group, the mean difference and Cohen’s \$d\$ are positive. The reason is that the default behavior of the function is to subtract in the order of the level of the dv, which in this case is:
+
+``` r
+levels(anxiety$time.point)
+```
+
+    [1] "before" "after" 
+
+In this case, the “before” time point is the first level, so the mean difference and Cohen’s \$d\$ is based on mean.before - mean.after. But this is an odd order if you’re trying to interpret the mean difference as the mean change in anxiety over time. If thinking that way, the mean difference is really the mean change, which was a decrease in anxiety, which means the mean difference should be negative. Just change the order of the levels:
+
+``` r
+# change order of levels
+anxiety$time.point <- factor(anxiety$time.point, levels = c("after", "before"))
+# re-run t-test
+my.t(anxiety, iv = "time.point", dv = "anxiety", paired = TRUE)
+```
+
+<table class="table" style>
+<caption>
+Table 5: Switched Level Order: Comparing Anxiety Before and After Exercise
+
+<div id="table5">
+
+</div>
+
+</caption>
+<thead>
+<tr>
+<th style="text-align:right;">
+mean.after
+</th>
+<th style="text-align:right;">
+mean.before
+</th>
+<th style="text-align:right;">
+sd.after
+</th>
+<th style="text-align:right;">
+sd.before
+</th>
+<th style="text-align:right;">
+mean.difference
+</th>
+<th style="text-align:right;">
+std.err
+</th>
+<th style="text-align:right;">
+CI.diff.lwr
+</th>
+<th style="text-align:right;">
+CI.diff.upr
+</th>
+<th style="text-align:right;">
+t
+</th>
+<th style="text-align:right;">
+df
+</th>
+<th style="text-align:right;">
+p.value
+</th>
+<th style="text-align:right;">
+cohens.d
+</th>
+<th style="text-align:right;">
+CI.d.lwr
+</th>
+<th style="text-align:right;">
+CI.d.upr
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+16.96
+</td>
+<td style="text-align:right;">
+20.66
+</td>
+<td style="text-align:right;">
+8.27
+</td>
+<td style="text-align:right;">
+6.61
+</td>
+<td style="text-align:right;">
+-3.7
+</td>
+<td style="text-align:right;">
+1.12
+</td>
+<td style="text-align:right;">
+-5.99
+</td>
+<td style="text-align:right;">
+-1.41
+</td>
+<td style="text-align:right;">
+-3.3
+</td>
+<td style="text-align:right;">
+29
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+-0.6
+</td>
+<td style="text-align:right;">
+-1
+</td>
+<td style="text-align:right;">
+-0.21
+</td>
+</tr>
+</tbody>
+</table>
+
+The mean difference and Cohen’s \$d\$ are now negative to reflect that anxiety decreased after exercise.
+
 # Full Function
 
 <div id='Function'/>
@@ -509,58 +798,50 @@ Copy-and-paste this function to use it in your own `R` projects. You will be pro
 
 ``` r
 my.t <-
-    function(data, IV, DV, long = FALSE, ...) {
-      require(tidyverse)
-      require(psych)
-      IV.1 <- enquo(IV)
-      DV.1 <- enquo(DV)
-      means <- suppressMessages(
-        data %>%
-        group_by(!!IV.1) %>%
-        summarise(mean = mean(!!DV.1, na.rm = TRUE)) %>%
-          pivot_wider(names_from = !!IV.1, values_from =  "mean")
-        )
-      names(means) <- paste(names(means), "mean", sep = ".")
-      SDs <- suppressMessages(
-        data %>%
-          group_by(!!IV.1) %>%
-          summarise(sd = sd(!!DV.1, na.rm = TRUE)) %>%
-          pivot_wider(names_from = !!IV.1, values_from =  "sd")
-      )
-      names(SDs) <- paste(names(SDs), "sd", sep = ".")
-
-      IV.2 <- rlang::sym(rlang::as_label(rlang::enquo(IV)))
-      DV.2 <- rlang::sym(rlang::as_label(rlang::enquo(DV)))
-      form <- expr(!! DV.2 ~ !! IV.2)
-      t.tests <- t.test(eval(form), data, var.equal = FALSE)
-      stats <- t.tests %>% broom::glance(x)
-      std.err <- t.tests$stderr
-      Ds <-
-        cohen.d(x = data %>% select(!!DV.1, !!IV.1),
-                group = deparse(substitute(IV)))$cohen.d %>%
-        as.data.frame %>%
-        select(effect) %>%
-        round(2) %>%
-        format(nsmall = 2)
-      cols <- c("conf.low", "conf.high", "statistic", "parameter", "p.value")
-      means.table <-
-        cbind(means, SDs, stats[, "estimate"], std.err, stats[, cols], Ds)
-      means.table <- means.table %>%
-        rename(mean.difference = estimate, cohens.d = effect, t = statistic, df = parameter)
-      rownames(means.table) <- NULL
-      if (long == TRUE) {
-        means.table.long <-
-          means.table %>% 
-          t %>% 
-          data.frame("Value" = .) %>% 
-          rownames_to_column("Statistic") %>% 
-          mutate(Value = as.numeric(as.character(Value))) %>% 
-          mutate(Value = round(Value, 2))
-        return(means.table.long)
-      } else{
-        return(means.table)
-      }
+  function(data, iv, dv, long = FALSE, ...) {
+    require(dplyr)
+    require(effectsize)
+    require(broom)
+    require(stringr)
+    means.SDs <- suppressMessages(
+      data %>%
+        group_by_at(iv) %>%
+        summarise(
+          mean = mean(eval(parse(text = dv)), na.rm = TRUE),
+          sd = sd(eval(parse(text = dv)), na.rm = TRUE)) %>%
+        pivot_wider(names_from = iv, values_from =  c("mean", "sd"), names_sep = ".")
+    )
+    iv.2 <- rlang::sym(iv)
+    dv.2 <- rlang::sym(dv)
+    form <- expr(!! dv.2 ~ !! iv.2)
+    t.tests <- t.test(eval(form), data, var.equal = FALSE, ...) 
+    Ds <- cohens_d(eval(form), data = data, ...) %>% as.tibble
+    stats <- t.tests %>% tidy
+    std.err <- t.tests$stderr
+    cols <- c("conf.low", "conf.high", "statistic", "parameter", "p.value")
+    means.table <-
+      cbind(means.SDs, stats[, "estimate"], std.err, stats[, cols], select(Ds, -CI))
+    means.table <- means.table %>%
+      rename(
+        mean.difference = estimate,
+        t = statistic,
+        df = parameter,
+        CI.diff.lwr = conf.low,
+        CI.diff.upr = conf.high,
+        cohens.d = Cohens_d,
+        CI.d.lwr = CI_low,
+        CI.d.upr = CI_high
+      ) %>%
+      mutate_if(is.numeric, round, 3)
+    rownames(means.table) <- NULL
+    if (long == TRUE) {
+      means.table.long <-
+        means.table %>% t %>% data.frame("Value" = .) %>% rownames_to_column("Statistic")
+      return(means.table.long)
+    } else{
+      return(means.table)
     }
+  }
 ```
 
 # References

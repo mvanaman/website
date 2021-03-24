@@ -52,59 +52,52 @@ knitr::opts_chunk$set(comment = NA)
 ```{r, include=FALSE}
 library(tidyverse)
 my.t <-
-    function(data, IV, DV, long = FALSE, ...) {
-      require(tidyverse)
-      require(psych)
-      IV.1 <- enquo(IV)
-      DV.1 <- enquo(DV)
-      means <- suppressMessages(
-        data %>%
-        group_by(!!IV.1) %>%
-        summarise(mean = mean(!!DV.1, na.rm = TRUE)) %>%
-          pivot_wider(names_from = !!IV.1, values_from =  "mean")
-        )
-      names(means) <- paste(names(means), "mean", sep = ".")
-      SDs <- suppressMessages(
-        data %>%
-          group_by(!!IV.1) %>%
-          summarise(sd = sd(!!DV.1, na.rm = TRUE)) %>%
-          pivot_wider(names_from = !!IV.1, values_from =  "sd")
-      )
-      names(SDs) <- paste(names(SDs), "sd", sep = ".")
-
-      IV.2 <- rlang::sym(rlang::as_label(rlang::enquo(IV)))
-      DV.2 <- rlang::sym(rlang::as_label(rlang::enquo(DV)))
-      form <- expr(!! DV.2 ~ !! IV.2)
-      t.tests <- t.test(eval(form), data, var.equal = FALSE)
-      stats <- t.tests %>% broom::glance(x)
-      std.err <- t.tests$stderr
-      Ds <-
-        cohen.d(x = data %>% select(!!DV.1, !!IV.1),
-                group = deparse(substitute(IV)))$cohen.d %>%
-        as.data.frame %>%
-        select(effect) %>%
-        round(2) %>%
-        format(nsmall = 2)
-      cols <- c("conf.low", "conf.high", "statistic", "parameter", "p.value")
-      means.table <-
-        cbind(means, SDs, stats[, "estimate"], std.err, stats[, cols], Ds)
-      means.table <- means.table %>%
-        rename(mean.difference = estimate, cohens.d = effect, t = statistic, df = parameter)
-      rownames(means.table) <- NULL
-      if (long == TRUE) {
-        means.table.long <-
-          means.table %>% 
-          t %>% 
-          data.frame("Value" = .) %>% 
-          rownames_to_column("Statistic") %>% 
-          mutate(Value = as.numeric(as.character(Value))) %>% 
-          mutate(Value = round(Value, 2))
-        return(means.table.long)
-      } else{
-        return(means.table)
-      }
+  function(data, iv, dv, long = FALSE, ...) {
+    require(dplyr)
+    require(effectsize)
+    require(broom)
+    require(stringr)
+    means.SDs <- suppressMessages(
+      data %>%
+        group_by_at(iv) %>%
+        summarise(
+          mean = mean(eval(parse(text = dv)), na.rm = TRUE),
+          sd = sd(eval(parse(text = dv)), na.rm = TRUE)) %>%
+        pivot_wider(names_from = iv, values_from =  c("mean", "sd"), names_sep = ".")
+    )
+    iv.2 <- rlang::sym(iv)
+    dv.2 <- rlang::sym(dv)
+    form <- expr(!! dv.2 ~ !! iv.2)
+    t.tests <- t.test(eval(form), data, var.equal = FALSE, ...) 
+    Ds <- cohens_d(eval(form), data = data, ...) %>% as.tibble
+    stats <- t.tests %>% tidy
+    std.err <- t.tests$stderr
+    cols <- c("conf.low", "conf.high", "statistic", "parameter", "p.value")
+    means.table <-
+      cbind(means.SDs, stats[, "estimate"], std.err, stats[, cols], select(Ds, -CI))
+    means.table <- means.table %>%
+      rename(
+        mean.difference = estimate,
+        t = statistic,
+        df = parameter,
+        CI.diff.lwr = conf.low,
+        CI.diff.upr = conf.high,
+        cohens.d = Cohens_d,
+        CI.d.lwr = CI_low,
+        CI.d.upr = CI_high
+      ) %>%
+      mutate_if(is.numeric, round, 3)
+    rownames(means.table) <- NULL
+    if (long == TRUE) {
+      means.table.long <-
+        means.table %>% t %>% data.frame("Value" = .) %>% rownames_to_column("Statistic")
+      return(means.table.long)
+    } else{
+      return(means.table)
     }
+  }
 ```
+
 
 The independent-samples \$t\$-test is one of the most commonly used statistical tests and is taught in most introductory statistics courses. In broad strokes, the independent-samples \$t\$-test is used to compare the means of some continuous variable between two qualitatively different groups. Associated with this mean difference is a \$p\$-value. Although there's <a href="https://en.wikipedia.org/wiki/Sampling_distribution" target="_blank">more to the story</a>, for our purposes we can define the \$p\$-value as the probability of observing a difference between the means this large or larger, just due to chance, if there were in reality no difference between the groups. Although arbitrary, researchers will adopt (for most applications) a cutoff \$p\$-value of .05, a value referred to as alpha. If the \$p\$-value falls below alpha, we can conclude that the difference between the means is large enough to warrant further scrutiny.
 
@@ -127,7 +120,7 @@ Feel free to skip to the [full function](#Function) at the bottom; if you want a
 The `t.test()` function, which is built in to base-`R` along with other mainstream tests, has messy output. It also doesn't provide the mean difference, the standard error of the difference, or Cohen's \$d\$. As an example of its use, I'll conduct a \$t\$-test to see whether automatic or manual transmissions are associated with greater miles per gallon. This data can be found in the `mtcars` dataset (from the `datasets` package, also available in base-`R`):
 
 ```{r}
-# t.test(DV ~ IV, data)
+# t.test(dv ~ iv, data)
 # am = automatic or manual
 # mpg = miles per gallon
 t.test(mpg ~ am, mtcars)
@@ -138,13 +131,13 @@ In this dataset, vehicles with automatic transmissions are coded as 0, and manua
 ## T-Test Using `my.t()`
 
 ```{r, eval=FALSE}
-my.t(mtcars, IV = am, DV = mpg)
+my.t(mtcars, iv = "am", dv = "mpg")
 ```
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results="asis"}
 knitr::kable(
-  my.t(mtcars, IV = am, DV = mpg),
-  caption = "T-Test With `my.t` (IV = Transmission and DV = Miles Per Gallon) <div id='table1'/>",
+  my.t(mtcars, iv = "am", dv = "mpg"),
+  caption = "T-Test With my.t() (IV = Transmission and DV = Miles Per Gallon) <div id='table1'/>",
   digits = 2,
   row.names = FALSE,
   booktabs = TRUE
@@ -159,13 +152,13 @@ The output in [Table 1](#table1) above provides all of the relevant statistics, 
 Currently the output is in wide format, meaning that each statistic is its own column with the values for those statistics contained in the table row. If you prefer a different format, I have also added the `long =` argument that can optionally display output in long format, with all of the values in a single column with the statistic indicated by the row:
 
 ```{r, eval=FALSE}
-my.t(mtcars, IV = am, DV = mpg, long = TRUE)
+my.t(mtcars, iv = "am", dv = "mpg", long = TRUE)
 ```
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results="asis"}
 knitr::kable(
-  my.t(mtcars, IV = am, DV = mpg, long = TRUE),
-  caption = "T-Test With `my.t` in Long Format (IV = Transmission and DV = Miles Per Gallon) <div id='table2'/>",
+  my.t(mtcars, iv = "am", dv = "mpg", long = TRUE),
+  caption = "T-Test With my.t() in Long Format (IV = Transmission and DV = Miles Per Gallon) <div id='table2'/>",
   digits = 2,
   row.names = FALSE,
   booktabs = TRUE
@@ -177,9 +170,9 @@ Personally, I like the long format, because usually I am running more than one \
 
 ```{r, results="hide"}
 # conduct the tests
-mpg.test <- my.t(mtcars, IV = am, DV = mpg, long = TRUE)
-disp.test <- my.t(mtcars, IV = am, DV = disp, long = TRUE)
-# relabel the columns with the name of the DV
+mpg.test <- my.t(mtcars, iv = "am", dv = "mpg", long = TRUE)
+disp.test <- my.t(mtcars, iv = "am", dv = "disp", long = TRUE)
+# relabel the columns with the name of the dv
 mpg.test <- mpg.test %>% rename(MPG = Value)
 disp.test <- disp.test %>% rename("Disp." = Value)
 # combine into one dataframe
@@ -207,6 +200,65 @@ In [Table 3](#table3), the Cohen's \$d\$ statistics for miles per gallon and dis
 
 Of course, miles per gallon and displacement might be too conceptually different to be compared meaningfully without added context. These tests would be most helpful if you also knew what adding 146.85 of displacement per cubic inch would feel like in terms of pushing your back against the seat as you accelerate in your new car. Maybe you would need, say, twice as much displacement (or `r 146.85 * 2` cubic inches) in order for a gain in displacement to be noticeable. But in the absence of better information, it's nice to know for the sake of car shopping that the *magnitude of the difference between the groups* is basically the same for miles per gallon and displacement.
 
+# Paired Samples T-Tests
+
+```{r, echo = FALSE}
+library(datasets)
+anxiety <- ToothGrowth %>% 
+  mutate(time.point = recode(supp, "OJ" = "before", "VC" = "after")) %>% 
+  rename(anxiety = len)
+levels(anxiety$time.point) <- c("before", "after")
+```
+
+The function can handle repeated-measures data. For example, say we had data from a study that looked to see whether anxiety decreases following a round of exercise. I have two columns in my dataset: anxiety score, and time.point (before or after exercise). This would call for a paired samples t-test.
+
+All you have to do is tack on the `paired = TRUE` argument to `my.t`:
+
+```{r, eval=FALSE, echo=TRUE}
+my.t(anxiety, iv = "time.point", dv = "anxiety", paired = TRUE)
+```
+
+
+```{r, echo=FALSE}
+paired.test <- my.t(anxiety, iv = "time.point", dv = "anxiety", paired = TRUE)
+paired.test %>% knitr::kable(
+  caption = "Comparing Anxiety Before and After Exercise <div id='table4'/>",
+  digits = 2,
+  row.names = FALSE,
+  booktabs = TRUE
+) %>% 
+  kableExtra::kable_styling(position = "left")
+```
+
+Because the after group had a lower anxiety score than the before group, the mean difference and Cohen's \$d\$ are positive. The reason is that the default behavior of the function is to subtract in the order of the level of the dv, which in this case is:
+
+```{r}
+levels(anxiety$time.point)
+```
+
+In this case, the "before" time point is the first level, so the mean difference and Cohen's \$d\$ is based on mean.before - mean.after. But this is an odd order if you're trying to interpret the mean difference as the mean change in anxiety over time. If thinking that way, the mean difference is really the mean change, which was a decrease in anxiety, which means the mean difference should be negative. Just change the order of the levels:
+
+```{r, echo=TRUE, eval=FALSE}
+# change order of levels
+anxiety$time.point <- factor(anxiety$time.point, levels = c("after", "before"))
+# re-run t-test
+my.t(anxiety, iv = "time.point", dv = "anxiety", paired = TRUE)
+```
+
+```{r, echo=FALSE, eval=TRUE}
+anxiety$time.point <- factor(anxiety$time.point, levels = c("after", "before"))
+paired.test <- my.t(anxiety, iv = "time.point", dv = "anxiety", paired = TRUE)
+paired.test %>% knitr::kable(
+  caption = "Switched Level Order: Comparing Anxiety Before and After Exercise <div id='table5'/>",
+  digits = 2,
+  row.names = FALSE,
+  booktabs = TRUE
+) %>% 
+  kableExtra::kable_styling(position = "left")
+```
+
+The mean difference and Cohen's \$d\$ are now negative to reflect that anxiety decreased after exercise.
+
 # Full Function 
 
 <div id='Function'/>
@@ -215,58 +267,50 @@ Copy-and-paste this function to use it in your own `R` projects. You will be pro
 
 ```{r function, evaluate=FALSE, fig.cap="Full Code for `my.t` Function"}
 my.t <-
-    function(data, IV, DV, long = FALSE, ...) {
-      require(tidyverse)
-      require(psych)
-      IV.1 <- enquo(IV)
-      DV.1 <- enquo(DV)
-      means <- suppressMessages(
-        data %>%
-        group_by(!!IV.1) %>%
-        summarise(mean = mean(!!DV.1, na.rm = TRUE)) %>%
-          pivot_wider(names_from = !!IV.1, values_from =  "mean")
-        )
-      names(means) <- paste(names(means), "mean", sep = ".")
-      SDs <- suppressMessages(
-        data %>%
-          group_by(!!IV.1) %>%
-          summarise(sd = sd(!!DV.1, na.rm = TRUE)) %>%
-          pivot_wider(names_from = !!IV.1, values_from =  "sd")
-      )
-      names(SDs) <- paste(names(SDs), "sd", sep = ".")
-
-      IV.2 <- rlang::sym(rlang::as_label(rlang::enquo(IV)))
-      DV.2 <- rlang::sym(rlang::as_label(rlang::enquo(DV)))
-      form <- expr(!! DV.2 ~ !! IV.2)
-      t.tests <- t.test(eval(form), data, var.equal = FALSE)
-      stats <- t.tests %>% broom::glance(x)
-      std.err <- t.tests$stderr
-      Ds <-
-        cohen.d(x = data %>% select(!!DV.1, !!IV.1),
-                group = deparse(substitute(IV)))$cohen.d %>%
-        as.data.frame %>%
-        select(effect) %>%
-        round(2) %>%
-        format(nsmall = 2)
-      cols <- c("conf.low", "conf.high", "statistic", "parameter", "p.value")
-      means.table <-
-        cbind(means, SDs, stats[, "estimate"], std.err, stats[, cols], Ds)
-      means.table <- means.table %>%
-        rename(mean.difference = estimate, cohens.d = effect, t = statistic, df = parameter)
-      rownames(means.table) <- NULL
-      if (long == TRUE) {
-        means.table.long <-
-          means.table %>% 
-          t %>% 
-          data.frame("Value" = .) %>% 
-          rownames_to_column("Statistic") %>% 
-          mutate(Value = as.numeric(as.character(Value))) %>% 
-          mutate(Value = round(Value, 2))
-        return(means.table.long)
-      } else{
-        return(means.table)
-      }
+  function(data, iv, dv, long = FALSE, ...) {
+    require(dplyr)
+    require(effectsize)
+    require(broom)
+    require(stringr)
+    means.SDs <- suppressMessages(
+      data %>%
+        group_by_at(iv) %>%
+        summarise(
+          mean = mean(eval(parse(text = dv)), na.rm = TRUE),
+          sd = sd(eval(parse(text = dv)), na.rm = TRUE)) %>%
+        pivot_wider(names_from = iv, values_from =  c("mean", "sd"), names_sep = ".")
+    )
+    iv.2 <- rlang::sym(iv)
+    dv.2 <- rlang::sym(dv)
+    form <- expr(!! dv.2 ~ !! iv.2)
+    t.tests <- t.test(eval(form), data, var.equal = FALSE, ...) 
+    Ds <- cohens_d(eval(form), data = data, ...) %>% as.tibble
+    stats <- t.tests %>% tidy
+    std.err <- t.tests$stderr
+    cols <- c("conf.low", "conf.high", "statistic", "parameter", "p.value")
+    means.table <-
+      cbind(means.SDs, stats[, "estimate"], std.err, stats[, cols], select(Ds, -CI))
+    means.table <- means.table %>%
+      rename(
+        mean.difference = estimate,
+        t = statistic,
+        df = parameter,
+        CI.diff.lwr = conf.low,
+        CI.diff.upr = conf.high,
+        cohens.d = Cohens_d,
+        CI.d.lwr = CI_low,
+        CI.d.upr = CI_high
+      ) %>%
+      mutate_if(is.numeric, round, 3)
+    rownames(means.table) <- NULL
+    if (long == TRUE) {
+      means.table.long <-
+        means.table %>% t %>% data.frame("Value" = .) %>% rownames_to_column("Statistic")
+      return(means.table.long)
+    } else{
+      return(means.table)
     }
+  }
 ```
 
 # References
