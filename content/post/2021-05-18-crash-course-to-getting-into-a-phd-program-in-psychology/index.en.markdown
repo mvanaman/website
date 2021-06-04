@@ -1244,7 +1244,7 @@ Asking these same questions to the PA’s students. They will be more honest wit
 
     A MUST READ: the graduate school application <a href="https://www.matthewvanaman.com/PDFs/kisses.pdf" target="_blank">kisses of death</a>
 
-# Good Luck!
+# The Good Luck
 
 Few who apply to PhD programs get in. But most did not do everything they could have. They are naive and think that they will be judged only on the pure information of their stellar qualifications contained in their CV. Or they think that they will be written off or something, and so do not advocate for themselves. Or maybe it just does not occur to them to attend to some of the non-obvious aspects of the application process, like engaging in explicit self-promotion. But hopefully, you have an idea about how to start managing that stuff.
 
