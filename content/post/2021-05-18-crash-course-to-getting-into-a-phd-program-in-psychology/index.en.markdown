@@ -1,7 +1,7 @@
 ---
 title: "Applying to PhD Programs in Psychology: A Thorough and Honest Guide"
 author: Matthew E. Vanaman
-date: '06-03-2021'
+date: '06-04-2021'
 slug: []
 categories:
   - professional-development
@@ -10,7 +10,7 @@ tags:
 lastmod: '2021-05-18T21:18:27-04:00'
 keywords: []
 description: ''
-comment: no
+comment: yes
 toc: yes
 autoCollapseToc: yes
 postMetaInFooter: yes
@@ -119,7 +119,7 @@ Generally, the application process for psychology is as follows:
 
 -   Make sure your have one or more of the following:
 
-    -   Above-average scores on the **GRE**, aka the Graduate Record Examination[^1]; or
+    -   Above-average scores on the **GRE**, aka the Graduate Record Examination; or
 
     -   Above-average college **GPA** (especially major GPA).
 
@@ -1122,11 +1122,13 @@ Why do I keep putting “might” in italics? Because none of these are in your 
 
 Let me say this: if you can manage to get a phone call chat - or, if you are in town, a lunch - with a PA, that will help your chances *immensely*. “But professors are so busy!” you proclaim, suspecting that you have no right to pester them with such requests. Oh yes they are! Way busier than you, my poor, young undergraduate, could possibly even imagine. But if PAs are accepting students, that means they *need* students, and a five-to-six year investment is a lot for them to take on. They want to minimize risk. Also, if you do make meaningful contact with PA, and they review your application, and they invite you to a preliminary phone interview, the PA will end up with more familiarity with you than with any other applicant. <a href="https://en.wikipedia.org/wiki/Mere-exposure_effect" target="_blank">Familiarity</a> is good!
 
-So how should you actually accomplish this? I’ll leave out the particulars, and instead say to see the email exchange above. That’s a good example of how to follow up from your [initial emails](#initial). I followed it the email above up with a (polite) request for a video chat or phone call, and provided two or three suggested times. I mentioned that I had attached my CV and statement of purpose (addressed to that person of course!) in case they would like to learn more about my work. Hanah said she was impressed by my CV, and we had a lovely video chat, and I ended up getting accepted into that program where I study (at the time of this writing).
+**So how should you actually accomplish self-promotion?** I’ll leave out the particulars, and instead say to see the email exchange above. That’s a good example of how to follow up from your [initial emails](#initial). I followed it the email above up with a (polite) request for a video chat or phone call, and provided two or three suggested times. I mentioned that I had attached my CV and statement of purpose (addressed to that person of course!) in case they would like to learn more about my work. Hanah said she was impressed by my CV, and we had a lovely video chat, and I ended up getting accepted into that program where I study (at the time of this writing).
+
+Another thing could do is network at professional conferences. That is actually where I meant my adviser. That is also where I approached potential PAs after their talks to tell them how much I enjoyed what they had to say. I also asked them if they expected to have research assistantship positions opening up for that summer (this would have been the summer before applications). As a result, I was actually given an opportunity to work at the lab of a leading theorist, but turned it down because I had my own <a href="https://www.matthewvanaman.com/PDFs/nfmc.pdf" target="_blank">plans</a>. Something you might want to hear at this point: I had apologized to this theorist for being so bold as to ask for work right after he presented his work. He said, “no worries, you have to be. Let me put you in touch with my lab manager.” See? Good things can happen when you put yourself out there. Have some faith in humanity.
 
 Here are some of my other experiences:
 
--   Another PA said that she liked my statement of purpose, and even suggested a few edits. I made the edits in a timely fashion and sent them back, to her approval. I received a Skype interview, and an in-person interview with that PA.
+-   Another PA responded to my email inquiry and said that she liked my statement of purpose. She even suggested a few edits. I made the edits in a timely fashion and sent them back, to her approval. I received a Skype interview, and an in-person interview with that PA.
 
 -   Another PA agreed to a phone call, and we had one. I kinda screwed that phone call up, so that’s on me.
 
@@ -1248,4 +1250,27 @@ Few who apply to PhD programs get in. But most did not do everything they could 
 
 It is most likely that you will get rejected, so temper your expectations. Prepare for the best, expect the worst, as they say. With that said, remember one very important thing: if you want to get a PhD and are taking the steps to apply, you almost certainly ARE qualified to be in a PhD program. Be confident, believe in yourself. Put yourself in a position to be able to say, “if I don’t get in, it was because of random chance, not my lack of accomplishments.” That’s all you can do. Good luck!
 
-[^1]: Check to make sure the program in question requires the GRE, as many are waiving GRE requirements.
+<div id="disqus_thread">
+
+</div>
+
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://matthews-blog-1.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>
+Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>

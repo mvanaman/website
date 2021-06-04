@@ -746,3 +746,23 @@ Asking these same questions to the PA's students. They will be more honest with 
 Few who apply to PhD programs get in. But most did not do everything they could have. They are naive and think that they will be judged only on the pure information of their stellar qualifications contained in their CV. Or they think that they will be written off or something, and so do not advocate for themselves. Or maybe it just does not occur to them to attend to some of the non-obvious aspects of the application process, like engaging in explicit self-promotion. But hopefully, you have an idea about how to start managing that stuff.
 
 It is most likely that you will get rejected, so temper your expectations. Prepare for the best, expect the worst, as they say. With that said, remember one very important thing: if you want to get a PhD and are taking the steps to apply, you almost certainly ARE qualified to be in a PhD program. Be confident, believe in yourself. Put yourself in a position to be able to say, "if I don't get in, it was because of random chance, not my lack of accomplishments". That's all you can do. Good luck!
+
+<div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://matthews-blog-1.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
