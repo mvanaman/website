@@ -41,7 +41,7 @@ So you want to be a psychologist. Where do you start? Generally speaking, those 
 
 This guide assumes that you are probably interested in the other career track. This one involves advanced training in the scientific method, the teaching of college level courses, and depending on your specialty, becoming licensed to practice advanced clinical interventions that far exceeds the training in master's level counseling and social work degrees. This track could result in a career in academia as a researcher and teacher, or as a data scientist at a Fortune 500 tech company. You might found your own behavioral science consulting company, or start your own private therapy practice. You would qualify to work as a survey statistician at the CDC, as a statistical analyst at a political think tank, or as a social scientist at an NGO.
 
-This second track is the PhD in psychology. If a PhD in psychology is what you want, then you have come to the [right place](https://www.matthewvanaman.com/img/serenity.gif){target="_blank"}. It can be fulfilling, and I personally find it very rewarding (so far). But it is a task. To see what you are in for, dedicate 45 minutes to a serious read of this guide. As comedian Jerry [Seinfeld](https://en.wikipedia.org/wiki/List_of_Seinfeld_episodes){target="_blank"} once remarked, "sometimes the road less traveled is less traveled for a reason."
+This second track is the PhD in psychology. If a PhD in psychology is what you want, then you have come to the [right place](https://www.matthewvanaman.com/img/serenity.gif){target="_blank"}. It can be fulfilling, and I personally find it very rewarding (so far). But it is a task. To see what you are in for, dedicate 45 minutes to a serious read-through of this guide. As comedian Jerry [Seinfeld](https://en.wikipedia.org/wiki/List_of_Seinfeld_episodes){target="_blank"} once remarked, "sometimes the road less traveled is less traveled for a reason."
 
 # The Real Talk
 
@@ -53,7 +53,10 @@ With that said, I am of the belief that, uncontrollable barriers notwithstanding
 
 # The Philosophy
 
-<div id="phil"></div> So you've decided to move forward. Let me now disabuse you of some common folktales about PhD applications:
+::: {#phil}
+:::
+
+So you've decided to move forward. Let me now disabuse you of some common folktales about PhD applications:
 
 -   Folktale 1: getting into a PhD program is *entirely* about merit, and you will be judged purely by your qualifications.
 
@@ -175,7 +178,8 @@ To compare content, feel free to use [my CV](#materials) as an example. I receiv
 
 ## CV Factors Relevant to Qualifications
 
--   <div id="research"></div>
+-   ::: {#research}
+    :::
 
     **Research experience**: As early as humanly possible, get yourself involved in a research lab. Target the subfield that you want to eventually research as a graduate student. The earlier you start, the more opportunity you will have to rule out subfields you don't like, as is often the case. Although there are other (and perhaps better) [guides](https://www.apa.org/ed/precollege/psn/2014/01/research-undergraduate){target="_blank"} out [there](https://www.nature.com/articles/d41586-019-00871-x){target="_blank"}, here are the most common ways to get involved in research:
 
@@ -503,7 +507,10 @@ Starting at the beginning of the summer before your application deadlines:
 
 -   Starting the first week of August, go to each PAs lab or personal website and check to see if they are accepting applications for the next year. If it is August 2023, see if they are accepting applications for a Fall 2024 position, as the application season is a year ahead of the start date.
 
--   <div id="initial"></div>Next, send brief and professional emails to each PA, and confirm that they are taking students *and* that their positions are **funded** positions. Make it clear that you checked their website already. If they do not reply to your email after two weeks, send a gentle reminder. Your initial email can be something along the lines of:
+-   ::: {#initial}
+    :::
+
+    Next, send brief and professional emails to each PA, and confirm that they are taking students *and* that their positions are **funded** positions. Make it clear that you checked their website already. If they do not reply to your email after two weeks, send a gentle reminder. Your initial email can be something along the lines of:
 
     > "Hello Dr. Beans,
     >
@@ -645,15 +652,16 @@ Importantly, two out of the three people who took the time to read my materials 
 
 Diversity matters in higher education. It [does](https://www.usnews.com/education/best-colleges/articles/diversity-in-college-and-why-it-matters){target="_blank"}.
 
-But. I am going to tell you something that may surprise you. [*Diversity statements*](#materials) *are actually not that important to your application.* If you ask the program, your PA, or even some of your professors, they may say that it is, especially if they have not been a part of the recruitment process. Worse comes to worst, schools use diversity statements to decide between two candidates on the fence - "these two students were great, but this one cares about diversity more". That's the best case scenario - often times, they will briefly skim it just to check for anything, you know, *alarming*, then move on to what you will actually be evaluated on (your CV, statement, and letters of recommendation). That is, of course, assuming they get around to reading it.
+But the [*diversity statement*](#materials)is actually not that important to your application. Worse comes to worst, schools use diversity statements to decide between two candidates on the fence - "these two students were great, but this one cares about diversity more". That's the best case scenario - often times, they will briefly skim it just to check for anything, you know, *alarming*, and then move on to your CV, statement of purpose, and letters of recommendation. So while the application will probably try to convince you that it's important, it's unlikely that you would be penalized for not having diverse enough experience or get extra credit for being especially dedicated.
 
-With that said, I would not botch this either. If the diversity statement is optional, submit one anyway. Make sure you have a well-written and compelling narrative that clearly addresses what the application asks for. As long as your prose is good, your experiences seem genuine, and your attitude seems caring and informed, it'll pass. Don't sweat this too much.
+With that said, I would not botch it either. If the diversity statement is optional, submit one anyway. Make sure you have a well-written and compelling narrative that clearly addresses what the application asks for. As long as your prose is good, your experiences seem genuine, and your attitude seems caring and informed, it'll pass.
 
 # The Miscellany
 
 ## Writing
 
-<div id="classic"></div>
+::: {#classic}
+:::
 
 In all of your writing, use a [classic style](https://englishcomposition.org/advanced-writing/classic-prose-style/){target="_blank"}. Classic style is where you write in a conversational, but professional, tone. The goal of classic style is for your reader to understand what the heck you are talking about. Tell me, which of these passages do you find more compelling and informative to read?
 
