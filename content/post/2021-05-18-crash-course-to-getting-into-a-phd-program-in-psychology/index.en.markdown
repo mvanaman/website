@@ -38,7 +38,7 @@ So you want to be a psychologist. Where do you start? Generally speaking, those 
 
 This guide assumes that you are probably interested in the other career track. This one involves advanced training in the scientific method, the teaching of college level courses, and depending on your specialty, becoming licensed to practice advanced clinical interventions that far exceeds the training in master’s level counseling and social work degrees. This track could result in a career in academia as a researcher and teacher, or as a data scientist at a Fortune 500 tech company; you could found your own behavioral science consulting company, or your own private therapy practice. You would qualify to work as a survey statistician at the CDC; as a statistical analyst at a political think tank; or as a social science expert at an NGO.
 
-This second track is the PhD in psychology. If a PhD in psychology is what you want, then you have come to the <a href="https://www.matthewvanaman.com/img/serenity.gif" target="_blank">right place</a>. To see what you are for, dedicate 45 minutes to a serious read of this guide. As comedian Jerry <a href="https://en.wikipedia.org/wiki/List_of_Seinfeld_episodes" target="_blank">Seinfeld</a> once remarked, “sometimes the road less traveled is less traveled for a reason.”
+This second track is the PhD in psychology. If a PhD in psychology is what you want, then you have come to the <a href="https://www.matthewvanaman.com/img/serenity.gif" target="_blank">right place</a>. It can be fulfilling, and I personally find it very rewarding (so far). But it is a task. To see what you are in for, dedicate 45 minutes to a serious read of this guide. As comedian Jerry <a href="https://en.wikipedia.org/wiki/List_of_Seinfeld_episodes" target="_blank">Seinfeld</a> once remarked, “sometimes the road less traveled is less traveled for a reason.”
 
 # The Real Talk
 
@@ -1052,9 +1052,7 @@ Write a rough draft during summer, but leave out point 4 above. The moment you h
 
     1.  Now is NOT the time for “my time spent counseling on the suicide hotline was inspired was inspired by own experience struggling to find meaning in life.” You would not believe how common this is. Do not write like that. If you share anything personal, it should only be done with the explicit purpose of demonstrating points 1 through 5 above, and should be incorporated very carefully and with much professionalism.
 
-2.  Perhaps *some* diversity/advocacy/altruistic type stuff/etc., but only if it helps to tell your story. Do not make this your opportunity to sell yourself as a moral hero - save that for the diversity statement.
-
-    1.  Now is NOT the time for long stories about your advocacy for the oppressed. Only include moral stuff in your statement if it illustrates points 1 through 5 above.
+2.  Perhaps *some* diversity/advocacy/altruistic type stuff/etc., but only if it helps to tell your story. Do not make this your opportunity to sell yourself as a moral hero - you are auditioning to be a scientist first, even if you would like to help people with your research or see patients eventually. Only include this in your statement of purpose if it illustrates points 1 through 5 above.
 
 Importantly, you will want to write, and revise, and revise, and revise some more until your prose is tight, flowing, logical, and moving. Have your mentor go back and forth on some drafts with you. If they won’t, find another professor who will. Run your draft by the your school’s writing center, but keep in mind that they will not know what to look for in a statement of purpose. Use writing centers for grammar and syntax checks only.
 
@@ -1158,13 +1156,13 @@ With that said, I would not botch this either. If the diversity statement is opt
 
 In all of your writing, use a <a href="https://englishcomposition.org/advanced-writing/classic-prose-style/" target="_blank">classic style</a>. Classic style is where you write in a conversational, but professional, tone. The goal of classic style is for your reader to understand what the heck you are talking about. Tell me, which of these passages do you find more compelling and informative to read?
 
-> 1.  My research draws extensively from post-colonial theory to reveal the subtext of oppression and otherization experienced by marginalized and minoritized people of color that is perpetuated and legitimated through the historically entrenched heterosexist norms instantiated through the extant capitalist ideological hegemony.
->
-> 2.  Many aspects of traditional American culture can lead to unfairness toward people of color. My own work is focuses on those aspects of culture that have to do with profit-seeking and the “ideal romantic relationship.” Interestingly, these cultural aspects can interact in surprising ways: profit and romantic cultures often work hand-in-hand to create even more potent, and more adverse, effects on the everyday experiences of people of color. It is my hope that my own work can help to uncover and remedy those effects.
+> My research draws extensively from post-colonial theory to reveal the subtext of oppression and otherization experienced by marginalized and minoritized people of color that is perpetuated and legitimated through the historically entrenched heterosexist norms instantiated through the extant capitalist ideological hegemony.
+
+> Many aspects of traditional American culture can lead to unfairness toward people of color. My own work focuses on those aspects of culture that have to do with profit-seeking and the “ideal romantic relationship.” Interestingly, these cultural aspects can work hand-in-hand to create even more potent, and more adverse, effects on the everyday experiences of people of color. It is my hope that my own work can help to uncover and remedy those effects.
 
 Can you guess which passage is written in classic style? Can you guess which statement of purpose would be more likely to be memorable, enjoyable, and thus more likely to be set aside for consideration?
 
-## **Completing Your Applications**
+## **Completing Your Application**
 
 The amount of time it takes to complete an application is longer than you think. One application takes, on average, at least an entire 9-5 day to complete. Filling out these applications, along with writing and revising your statements of purpose, CV, and diversity statements, will basically be a part-time job during your Fall semester, and you should absolutely treat it that way. Every day, schedule a block of time to work on your applications and their materials. Seriously. Start earl, and plan to submit your application two weeks before the deadline to give yourself plenty of time.
 
