@@ -52,6 +52,8 @@ With that said, I am of the belief that, uncontrollable barriers notwithstanding
 
 <div id="phil">
 
+</div>
+
 So you’ve decided to move forward. Let me now disabuse you of some common folktales about PhD applications:
 
 -   Folktale 1: getting into a PhD program is *entirely* about merit, and you will be judged purely by your qualifications.
@@ -480,6 +482,8 @@ To compare content, feel free to use [my CV](#materials) as an example. I receiv
 ## CV Factors Relevant to Qualifications
 
 -   <div id="research">
+
+    </div>
 
     **Research experience**: As early as humanly possible, get yourself involved in a research lab. Target the subfield that you want to eventually research as a graduate student. The earlier you start, the more opportunity you will have to rule out subfields you don’t like, as is often the case. Although there are other (and perhaps better) <a href="https://www.apa.org/ed/precollege/psn/2014/01/research-undergraduate" target="_blank">guides</a> out <a href="https://www.nature.com/articles/d41586-019-00871-x" target="_blank">there</a>, here are the most common ways to get involved in research:
 
@@ -1010,9 +1014,17 @@ Starting at the beginning of the summer before your application deadlines:
 
 -   <div id="initial">
 
+    </div>
+
     Next, send brief and professional emails to each PA, and confirm that they are taking students *and* that their positions are **funded** positions. Make it clear that you checked their website already. If they do not reply to your email after two weeks, send a gentle reminder. Your initial email can be something along the lines of:
 
-    -   " Hello Dr. Beans, My name is Billy Bob, and I am considering applying to PhD programs in \[PA’s field\] this Fall. I read your recent paper on \[brief, concise, and for the love of God, *accurate*, sentence describing the paper’s finding\]. I found that this work was not only interesting to me, but also that it overlaps closely with my interests in \[brief, concise summary of your research interests\]. I checked your website and saw that you are accepting applications. May I ask whether the position would be funded? Thank you for your time, B. Bob"
+    > "Hello Dr. Beans,
+    >
+    > My name is Billy Bob, and I am considering applying to PhD programs in \[PA’s field\] this Fall. I read your recent paper on \[brief, concise, and for the love of God, *accurate*, sentence describing the paper’s finding\]. I found that this work was not only interesting to me, but also that it overlaps closely with my interests in \[brief, concise summary of your research interests\]. I checked your website and saw that you are accepting applications. May I ask whether the position would be funded?
+    >
+    > Thank you for your time,
+    >
+    > B. Bob"
 
     -   Do not - I repeat, DO NOT - work for free. If a PA says “sure, I’d love your application! But no funding at the moment,” then thank the person for getting back to you and remove that person from your list. You *cannot* work a part time job to fund your apartment during a PhD and expect to be in a position to get a job once you’re done. Do not be arrogant - you seriously cannot do it. Any extra time you get during your studies need to go to publishing. Do not accept an offer if it does not come with funding.
 
@@ -1150,11 +1162,13 @@ But. I am going to tell you something that may surprise you. [*Diversity stateme
 
 With that said, I would not botch this either. If the diversity statement is optional, submit one anyway. Make sure you have a well-written and compelling narrative that clearly addresses what the application asks for. As long as your prose is good, your experiences seem genuine, and your attitude seems caring and informed, it’ll pass. Don’t sweat this too much.
 
-# The Miscellaneous Advice
+# The Miscellany
 
-## **Writing**
+## Writing
 
 <div id="classic">
+
+</div>
 
 In all of your writing, use a <a href="https://englishcomposition.org/advanced-writing/classic-prose-style/" target="_blank">classic style</a>. Classic style is where you write in a conversational, but professional, tone. The goal of classic style is for your reader to understand what the heck you are talking about. Tell me, which of these passages do you find more compelling and informative to read?
 
@@ -1164,7 +1178,7 @@ In all of your writing, use a <a href="https://englishcomposition.org/advanced-w
 
 Can you guess which passage is written in classic style? Can you guess which statement of purpose would be more likely to be memorable, enjoyable, and thus more likely to be set aside for consideration?
 
-## **Completing Your Application**
+## Completing Your Application
 
 The amount of time it takes to complete an application is longer than you think. One application takes, on average, at least an entire 9-5 day to complete. Filling out these applications, along with writing and revising your statements of purpose, CV, and diversity statements, will basically be a part-time job during your Fall semester, and you should absolutely treat it that way. Every day, schedule a block of time to work on your applications and their materials. Seriously. Start earl, and plan to submit your application two weeks before the deadline to give yourself plenty of time.
 
@@ -1272,5 +1286,7 @@ It is most likely that you will get rejected, so temper your expectations. Prepa
     })();
 </script>
 <noscript>
+
 Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+
 </noscript>
