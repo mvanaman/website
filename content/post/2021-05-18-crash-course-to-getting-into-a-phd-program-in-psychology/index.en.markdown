@@ -1,5 +1,5 @@
 ---
-title: "Applying to PhD Programs in Psycholgy: A Thorough and Honest Guide"
+title: "Applying to PhD Programs in Psychology: A Thorough and Honest Guide"
 author: Matthew E. Vanaman
 date: '06-03-2021'
 slug: []
