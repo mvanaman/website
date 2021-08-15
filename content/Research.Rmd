@@ -9,7 +9,7 @@ bibliography: /Users/home/Documents/Research and Writing/Misc/MyRefs/MyPubs.bib
 link-citations: yes
 csl: /Users/home/Documents/Research and Writing/Misc/MyRefs/apa-web.csl
 nocite: |
-  @vanaman2019novel, @vanaman2020disgusta, @tierney2020creative; @leggett2021development
+  @vanaman2019novel, @vanaman2020disgust, @tierney2020creative; @leggett2021development
 ---
 
 <style>
@@ -63,10 +63,6 @@ class="button button1" type="button"
 onclick=window.open('https://github.com/mvanaman','_blank')><i class="fab fa-github"></i>
 </button>
 
-<button 
-class="button button1" type="button"
-onclick=window.open('https://www.researchgate.net/profile/Matthew_Vanaman','_blank')><i class="ai ai-researchgate"></i>
-</button>
 </center>
 
 <!-- this makes a toc, but without some of the features present on the other pages -->
