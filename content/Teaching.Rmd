@@ -79,6 +79,7 @@ fall.18.q19.q23 <- fall.18 %>% get.q(., 26:nrow(.), q19.23.names)
 .button {
   border: none;
   color: white;
+  font-style: oblique;
   padding: none;
   text-align: center;
   text-decoration: none;
@@ -161,6 +162,8 @@ Contents
 
 </li>
 
+</ol>
+
 </ul>
 
 </nav>
@@ -189,11 +192,15 @@ Although Brooklyn College is a [minority](https://cmsi.gse.rutgers.edu/sites/def
 
 Needless to say, Brooklyn College is an interesting and rewarding place to teach!
 
-## Summer 2021 {#Summer2021}
+------------------------------------------------------------------------
+
+## Summer 2021 {#Summer21}
 
 ### Workshop Leader, Statistical Programming in R, Brooklyn College Science Undergraduate Research Gateway Experience (SURGE)
 
 [SURGE](https://www.brooklyn.cuny.edu/web/academics/centers/case/programs/surge.php) is an NIH-funded academic support program directed toward incoming Brooklyn College freshman from underrepresented backgrounds. The program is meant to foster interest in pursing MD-PhDs in the social and biomedical sciences while developing vital skills that will make the students competitive applicants. My roll is to lead 45 hours of instruction in statistical programming in R, which provides core knowledge of the R programming language, practice in the a [tidy](https://tidyr.tidyverse.org) approach to data manipulation, and application of the statistical knowledge that gained through other aspects of the workshop.
+
+------------------------------------------------------------------------
 
 ## Spring 2020 {#Spring20}
 
@@ -220,6 +227,8 @@ knitr::kable(spring.20, align = "cc",
 ```
 :::
 
+------------------------------------------------------------------------
+
 ## Summer 2019 {#Summer19}
 
 ### Lab Instructor, Statistical Methods in Psychological Research, Brooklyn College
@@ -229,6 +238,8 @@ knitr::kable(spring.20, align = "cc",
 Brooklyn College does not collect student evaluations or conduct faculty evaluations for Summer courses. I have no idea why.
 
 </p>
+
+------------------------------------------------------------------------
 
 ## Spring 2019 {#Spring19}
 
@@ -269,6 +280,8 @@ knitr::kable(spring.19.q19.q23, align = "lccccccc") %>%
   kableExtra::kable_styling(position = "left")
 ```
 :::
+
+------------------------------------------------------------------------
 
 ## Fall 2018 {#Fall18}
 
