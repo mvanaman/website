@@ -4,16 +4,17 @@ lastmod: '2017-08-28T21:41:52+08:00'
 date: '2017-08-20T21:38:52+08:00'
 menu: main
 toc: yes
+toc_float: yes
 autoCollapseToc: yes
 weight: 50
-bibliography: /Users/home/Documents/Research and Writing/Misc/MyRefs/MyRefs.bib
+bibliography: /Users/home/Documents/Research and Writing/Misc/MyRefs/MyPubs.bib
 link-citations: yes
 csl: /Users/home/Documents/Research and Writing/Misc/MyRefs/apa-web.csl
 ---
 
 <center>
 
-![<i style="color:#6e6e6e">Raphael. “The school of athens”. Circa 1510. Fresca. Stanze di Raffaello, in the Apostolic Palace in the Vatican.</i>](/img/athens.jpg){style="border-radius: 2%; opacity:0.9; filter:grayscale(25%)"}
+![<i style="color:#6e6e6e">Raphael. "The school of athens". Circa 1510. Fresca. Stanze di Raffaello, in the Apostolic Palace in the Vatican.</i>](/img/athens.jpg){style="border-radius: 2%; opacity:0.9; filter:grayscale(25%)"}
 
 </center>
 
@@ -71,7 +72,10 @@ fall.18.q18 <- fall.18 %>% select(-X7) %>% get.q(., 24:25, q18.names)
 fall.18.q19.q23 <- fall.18 %>% get.q(., 26:nrow(.), q19.23.names)
 ```
 
+```{=html}
 <style>
+@import url(https://pro.fontawesome.com/releases/v5.10.0/css/all.css);
+@import url(https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css);
 .button {
   border: none;
   color: white;
@@ -81,85 +85,168 @@ fall.18.q19.q23 <- fall.18 %>% get.q(., 26:nrow(.), q19.23.names)
   display: inline-block;
   font-size: 16px;
   margin: 4px 0px;
-  transition-duration: 0.4s;
+  transition-duration: 1s;
   cursor: pointer;
 }
 
 .button1 {
   background-color: white; 
-  color: #34495e; 
+  color: #6e6e6e; 
   border: none;
-  box-shadow: 1px 2px 2px 1px #6e6e6e; 
-  }
+}
 
 .button1:hover {
   background-color: #c05b4d;
   color: white;
 }
 </style>
-
+```
 <hr style="border: none; color:#000000; background-color:#000000; height:1px; opacity:0.25">
 
 <!-- this makes a toc, but without some of the features present on the other pages -->
-<div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Contents</h1>
-  <div class="post-toc-content">
-   <nav id="TableOfContents">
-   <ul>
-     <li><a href="#Courses">Courses Taught</a>
-		 <ol>
-			<li><a href="#Spring20">Spring 2020</a></li>
-			<li><a href="#Summer19">Summer 2019</a></li>
-			<li><a href="#Spring19">Spring 2019</a></li>
-			<li><a href="#Fall18">Fall 2018</a></li>
-	 </ul>
-  </nav>
-  </div>
+
+<div class="post-toc" id="toc">
+
+<h2 class="post-toc-title">
+
+Contents
+
+</h1>
+
+<div class="post-toc-content">
+
+<nav id="TableOfContents">
+
+<ul>
+
+<li>
+
+<a href="#QR">Quantitative Support</a>
+
+</li>
+
+<li>
+
+<a href="#Courses">Courses Taught</a>
+
+<ol>
+
+<li>
+
+<a href="#Summer21">Summer 2021</a>
+
+</li>
+
+<li>
+
+<a href="#Spring20">Spring 2020</a>
+
+</li>
+
+<li>
+
+<a href="#Summer19">Summer 2019</a>
+
+</li>
+
+<li>
+
+<a href="#Spring19">Spring 2019</a>
+
+</li>
+
+<li>
+
+<a href="#Fall18">Fall 2018</a>
+
+</li>
+
+</ul>
+
+</nav>
+
 </div>
 
+</div>
+
+# Quantitative Support at the SLU Learning Center {#QR}
+
+In Summer 2020, I have been carrying out an appointment as a Quantitative Reasoning [Fellow](https://writingcenter.commons.gc.cuny.edu/people/){target="_blank"} at the CUNY School of Labor and Urban Studies Learning Center. My role at the Learning Center focuses on building an academic support system for students and faculty, particularly with the aim of facilitating quantitative pedagogy through one-on-one student support, the design and administration of quantitative support workshops, and in-class visitation and tutorials.
+
+During my first year, I provided over 80 hours of one-on-one consultation to students working on quantitative (and qualitative!) undergraduate and graduate capstone research projects and coursework. I also developed and administered workshops guiding students on different aspects of the empirical research process, and am currently developing still others that will be administered in the coming year.
+
+<button class="button button1" type="button" onclick="window.open(&#39;https://matthewevanaman.netlify.app//PDFs/QR_eval.jpg&#39;,&#39;_blank&#39;)">
+
+View 2020-2021 Evaluation
+
+</button>
+
 # Courses Taught {#Courses}
+
+Brooklyn College has been been a [leader](https://www.brooklyn.cuny.edu/web/news/bcnews/bcnews_200914.php){target="_blank"} in diversity, being formally named the Most Diverse Campus in the North Region and having the \#1 diversity [index](https://www.usnews.com/best-colleges/rankings/regional-universities-north/campus-ethnic-diversity){target="_blank"} of any campus across all four regions (North, South, Midwest, and West). It also ranks \#6 in upward social mobility and plays a crucial role in advancing socioeconomic status of New York City's minority students.
+
+Although Brooklyn College is a [minority](https://cmsi.gse.rutgers.edu/sites/default/files/2020%20CMSI%20Eligibility%20Matrix.pdf)-serving institution, it is not yet formally recognized as a Hispanic-serving institution. However, it is projected to become eligible soon (current enrollment is 24.3% Hispanic). It is currently [eligible](https://www.aanapisi.net/list_of_aanapisis){target="_blank"} to become an Asian American and Pacific Islander Serving Institution, though to my knowledge does not have the formal designation yet.
+
+Needless to say, Brooklyn College is an interesting and rewarding place to teach!
+
+## Summer 2021 {#Summer2021}
+
+### Workshop Leader, Statistical Programming in R, Brooklyn College Science Undergraduate Research Gateway Experience (SURGE)
+
+[SURGE](https://www.brooklyn.cuny.edu/web/academics/centers/case/programs/surge.php) is an NIH-funded academic support program directed toward incoming Brooklyn College freshman from underrepresented backgrounds. The program is meant to foster interest in pursing MD-PhDs in the social and biomedical sciences while developing vital skills that will make the students competitive applicants. My roll is to lead 45 hours of instruction in statistical programming in R, which provides core knowledge of the R programming language, practice in the a [tidy](https://tidyr.tidyverse.org) approach to data manipulation, and application of the statistical knowledge that gained through other aspects of the workshop.
 
 ## Spring 2020 {#Spring20}
 
 ### Lecturer, Statistical Programming in R (Graduate Course), Brooklyn College
 
-<p style = "color:#6e6e6e">
-Due to the COVID-19 pandemic, faculty and student teaching evaluations were waived for the Spring 2020 semester. Nevertheless, students did reach out via email to give unsolicited feedback about their experience for the course. I provide excerpts (edited slightly for grammar) in the table below in lieu of evaluations submitted through the university. 
+<p style="color:#6e6e6e">
+
+Due to the COVID-19 pandemic, faculty and student teaching evaluations were waived for the Spring 2020 semester. Nevertheless, students did reach out via email to give unsolicited feedback about their experience for the course. I provide excerpts (edited slightly for grammar) in the table below in lieu of evaluations submitted through the university.
+
 </p>
 
-<button class="button button1" type="button" onclick="if(document.getElementById('spring20') .style.display=='none') {document.getElementById('spring20') .style.display=''} else{document.getElementById('spring20') .style.display='none'}">View Student Feedback </button>
+<button class="button button1" type="button" onclick="if(document.getElementById(&#39;spring20&#39;) .style.display==&#39;none&#39;) {document.getElementById(&#39;spring20&#39;) .style.display=&#39;&#39;} else{document.getElementById(&#39;spring20&#39;) .style.display=&#39;none&#39;}">
 
-<div id="spring20" style="display:none">
+View Student Feedback
+
+</button>
+
+::: {#spring20 style="display:none"}
 ```{r cache=FALSE, collapse=TRUE, echo=FALSE, results="asis"}
 knitr::kable(spring.20, align = "cc",
   caption = "Student Feedback, Statistical Programming (Spring 2020) <div id='email-feedback' />") %>% 
   kableExtra::kable_styling(position = "left") %>% 
   kableExtra::footnote(general = "Students are numerically coded to protect their confidentiality. There were 7 students in the course; the one student missing from this table later emailed me to ask for mentorship beyond the course.")
 ```
-</div>
+:::
 
 ## Summer 2019 {#Summer19}
 
 ### Lab Instructor, Statistical Methods in Psychological Research, Brooklyn College
 
-<p style = "color:#6e6e6e">
+<p style="color:#6e6e6e">
+
 Brooklyn College does not collect student evaluations or conduct faculty evaluations for Summer courses. I have no idea why.
+
 </p>
 
 ## Spring 2019 {#Spring19}
 
 ### Lab Instructor, Statistical Methods in Psychological Research, Brooklyn College
 
+<button class="button button1" type="button" onclick="if(document.getElementById(&#39;spring19&#39;) .style.display==&#39;none&#39;) {document.getElementById(&#39;spring19&#39;) .style.display=&#39;&#39;} else{document.getElementById(&#39;spring19&#39;) .style.display=&#39;none&#39;}">
 
-<button class="button button1" type="button" onclick="if(document.getElementById('spring19') .style.display=='none') {document.getElementById('spring19') .style.display=''} else{document.getElementById('spring19') .style.display='none'}">View Student Evaluations </button>
+View Student Evaluations
 
-<button 
-class="button button1" type="button"
-onclick=window.open('https://matthewevanaman.netlify.app//PDFs/eval_spring19.pdf','_blank')
->View Faculty Evaluation
 </button>
 
-<div id="spring19" style="display:none">
+<button class="button button1" type="button" onclick="window.open(&#39;https://matthewevanaman.netlify.app//PDFs/eval_spring19.pdf&#39;,&#39;_blank&#39;)">
+
+View Faculty Evaluation
+
+</button>
+
+::: {#spring19 style="display:none"}
 ```{r cache=FALSE, collapse=TRUE, echo=FALSE, results="asis"}
 knitr::kable(
   spring.19.q1, 
@@ -181,22 +268,25 @@ knitr::kable(spring.19.q17, align = "lcccccc") %>%
 knitr::kable(spring.19.q19.q23, align = "lccccccc") %>% 
   kableExtra::kable_styling(position = "left")
 ```
-</div>
-
+:::
 
 ## Fall 2018 {#Fall18}
 
 ### Lab Instructor, Statistical Methods in Psychological Research, Brooklyn College
 
-<button class="button button1" type="button" onclick="if(document.getElementById('fall18') .style.display=='none') {document.getElementById('fall18') .style.display=''} else{document.getElementById('fall18') .style.display='none'}">View Student Evaluations </button>
+<button class="button button1" type="button" onclick="if(document.getElementById(&#39;fall18&#39;) .style.display==&#39;none&#39;) {document.getElementById(&#39;fall18&#39;) .style.display=&#39;&#39;} else{document.getElementById(&#39;fall18&#39;) .style.display=&#39;none&#39;}">
 
-<button 
-class="button button1" type="button"
-onclick=window.open('https://matthewevanaman.netlify.app//PDFs/eval_fall18.pdf','_blank')
->View Faculty Evaluation
+View Student Evaluations
+
 </button>
 
-<div id="fall18" style="display:none">
+<button class="button button1" type="button" onclick="window.open(&#39;https://matthewevanaman.netlify.app//PDFs/eval_fall18.pdf&#39;,&#39;_blank&#39;)">
+
+View Faculty Evaluation
+
+</button>
+
+::: {#fall18 style="display:none"}
 ```{r cache=FALSE, collapse=TRUE, echo=FALSE, results="asis"}
 knitr::kable(
   fall.18.q1, 
@@ -218,4 +308,4 @@ knitr::kable(fall.18.q17, align = "lcccccc") %>%
 knitr::kable(fall.18.q19.q23, align = "lccccccc") %>% 
   kableExtra::kable_styling(position = "left")
 ```
-</div>
+:::
