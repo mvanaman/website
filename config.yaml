@@ -28,18 +28,26 @@ menu:
       name: Home
       url: /
       weight: 10
-    - identifier: archives
+    - identifier: Research
+      name: Research
+      url: /research/
+      weight: 20
+    - identifier: Teaching
+      name: Teaching
+      url: /teaching/
+      weight: 25
+    - identifier: blog
       name: Blog
       url: /post/
-      weight: 20
-    # - identifier: tags
-    #   name: Tags
-    #   url: /tags/
-    #   weight: 30
-    # - identifier: categories
-    #   name: Categories
-    #   url: /categories/
-    #   weight: 40
+      weight: 30
+    - identifier: categories
+      name: Categories
+      url: /categories/
+      weight: 30
+    - identifier: tags
+      name: Tags
+      url: /tags/
+      weight: 40
 params:
   archivePaginate: 50
   autoCollapseToc: yes
